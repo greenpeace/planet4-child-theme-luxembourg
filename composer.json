@@ -1,5 +1,5 @@
 {
-	"name": "greenpeace/planet4-child-theme-luxemburg",
+	"name": "greenpeace/planet4-child-theme-luxembourg",
 	"description": "Child theme for the Planet 4 Wordpress project",
 	"type":"wordpress-theme",
 	"version":"0.1",
@@ -18,9 +18,9 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/greenpeace/planet4-child-theme-luxemburg/issues",
-		"wiki": "https://github.com/greenpeace/planet4-child-theme-luxemburg/wiki",
-		"source": "https://github.com/greenpeace/planet4-child-theme-luxemburg"
+		"issues": "https://github.com/greenpeace/planet4-child-theme-luxembourg/issues",
+		"wiki": "https://github.com/greenpeace/planet4-child-theme-luxembourg/wiki",
+		"source": "https://github.com/greenpeace/planet4-child-theme-luxembourg"
 	},
 	"extra": {
 		"installer-paths": {
