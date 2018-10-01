@@ -1,0 +1,39 @@
+{
+  "title": "Greenpeace Luxembourg Child Theme",
+  "name": "gplu",
+  "version": "0.4.0",
+  "description": "Greenpeace P4 Child Theme",
+  "homepage": "https://www.greenpeace.org/luxembourg/",
+  "bugs": {
+    "url": "https://github.com/greenpeace/planet4-child-theme-luxembourg/issues",
+    "email": "contact@qodop.com"
+  },
+  "scripts": {
+    "build:dev": "webpack --mode=development --w",
+    "build:prod": "webpack --mode=production"
+  },
+  "license": "GPL-3.0+",
+  "author": "qodop",
+  "contributors": [
+    "rebe100x"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpeace/planet4-child-theme-luxembourg"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.3.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.11",
+    "expose-loader": "^0.7.5",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.8.3",
+    "postcss-loader": "^2.1.4",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14"
+  }
+}

@@ -1,0 +1,143 @@
+
+// --- GENERAL SETTINGS
+p{font-size:1.125em; } //!important;
+
+.gplux-text-block{
+    padding-bottom : 30px;
+}
+
+// fix empty article with related call to action
+article {
+    clear:both;
+}
+.site-footer {
+    clear:both;
+}
+
+
+// ---- COOKIE BAR
+
+.cookie-block {
+    max-height: 20vh;
+    background-size: cover;
+    p {line-height: 20px;font-size: 0.9rem}
+    a {
+        font-size: 0.9rem;
+    };
+    .btn {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 576px){
+    .cookie-block {
+        max-height: 20vh;
+        background-size: cover;
+        p {line-height: 20px;font-size: 0.95rem}
+        a {font-size: 0.95rem;};
+        .btn {font-size: 1.125rem;}
+    }
+}
+
+
+
+// ---- NAVBAR
+.navbar-dropdown .nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+.navbar-dropdown .nav-link {
+    line-height: 3.75rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.top-navigation .btn-donate {
+    background-color: #f36d3a;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    font-size: 1.125rem;
+    line-height: 2rem;
+    font-weight: bold;
+    color: #fff;
+    max-width: 20vh;
+    height: auto;
+}
+
+.nav-search-wrap .top-nav-search-btn {
+    line-height: 2.5rem;
+}
+
+
+@media (max-width: 992px){
+    .btn.btn-navbar-toggle.navbar-dropdown-toggle {
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        margin: 4px;
+    }
+    .top-navigation .btn-donate {
+        line-height: 1.5rem;
+        height: auto;
+    }
+    .navbar-search-toggle {
+        background-size: 18px;
+    }
+}
+
+
+
+
+
+// ----- Blocks
+
+// can do steps
+.can-do-steps .step-info .steps-action a.btn{
+    width: auto;
+    display: inline-block;
+}
+
+.can-do-steps-mobile .card .info-with-image-wrap .btn-secondary{
+    font-size: 0.8rem;
+    width: 90%;
+    padding: 5px 0px;
+}
+
+
+// page header (button header cut on medium screens)
+@media (min-width: 768px) and (max-width: 992px){
+    .page-header-btn{
+        display: inline-block;
+        width: auto;
+    }
+}
+
+// Carousel
+.carousel-header .main-header .action-button .btn {
+        font-size: 1.125rem;
+    }
+
+// information block
+@media (min-width: 1200px){
+    .four-column-information a {
+        font-size: 1.125rem;
+    }
+
+    .four-column-information h5 a {
+        font-size: 1.45rem;
+    }
+}
+
+@media (min-width: 992px){
+    .four-column-information a {
+        font-size: 0.9375rem;
+    }
+}
+@media (min-width: 768px){
+    .four-column-information a {
+        font-size: 1.125rem;
+    }
+    .four-column-information h5 a {
+        font-size: 1.45rem;
+    }
+}
+

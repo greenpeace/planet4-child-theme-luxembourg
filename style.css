@@ -5,20 +5,11 @@ Description: Child theme for the Planet 4 Wordpress project
 Author: Greenpeace International
 Author URI: https://github.com/greenpeace
 Template: planet4-master-theme
-Version: 0.3
+Version: 1.28.2
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: light, accessibility-ready
 Text Domain: planet4-child-theme
 */
 
-.top-navigation .btn-donate {
-    background-color: #f36d3a;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-    font-size: 1,5rem;
-    line-height: 30px;
-    font-weight: bold;
-    color: #fff;
-    max-width: 20vh;
-    height: 30px;
-}
+
