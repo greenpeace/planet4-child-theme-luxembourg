@@ -1,18 +1,56 @@
 
+@import 'variables.scss';
+
+
+
+
 // --- GENERAL SETTINGS
+
+a:hover {
+    color: $green-gp;
+}
 p{font-size:1.125em; } //!important;
 
 .gplux-text-block{
     padding-bottom : 30px;
 }
 
-// fix empty article with related call to action
-article {
-    clear:both;
-}
+
+
+//footer
 .site-footer {
-    clear:both;
+    clear:both;// fix empty article with related call to action
+    background: white;
+    color: $grey;
+    .footer-social-media, .footer-links, .footer-links-secondary, .copyright-text, .gp-year, a {
+        color: $grey;
+    }
+
 }
+
+
+// button
+.btn-secondary {
+    color: $grey;
+    border-color : $grey-black;
+    &:hover, &:focus{
+        background-color: $green-gp;
+        border-color : $green-gp;
+    }
+}
+
+
+
+
+// image happy point
+.happy-point-block-wrap img{
+    opacity: 0.1 !important;
+}
+
+
+
+
+
 
 
 // ---- COOKIE BAR
@@ -42,17 +80,97 @@ article {
 
 
 // ---- NAVBAR
-.navbar-dropdown .nav-item {
-    flex: 1;
-    text-align: center;
+.top-navigation{
+    background:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.1s linear;
+    a{color:$grey;}
+
 }
 
-.navbar-dropdown .nav-link {
-    line-height: 3.75rem;
-    font-size: 1.125rem;
-    font-weight: bold;
+// search btn
+#search_form.nav-search-wrap {
+    .form-control {
+        line-height: 1.45rem;
+    }
+    .top-nav-search-btn {
+        line-height: 2.5rem;
+        color: $green-gp;
+        font-size: 1rem;
+    }
 }
 
+
+
+
+input[type="checkbox"] + .custom-control-description:before {
+    border: 3px solid $green-gp;
+}
+.filter-sidebar .filteritem a {
+    border: 1px solid $green-gp;
+}
+
+
+.navbar-dropdown {
+    display: flex;
+    flex-grow: 3;
+    justify-content: space-between;
+}
+
+.navbar-dropdown .active .nav-link {
+    color: $grey;
+    border-bottom: 2px solid #66CC01;
+}
+
+
+
+.navbar-dropdown {
+    li.menu-item {
+        flex: 3;
+        text-align: center;
+        justify-content: space-between;
+    }
+    a.nav-link{
+        min-width: 30px;
+        flex: 1;
+        text-align: center;
+
+    }
+    li.menu-item a {
+        line-height: 3.75rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}
+
+@media (min-width: 992px){
+    .navbar-dropdown {
+        a.nav-link{
+            &:hover, &:focus, &:active {
+                border-bottom: 2px solid #66CC01;
+            }
+        }
+    }
+}
+@media (max-width: 992px){
+    .navbar-dropdown{
+        background-color: white;
+        .nav-link:hover{
+            color: $grey-black;
+
+        }
+        .active .nav-link{
+            border-bottom: 0px;
+        }
+    }
+
+}
+
+
+
+// donate button
 .top-navigation .btn-donate {
     background-color: #f36d3a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
@@ -64,11 +182,11 @@ article {
     height: auto;
 }
 
-.nav-search-wrap .top-nav-search-btn {
-    line-height: 2.5rem;
-}
 
 
+
+
+// navbar search
 @media (max-width: 992px){
     .btn.btn-navbar-toggle.navbar-dropdown-toggle {
         font-size: 1.3rem;
@@ -86,9 +204,78 @@ article {
 
 
 
+// ---- SEARCH RESULTS PAGE
+.search-bar .search-btn i {
+    margin-top: 0px;
+    line-height:40px;
+}
+
+@media (max-width: 992px){
+    .search-bar .search-btn i{
+        margin-top: 0px;
+        line-height:32px;
+    }
+}
+
+.search-result-tags {
+    .search-result-item-head, .search-result-item-tag, a {
+        color: $green-gp;
+    }
+}
 
 
-// ----- Blocks
+
+
+
+.page-header-title{
+width: auto;
+background-image: linear-gradient(10deg, $green-gp 0%, rgba(115,190,49,0.3) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.45em;
+  background-position: 0 115%;
+  transition: background-size 0.25s ease-in;
+  display: inline-block;
+  padding: 0 10px;
+  &:hover {
+  //  background-size: 100% 88%;
+  }
+  //border-radius: 100px;
+
+}
+
+// ----- POST PAGE
+.single-post .page-header .top-page-tags a {
+    color: $green-gp;
+}
+
+.single-post .page-header .single-post-author:after {
+    top: 0px;
+}
+
+.post-details img {
+    max-width: 104%;
+    width: 100%;
+    height: auto;
+    padding: 30px 0px;
+}
+
+
+
+
+// ----- BLOCKS
+
+// Actu bloc
+.article-list-item-body .tags-list .tag-item {
+    background-color: $green-gp;
+    color: white;
+    padding: 3px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+
+
+// header image background
 
 // can do steps
 .can-do-steps .step-info .steps-action a.btn{
@@ -101,6 +288,11 @@ article {
     width: 90%;
     padding: 5px 0px;
 }
+
+.brown-bg .page-header-background:after {
+    background: linear-gradient(360deg, #a3c8cc 0%, transparent 100%);
+}
+
 
 
 // page header (button header cut on medium screens)
@@ -115,6 +307,7 @@ article {
 .carousel-header .main-header .action-button .btn {
         font-size: 1.125rem;
     }
+
 
 // information block
 @media (min-width: 1200px){

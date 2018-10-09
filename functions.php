@@ -13,3 +13,4 @@ function enqueue_child_styles() {
     wp_enqueue_script( 'bundle', get_stylesheet_directory_uri() . '/dist/bundle.js', array('jquery'), $css_creation, true );
 
 }
+
