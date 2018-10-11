@@ -6,15 +6,55 @@
 
 // --- GENERAL SETTINGS
 
-a:hover {
-    color: $green-gp;
+a {
+    color: $brown-light-gp;
+    text-decoration: none;
+    font-weight: bold;
+    &:hover {
+        color: $brown-gp;
+        text-decoration: underline;
+    }
 }
+
 p{font-size:1.125em; } //!important;
 
 .gplux-text-block{
     padding-bottom : 30px;
 }
 
+// button
+.btn-secondary, .post-content .more-link, .post-content .page-links a {
+    color: $grey;
+    border-color : $grey-black;
+    &:hover, &:focus{
+        background-color: $green-gp;
+        border-color : $green-gp;
+    }
+}
+
+// titles
+.page-header-title{
+    width: auto;
+    background-image: linear-gradient(10deg, $green-gp 0%, rgba(115,190,49,0.3) 100%);
+    transition: background-size 0.25s ease-in;
+
+    background-repeat: repeat-x;
+    display: inline;
+    padding: 0 10px 20px 0px;
+    background-position: 0 0.8em;
+    background-size: 10px 9px;
+}
+
+
+.share-buttons{
+    padding-top: 40px;
+}
+
+
+.comments-block {
+
+    border-top: 1px solid $green-gp;
+}
 
 
 //footer
@@ -25,27 +65,49 @@ p{font-size:1.125em; } //!important;
     .footer-social-media, .footer-links, .footer-links-secondary, .copyright-text, .gp-year, a {
         color: $grey;
     }
-
-}
-
-
-// button
-.btn-secondary {
-    color: $grey;
-    border-color : $grey-black;
-    &:hover, &:focus{
-        background-color: $green-gp;
-        border-color : $green-gp;
+    .footer-social-media a{
+        &:hover{
+            color: $green-gp;
+        }
     }
+
+}
+
+.footer-links-country .country-dropdown-toggle{
+    color: $grey;
+    background-color: white;
 }
 
 
 
 
-// image happy point
-.happy-point-block-wrap img{
-    opacity: 0.1 !important;
+.country-list {
+    position: absolute;
+
+            top: -600px;
+            height: 600px;
+            width: 100%;
+            background: white;
+            border : 1px solid $green-gp;
+            a {
+                color: $grey;
+                &:hover {
+                    color: $green-gp;
+                }
+            }
+        }
+
+@media (min-width: 992px){
+        .country-list {
+           width: 80%;
+        }
 }
+
+.country-dropdown-toggle:focus::after,
+.country-dropdown-toggle:hover::after {
+    background-image: url(/wp-content/themes/planet4-master-theme/images/down-arrow-green.svg);
+}
+
 
 
 
@@ -90,6 +152,8 @@ p{font-size:1.125em; } //!important;
 
 }
 
+
+
 // search btn
 #search_form.nav-search-wrap {
     .form-control {
@@ -102,31 +166,33 @@ p{font-size:1.125em; } //!important;
     }
 }
 
-
+// navbar search
+@media (max-width: 992px){
+    .btn.btn-navbar-toggle.navbar-dropdown-toggle {
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        margin: 4px;
+    }
+    .top-navigation .btn-donate {
+        line-height: 1.5rem;
+        height: auto;
+    }
+    .navbar-search-toggle {
+        background-size: 18px;
+    }
+}
 
 
 input[type="checkbox"] + .custom-control-description:before {
     border: 3px solid $green-gp;
 }
-.filter-sidebar .filteritem a {
-    border: 1px solid $green-gp;
-}
 
 
 .navbar-dropdown {
-    display: flex;
-    flex-grow: 3;
-    justify-content: space-between;
-}
-
-.navbar-dropdown .active .nav-link {
-    color: $grey;
-    border-bottom: 2px solid #66CC01;
-}
-
-
-
-.navbar-dropdown {
+    .active .nav-link {
+        color: $grey;
+        border-bottom: 2px solid #66CC01;
+    }
     li.menu-item {
         flex: 3;
         text-align: center;
@@ -143,6 +209,9 @@ input[type="checkbox"] + .custom-control-description:before {
         font-size: 1.5rem;
         font-weight: bold;
     }
+    .nav-item.wpml-ls-item .nav-link:not(:last-child)::after {
+        margin-left: 7px;
+    }
 }
 
 @media (min-width: 992px){
@@ -154,6 +223,15 @@ input[type="checkbox"] + .custom-control-description:before {
         }
     }
 }
+
+@media (max-width: 992px){
+    .top-navigation.navbar .btn-navbar-toggle {
+        background-color: $green-gp;
+        width: auto;
+    }
+
+}
+
 @media (max-width: 992px){
     .navbar-dropdown{
         background-color: white;
@@ -186,25 +264,28 @@ input[type="checkbox"] + .custom-control-description:before {
 
 
 
-// navbar search
-@media (max-width: 992px){
-    .btn.btn-navbar-toggle.navbar-dropdown-toggle {
-        font-size: 1.3rem;
-        line-height: 1.3rem;
-        margin: 4px;
-    }
-    .top-navigation .btn-donate {
-        line-height: 1.5rem;
-        height: auto;
-    }
-    .navbar-search-toggle {
-        background-size: 18px;
-    }
-}
+
 
 
 
 // ---- SEARCH RESULTS PAGE
+
+.filter-sidebar .filteritem a {
+    border: 1px solid $grey;
+}
+
+
+.filter-sidebar .active-filter .activefilter-list .activefilter-tag {
+    color: $black;
+    border: 1px solid $grey;
+}
+
+.filter-sidebar .active-filter .activefilter-list .clearall {
+    background: $green-gp;
+    color: white;
+    border: none;
+}
+
 .search-bar .search-btn i {
     margin-top: 0px;
     line-height:40px;
@@ -220,28 +301,25 @@ input[type="checkbox"] + .custom-control-description:before {
 .search-result-tags {
     .search-result-item-head, .search-result-item-tag, a {
         color: $green-gp;
+        &:hover {
+            text-decoration: underline;
+            color: $green-gp;
+        }
     }
 }
 
 
 
-
-
-.page-header-title{
-width: auto;
-background-image: linear-gradient(10deg, $green-gp 0%, rgba(115,190,49,0.3) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 0.45em;
-  background-position: 0 115%;
-  transition: background-size 0.25s ease-in;
-  display: inline-block;
-  padding: 0 10px;
-  &:hover {
-  //  background-size: 100% 88%;
-  }
-  //border-radius: 100px;
-
+input[type="checkbox"]:checked + .custom-control-description:before {
+    background: $grey;
 }
+
+
+
+
+
+
+
 
 // ----- POST PAGE
 .single-post .page-header .top-page-tags a {
@@ -260,12 +338,36 @@ background-image: linear-gradient(10deg, $green-gp 0%, rgba(115,190,49,0.3) 100%
 }
 
 
-
+.post-image .wp-caption-text, .wp-caption .wp-caption-text {
+    font-size: 0.8125rem;
+    margin: 0;
+    line-height: 1.4;
+    color: $grey;
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    max-width: 100%;
+    border-bottom: 1px solid rgba(93,100,107,0.2);
+    border-left: 1px solid rgba(93,100,107,0.2);
+    border-right: 1px solid rgba(93,100,107,0.2);
+    background : white;
+    padding: 10px 20px;
+}
 
 // ----- BLOCKS
 
+
+
+
+
+// image happy point
+.happy-point-block-wrap img{
+    opacity: 0.1 !important;
+}
+
+
+
 // Actu bloc
-.article-list-item-body .tags-list .tag-item {
+.article-list-item-body .article-list-item-tags .tag-item {
     background-color: $green-gp;
     color: white;
     padding: 3px;
