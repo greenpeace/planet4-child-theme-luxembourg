@@ -16,6 +16,19 @@ a {
     }
 }
 
+a.stress-link {
+    color: $green-gp;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: white;
+    padding : 0px 3px;
+    radius: 3px;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
 p{font-size:1.125em; } //!important;
 
 .gplux-text-block{
@@ -23,6 +36,28 @@ p{font-size:1.125em; } //!important;
 }
 
 // button
+
+
+
+
+.btn-primary {
+    background-color: $green-gp;
+    color: white;
+    font-weight: 600;
+    border: 0px solid;
+    transition: 0.2s all ease-in;
+    &:hover, &:focus, &:not(:disabled):not(.disabled):active {
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+        background-color: $green-gp;
+        border: 0px solid;
+        &:focus{
+            box-shadow: 0 0 0 0.2rem rgba(115,190,49,.5);
+        }
+    }
+}
+
+
+
 .btn-secondary, .post-content .more-link, .post-content .page-links a {
     color: $grey;
     border-color : $grey-black;
@@ -356,6 +391,39 @@ input[type="checkbox"]:checked + .custom-control-description:before {
 // ----- BLOCKS
 
 
+// form
+.form-part.hidden {display: none;}
+
+// steps
+
+.can-do-steps-mobile .card .card-header{
+    background: $yellow;
+    line-height: 2.5rem;
+    font-weight: bolder;
+    color: $brown-light-gp;
+    .step-number {
+        font-size: 1.7rem;
+        color: $brown-light-gp;
+        &:after{
+            content: "\00a0-\00a0";
+        }
+    }
+}
+
+@media (min-width: 992px){
+    .can-do-steps .step-number, .can-do-steps .step-number.active {
+        background: $yellow;
+        opacity: 0.85;
+
+        .step-number-inner {
+            position: absolute;
+            background-color: $yellow-rgba;
+            border-color: white;
+            color: $brown-light-gp;
+
+        }
+    }
+}
 
 
 
@@ -368,10 +436,10 @@ input[type="checkbox"]:checked + .custom-control-description:before {
 
 // Actu bloc
 .article-list-item-body .article-list-item-tags .tag-item {
-    background-color: $green-gp;
-    color: white;
-    padding: 3px;
-    border-radius: 2px;
+    background-color: white;
+    color: $green-gp;
+    padding: 2px 5px;
+    border-radius: 3px;
     font-weight: bold;
 }
 
