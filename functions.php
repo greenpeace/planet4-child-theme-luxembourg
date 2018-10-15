@@ -93,6 +93,7 @@ De plus, une erreur lors de l\'envoi du contact dans Engaging Networks a eu lieu
                     }
 
 
+
                     $to = "renaud@qodop.com";
                     $subject = $form->contact_subject;
                     $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
@@ -105,7 +106,7 @@ De plus, une erreur lors de l\'envoi du contact dans Engaging Networks a eu lieu
                             }
                         }
                         return $value;
-                    }, "Thanks");
+                    }, $body);
                     $headers = 'From: Greenpeace Luxembourg <noreply@greenpeace.lu>' . "\r\n";
 
                     $res = wp_mail( $to, $subject, $body, $headers );
@@ -134,6 +135,7 @@ De plus, une erreur lors de l\'envoi du contact dans Engaging Networks a eu lieu
 
                     if (!empty(trim($request['email'])) && preg_match("/^(.*<)?(?<email>[a-zA-Z0-9_\.\+-]+[^\.]@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+)>?$/", trim($request['email']), $match)) {
 
+                        $thankyouMsg = ($request['lang']) == 'fr' ? 'Merci pour votre message, nous le traitons dans les meilleurs délais.' :'Danke für deine Nachricht, wir behandeln sie so schnell wie möglich.';
                         $to = $match['email'];
                         $subject = $form->contact_subject;
                         $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
@@ -146,7 +148,7 @@ De plus, une erreur lors de l\'envoi du contact dans Engaging Networks a eu lieu
                             }
                         }
                         return $value;
-                        }, $form->thankyou_text);
+                        }, $thankyouMsg);
                         $headers = 'From: Greenpeace Luxembourg <noreply@greenpeace.lu>' . "\r\n";
 
                         $res = wp_mail( $to, $subject, $body, $headers );

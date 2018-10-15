@@ -459,9 +459,19 @@ input[type="checkbox"]:checked + .custom-control-description:before {
     padding: 5px 0px;
 }
 
+.page-header-background:after{
+    background: linear-gradient(360deg, #fff 0%, transparent 100%);
+}
+
 .brown-bg .page-header-background:after {
+    background: linear-gradient(360deg, #faf7ec 0%, transparent 100%);
+}
+
+.home.brown-bg .page-header-background:after {
     background: linear-gradient(360deg, #a3c8cc 0%, transparent 100%);
 }
+
+
 
 
 

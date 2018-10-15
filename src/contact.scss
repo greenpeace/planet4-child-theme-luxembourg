@@ -77,6 +77,46 @@
 
 
 
+.post-content{
+    .contact-info {
+        height: max-content;
+        min-height: 415px;
+
+        background-color: white;
+        box-shadow: 0 0 30px rgba(31, 35, 35, 0.1);
+
+        padding: 25px 30px 30px;
+        margin-bottom: 30px;
+    }
+
+
+    .contact-details{
+        padding: 0px 30px 30px;
+    }
+}
+
+
+input[type="radio"]:not(checked) {
+    position: absolute;
+    opacity: 0;
+}
+input[type="radio"] + label {
+    cursor: pointer;
+}
+
+select {
+    background-color: #fff;
+    border: 1px solid #e4e6ea;
+    border-radius: 2px;
+    box-shadow: 0 0 30px rgba(31, 35, 35, 0.1);
+    color: #5d646b;
+    font-size: 16px;
+    font-weight: 400;
+    height: 48px;
+    padding: 0 17px;
+    width: 100%;
+}
+
 .contacts-form {
     p {
         margin-top:.8em;
@@ -139,6 +179,12 @@
         }
     }
     form {
+        form-error{
+            font-size: 14px;
+            margin: 7px 0 0;
+            color: #F00;
+            font-weight: bold;
+        }
         max-width:94%;
         @media only screen and (min-width: #{$mobile-width}) {
             max-width:98%;
@@ -215,9 +261,10 @@
                 border: 1px solid rgb(237, 124, 124) !important;
             }
             label.error {
-                font-size: 12px;
+                font-size: 14px;
                 margin: 7px 0 0;
-                color: rgb(237, 124, 124);
+                color: #F00;
+                font-weight: bold;
             }
             label, .label {
                 color: rgb(93, 100, 107);
@@ -229,6 +276,7 @@
             textarea {
                 box-shadow: 0 0 30px rgba(31, 35, 35, 0.1);
                 border: 1px solid rgb(228, 230, 234);
+                width : 100%;
             }
             textarea {
                 //        resize: none;
