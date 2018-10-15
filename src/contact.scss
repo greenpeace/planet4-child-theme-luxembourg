@@ -79,13 +79,13 @@
 
 .post-content{
     .contact-info {
-        height: max-content;
+        height: min-content;
         min-height: 415px;
 
         background-color: white;
         box-shadow: 0 0 30px rgba(31, 35, 35, 0.1);
 
-        padding: 25px 30px 30px;
+        padding: 25px 20px 30px;
         margin-bottom: 30px;
     }
 
