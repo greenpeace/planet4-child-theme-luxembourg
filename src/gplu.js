@@ -363,13 +363,7 @@ $(document).ready(function() {
 
 
     function displayMessage(msg) {
-        var content = '<div class="contacts-form"> \
-                    <form> \
-                    <div class="form-message">' + msg + '</div> \
-                    </form> \
-                    </div>';
-
-        $('.contact-details').html(content);
+        $('#main-form').html(msg);
     }
 
 
@@ -388,12 +382,16 @@ $(document).ready(function() {
         })
                     .done(function(data, status) {
                         if (data.success) {
+                            console.log("SUCCESS");
                             $context.data('defer_confirm').resolve(data.confirm_text);
                         }
-                        else
+                        else{
+                            console.log("NO SUCCESS");
                             $context.data('defer_confirm').reject(confirm_text);
+                        }
                     })
                     .fail(function(a, b, c) {
+                        console.log("FAIL");
                         $context.data('defer_confirm').reject(fail_text);
                     });
 
