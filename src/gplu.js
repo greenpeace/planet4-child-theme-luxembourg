@@ -364,26 +364,15 @@ $(document).ready(function() {
 
     function displayMessage(msg) {
         var content = '<div class="contacts-form"> \
-<form> \
-<div class="form-message">' + msg + '</div> \
-        <div class="field-row two-in-row"> \
-            <div class="field-wrap"> \
-                <button class="btn" type="button" data-action="modal-dismiss">Fermer</button> \
-            </div> \
-</form> \
-</div>';
-        loaded = false;
-        modal('content', content);
-        modal('show');
+                    <form> \
+                    <div class="form-message">' + msg + '</div> \
+                    </form> \
+                    </div>';
+
+        $('.contact-details').html(content);
     }
 
 
-    function displayForm(data) {
-        $window.trigger('gp.display_form');
-        if (data && data.length > 0)
-            modal('content', data);
-        modal('show');
-    }
 
 
 
@@ -443,9 +432,6 @@ $(document).ready(function() {
     }
 
 
-    $window.on('modal.show', function() {
-        modalOpened = true;
-    });
 
 
     /*
@@ -685,26 +671,6 @@ $(document).ready(function() {
 
         if (adminAjaxUrl) {
 
-            $window.on('track.icegram', function(e, act) {
-                if ('shown' === act) {
-                    // les formulaires dans une popup icegram
-
-                    var $f = $('form[data-submit="gp-form"]'), // CPT Form embeddé en shortcode
-                        $e = $('.icegram form.en-form'); // formulaire EN
-
-                    if ($f.length) {
-                        maskFields($f);
-                        init($f);
-                        form_id = $f.find('#form_id').val();
-                    }
-
-                    if ($e.length) {
-                        maskFields($e);
-                    }
-
-                }
-            });
-
             // les boutons qui ouvrent un CPT Form
             $(this).on('click', '[data-action="contact_form"]', function(e) {
                 e.preventDefault();
@@ -720,9 +686,6 @@ $(document).ready(function() {
                     action: 'contact_form'
                 };
 
-                if (loaded) {
-                    return displayForm();
-                }
 
                 if (querying)
                     return;

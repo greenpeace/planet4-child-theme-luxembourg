@@ -72,30 +72,40 @@ function gpf_form_submit() {
                     // if (!is_array($form->target_email))
                     //     $form->target_email = [$form->target_email];
 
+                    $form_target_text = "
+                    Prénom : %00N7E000000nl0L%<br>
+                    Nom : %00N7E000000nl0Q%<br>
+                    Email : %email% <br>
+                    Téléphone : %phone% <br>
+                    Adhérent : %is_adherent% <br>
+                    Numéro adhérent : %numadherent% <br>
+                    Sujet : %selection% <br>
+                    Bénéficiaire : %beneficiaire% <br>
+                    IBAN : %iban% <br>
+                    BIC : %bic% <br>
+                    Ancienne adresse : %old_adresse% <br>
+                    Nouvelle adresse : %new_adresse% <br>
+                    Ancien tél : %old_phone% <br>
+                    Nouveau tél : %new_phone% <br>
+                    Ancien mobile : %old_phone_mobile% <br>
+                    Nouveau mobile : %new_phone_mobile% <br>
+                    Ancien mail : %old_email% <br>
+                    Nouveau mail : %new_email% <br>
+                    Message : %message% <br>
+                    Action 1 : %00Nb000000AS58Q% <br>
+                    Action 2 : %00Nb000000AS5EE% <br>
+                    Action 3 : %00Nb000000AS5EO% <br>
+                    Langue : %lang% <br>";
+
+
 
                     $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
                         return isset($request[$match[1]]) ? $request[$match[1]] : '';
-                    }, $form->target_text);
-
-
-                    if (!empty($request['en_error'])) {
-                        $en = explode('|', $request['en_error']);
-                        $body .= '
-
- -=()=--=()=--=()=--=()=-
-
-De plus, une erreur lors de l\'envoi du contact dans Engaging Networks a eu lieu :
-
-';
-                        foreach ($en as $e) {
-                            $body .= ' * ' . $e . "\n";
-                        }
-                    }
-
+                    }, $form_target_text);
 
 
                     $to = "renaud@qodop.com";
-                    $subject = $form->contact_subject;
+                    $subject = $request['selection'];
                     $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
                         $value = '';
                         if (isset($request[$match[1]])) {
@@ -111,10 +121,9 @@ De plus, une erreur lors de l\'envoi du contact dans Engaging Networks a eu lieu
 
                     $res = wp_mail( $to, $subject, $body, $headers );
 
-
-                    $mailer->Subject = '[Formulaire du site GPF] Un nouveau message';
-                    $mailer->send();
-
+                    var_dump($request);
+                    var_dump($to, $subject, $body, $headers );
+                    var_dump($res);
                     // if ($app['debug_form']) {
                     //     $debug = [];
                     //     $debug[] = 'Date : ' . date('Y-m-d H:i:s');
@@ -135,7 +144,7 @@ De plus, une erreur lors de l\'envoi du contact dans Engaging Networks a eu lieu
 
                     if (!empty(trim($request['email'])) && preg_match("/^(.*<)?(?<email>[a-zA-Z0-9_\.\+-]+[^\.]@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+)>?$/", trim($request['email']), $match)) {
 
-                        $thankyouMsg = ($request['lang']) == 'fr' ? 'Merci pour votre message, nous le traitons dans les meilleurs délais.' :'Danke für deine Nachricht, wir behandeln sie so schnell wie möglich.';
+                        $thankyouMsg = ($request['lang']) == 'fr' ? 'Merci %00N7E000000nl0L% pour votre message, nous le traitons dans les meilleurs délais.' :'Danke  %00N7E000000nl0L% für deine Nachricht, wir behandeln sie so schnell wie möglich.';
                         $to = $match['email'];
                         $subject = $form->contact_subject;
                         $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
