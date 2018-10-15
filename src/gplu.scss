@@ -35,11 +35,13 @@ p{font-size:1.125em; } //!important;
     padding-bottom : 30px;
 }
 
+
+// post content
+.post-content{
+    min-height: 60vh;
+}
+
 // button
-
-
-
-
 .btn-primary {
     background-color: $green-gp;
     color: white;
