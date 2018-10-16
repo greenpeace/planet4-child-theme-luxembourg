@@ -77,8 +77,20 @@ function gpf_form_submit() {
                 }, $form_target_text);
 
 
-                $to = "renaud@qodop.com;anais.hector@greenpeace.org ";
+                $to = ["renaud@qodop.com"];
+                //$to[] = ["anais.hector@greenpeace.org",""];
                 $subject = $request['selection'];
+
+                if(in_array($subject, ["Agriculture / OGM", "Climat", "Forêt", "Océan", "Toxique", "HS Autre", "Poser une question sur Greenpeace" ,"Poser une question aux Relations Presse"] ) ) {
+                    $to[] = "renaud+contact@qodop.com";
+                    //$to[] = "contact.luxembourg@greenpeace.org";
+                } else {
+                    $to[] = "renaud+membre@qodop.com";
+                    //$to[] = "membres.lu@greenpeace.org";
+                }
+
+
+
                 $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
                     $value = '';
                     if (isset($request[$match[1]])) {

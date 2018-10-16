@@ -160,10 +160,14 @@ msgstr ""
 "automatisch zu Beginn des Jahres versandt."
 
 msgid ""
-"Vous avez besoin du duplicata d’un de vos reçus fiscaux ? Dites-le nous ici :"
+"Vous avez besoin du duplicata d’un de vos reçus fiscaux ?"
 msgstr ""
-"Benötigen Sie ein Duplikat einer Ihrer Steuerbescheide ? Geben Sie uns hier "
-"Bescheid :"
+"Benötigen Sie ein Duplikat einer Ihrer Steuerbescheide ?"
+
+msgid ""
+"Dites-le nous ici :"
+msgstr ""
+"Geben Sie uns hier Bescheid"
 
 msgid ""
 "Greenpeace est une association reconnue d’intérêt général. Ainsi, vous "
@@ -271,3 +275,18 @@ msgstr "Geben Sie bitte eine gültige Telefonnummer ein"
 
 msgid "En savoir plus sur le fonctionnement de Greenpeace"
 msgstr "Erfahren Sie mehr darüber, wie Greenpeace funktioniert"
+
+msgid "ENVOYER"
+msgstr "SENDEN"
+
+msgid "Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages"
+msgstr "Um mehr über Greenpeace zu erfahren, besuchen Sie unsere Seiten"
+
+msgid "Vous n’avez pas trouvé ? Posez-nous votre question ici."
+msgstr "Sie haben nicht gefunden? Stellen Sie uns Ihre Frage hier."
+
+msgid "Nos chargés de communication sont à votre écoute."
+msgstr "Unsere Kommunikationsbeauftragten stehen Ihnen zur Verfügung."
+
+msgid "Contactez Pauline Maes sur "
+msgstr "Kontaktieren Sie Pauline Maes "

@@ -95,7 +95,7 @@
                                         </optgroup>
 
                                         <optgroup label="{{ __( 'Poser une autre question sur Greenpeace', 'planet4-child-theme-luxembourg' ) }}" data-type="Fonctionnement">
-                                            <option value="" data-action="show-greenpeace">{{ __( 'Poser une question sur Greenpeace', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Poser une question sur Greenpeace" data-action="show-greenpeace">{{ __( 'Poser une question sur Greenpeace', 'planet4-child-theme-luxembourg' ) }}</option>
                                             <option value="Poser une question aux Relations Presse" data-action="show-presse">{{ __( 'Poser une question aux Relations Presse', 'planet4-child-theme-luxembourg' ) }}</option>
 
                                         </optgroup>
@@ -133,9 +133,9 @@
 
                                         <p>
                                             {% if ( lang == 'fr' ) %}
-                                                <a href="/fr/emplois/" class="more-link">Emplois</a>
+                                                <a href="/luxembourg/fr/emplois/" class="more-link">Emplois</a>
                                             {% else %}
-                                                <a href="/de/jobs/" class="more-link">Jobs</a>
+                                                <a href="/luxembourg/de/jobs/" class="more-link">Jobs</a>
                                             {% endif %}
 
                                         </p>
@@ -167,7 +167,7 @@
                                 <div id="fiscal2-part" class="form-part hidden">
                                     <div class="field-wrap" >
                                         <p style="font-size: 12px;">
-                                            {{ __( 'Greenpeace est une association reconnue d’intérêt général. Ainsi, vous pouvez déduire 66% du total de vos dons de votre impôt sur le revenu. Grâce à vos dons nous sommes à 100% efficaces sur le terrain !', 'planet4-child-theme-luxembourg' ) }}
+                                            {{ __( 'Greenpeace est une association reconnue d’intérêt général. Ainsi, vous pouvez déduire 20% du total de vos dons de votre impôt sur le revenu dans la mesure où la somme des dons versés au cours d’une année dépasse 120€. Grâce à vos dons nous sommes à 100% efficaces sur le terrain !', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                     </div>
                                 </div>
@@ -176,8 +176,7 @@
                                 <div id="presse-part" class="form-part hidden">
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Vous êtes journaliste ? Nos chargés de communication sont à votre écoute.
-                                        ', 'planet4-child-theme-luxembourg' ) }}
+                                            {{ __( 'Nos chargés de communication sont à votre écoute.', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                         <p>
                                             {{ __( 'Contactez Pauline Maes sur ', 'planet4-child-theme-luxembourg' ) }} <a href="mailto:pauline.maes@greenpeace.org">pauline.maes@greenpeace.org</a>
@@ -190,11 +189,11 @@
                                 <div id="greenpeace-part" class="form-part hidden">
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages ', 'planet4-child-theme-luxembourg' ) }}
+                                            {{ __( 'Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages', 'planet4-child-theme-luxembourg' ) }}
                                             {% if ( lang == 'fr' ) %}
-                                                <a href="/fr/sinformer/nous-decouvrir/" target="_blank" >Greenpeace</a>.
+                                                <a href="/luxembourg/fr/sinformer/nous-decouvrir/" target="_blank" >Greenpeace</a>.
                                             {% else %}
-                                                <a href="/de/sich-informieren/greenpeace/" target="_blank" >Greenpeace</a>.
+                                                <a href="/luxembourg/de/sich-informieren/greenpeace/" target="_blank" >Greenpeace</a>.
                                             {% endif %}
                                         </p>
                                     </div>
@@ -213,9 +212,9 @@
                                         </p>
                                         <p>
                                             {% if ( lang == 'fr' ) %}
-                                                <a href="/fr/agir/benevolat/" class="more-link">Devenir bénévole à nos côtés !</a>
+                                                <a href="/luxembourg/fr/agir/benevolat/" class="more-link">Devenir bénévole à nos côtés !</a>
                                             {% else %}
-                                                <a href="/de/handeln/ehrenamtlicher-helferin-werden/" class="more-link">Ehrenamtlicher HelferIn werden</a>
+                                                <a href="/luxembourg/de/handeln/ehrenamtlicher-helferin-werden/" class="more-link">Ehrenamtlicher HelferIn werden</a>
                                             {% endif %}
 
                                         </p>
@@ -276,7 +275,7 @@
                                 <div id="coords-part" class="form-part hidden" >
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Vous renseignez vos anciennes et nouvelles coordonnées et nous nous occupons du reste& ! Soyez précis pour une prise en compte plus rapide.', 'planet4-child-theme-luxembourg' ) }}
+                                            {{ __( 'Vous renseignez vos anciennes et nouvelles coordonnées et nous nous occupons du reste ! Soyez précis pour une prise en compte plus rapide.', 'planet4-child-theme-luxembourg' ) }}
 
                                         </p>
                                     </div>
@@ -354,33 +353,16 @@
                                 </div>
 
 
-
-
-
                                 <div id="message-part" class="form-part hidden">
                                     <div class="field-wrap">
                                         <textarea name="message" id="message" data-hj-masked></textarea>
                                     </div>
-
                                 </div>
 
 
+                                 <button class="btn btn-primary btn-medium" id="form-submit" type="submit" data-loading="Envoi en cours..." style="display: block;">{{ __( 'ENVOYER', 'planet4-child-theme-luxembourg' ) }}</button>
 
-
-                                 <button class="btn btn-primary btn-medium" id="form-submit" type="submit" data-loading="Envoi en cours..." style="display: block;">ENVOYER</button>
-
-                                <input type="hidden" name="id" id="id"value="{{ post.ID }}"/>
                                 <input type="hidden" id="form_id" name="form_id" value="{{ post.ID }}">
-
-                                <input type="hidden" name="type" id="type" value=""/>
-                                <input type="hidden" name="00Nb000000AS58Q" id="subtype" value=""/>
-                                <input type="hidden" name="00Nb000000AS5EE" value="1"/>
-                                <input type="hidden" name="00Nb000000AS5EO" value="Entrant"/>
-                                <input type="hidden" name="origin" value="Web"/>
-                                <input type="hidden" name="external" value="1"/>
-                                <input type="hidden" id="description" name="description" value=""/>
-                                <input type="hidden" id="reason" name="00Nb000000AS5Ag" value=""/>
-                                <input type="hidden" id="name" name="name" value=""/>
                                 <input type="hidden" name="lang" value="{{ lang }}"/>
 
 

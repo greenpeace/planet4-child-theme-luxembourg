@@ -221,6 +221,21 @@ msgstr ""
 msgid "En savoir plus sur le fonctionnement de Greenpeace"
 msgstr ""
 
+msgid "ENVOYER"
+msgstr ""
+
+msgid "Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages"
+msgstr ""
+
+msgid "Vous n’avez pas trouvé ? Posez-nous votre question ici."
+msgstr ""
+
+msgid "Nos chargés de communication sont à votre écoute."
+msgstr ""
+
+msgid "Contactez Pauline Maes sur "
+msgstr ""
+
 
 
 
