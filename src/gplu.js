@@ -383,6 +383,8 @@ $(document).ready(function() {
                     .done(function(data, status) {
                         if (data.success) {
                             console.log("SUCCESS");
+                            console.log(data.confirm_text);
+                            console.log(confirm_text);
                             $context.data('defer_confirm').resolve(data.confirm_text);
                         }
                         else{

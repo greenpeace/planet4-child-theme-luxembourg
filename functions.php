@@ -77,6 +77,7 @@ function gpf_form_submit() {
                     Nom : %00N7E000000nl0Q%
                     Email : %email%
                     Téléphone : %phone%
+                    Langue : %lang%
                     Adhérent : %is_adherent%
                     Numéro adhérent : %numadherent%
                     Sujet : %selection%
@@ -91,20 +92,14 @@ function gpf_form_submit() {
                     Nouveau mobile : %new_phone_mobile%
                     Ancien mail : %old_email%
                     Nouveau mail : %new_email%
-                    Message : %message%
-                    Action 1 : %00Nb000000AS58Q%
-                    Action 2 : %00Nb000000AS5EE%
-                    Action 3 : %00Nb000000AS5EO%
-                    Langue : %lang% ";
-
-
+                    Message : %message%";
 
                     $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
                         return isset($request[$match[1]]) ? $request[$match[1]] : '';
                     }, $form_target_text);
 
 
-                    $to = "renaud@qodop.com";
+                    $to = "renaud@qodop.com;anais.hector@greenpeace.org ";
                     $subject = $request['selection'];
                     $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
                         $value = '';
@@ -146,7 +141,7 @@ function gpf_form_submit() {
 
                         $thankyouMsg = ($request['lang']) == 'fr' ? 'Merci %00N7E000000nl0L% pour votre message, nous le traitons dans les meilleurs délais.' :'Danke  %00N7E000000nl0L% für deine Nachricht, wir behandeln sie so schnell wie möglich.';
                         $to = $match['email'];
-                        $subject = ($request['lang'] == 'fr') ? 'Votre message à Greenpeace Luxembourg - ' : 'Ihre Nachricht an Greenpeace Luxemburg';
+                        $subject = ($request['lang'] == 'fr') ? 'Votre message à Greenpeace Luxembourg ' : 'Ihre Nachricht an Greenpeace Luxemburg';
                         $subject = ( ($request['selection'] != '') ? $subject  . ' - ' . $request['selection'] : $subject );
                         $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
                         $value = '';

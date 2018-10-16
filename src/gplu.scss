@@ -363,6 +363,7 @@ input[type="checkbox"]:checked + .custom-control-description:before {
     color: $green-gp;
 }
 
+
 .single-post .page-header .single-post-author:after {
     top: 0px;
 }
@@ -399,7 +400,7 @@ input[type="checkbox"]:checked + .custom-control-description:before {
 // steps
 
 .can-do-steps-mobile .card .card-header{
-    background: $yellow;
+    background: $green-gp;
     line-height: 2.5rem;
     font-weight: bolder;
     color: $brown-light-gp;
@@ -414,14 +415,14 @@ input[type="checkbox"]:checked + .custom-control-description:before {
 
 @media (min-width: 992px){
     .can-do-steps .step-number, .can-do-steps .step-number.active {
-        background: $yellow;
+        background: $green-gp;
         opacity: 0.85;
 
         .step-number-inner {
             position: absolute;
-            background-color: $yellow-rgba;
+            background-color: $brown-gp;
             border-color: white;
-            color: $brown-light-gp;
+            color: white;
 
         }
     }
@@ -437,7 +438,7 @@ input[type="checkbox"]:checked + .custom-control-description:before {
 
 
 // Actu bloc
-.article-list-item-body .article-list-item-tags .tag-item {
+.article-list-item-body .article-list-item-tags .tag-item, .top-page-tags .tag-item  {
     background-color: white;
     color: $green-gp;
     padding: 2px 5px;
@@ -516,3 +517,12 @@ input[type="checkbox"]:checked + .custom-control-description:before {
     }
 }
 
+.four-column a {
+    color: $brown-light-gp;
+        text-decoration: none;
+        font-weight: bold;
+        &:hover {
+            color: $brown-gp;
+            text-decoration: underline;
+        }
+}
