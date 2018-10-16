@@ -117,7 +117,7 @@ function gpf_form_submit() {
 
                 if (!empty(trim($request['email'])) && preg_match("/^(.*<)?(?<email>[a-zA-Z0-9_\.\+-]+[^\.]@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+)>?$/", trim($request['email']), $match)) {
 
-                    $thankyouMsg = ($request['lang']) == 'fr' ? 'Merci %00N7E000000nl0L% pour votre message, nous le traitons dans les meilleurs délais.' :'Danke  %00N7E000000nl0L% für deine Nachricht, wir behandeln sie so schnell wie möglich.';
+                    $thankyouMsg = ($request['lang']) == 'fr' ? 'Merci %00N7E000000nl0L% pour votre message, nous le traitons dans les meilleurs délais. \r\n\r\n L\'équipe Greenpeace Luxembourg. ' :'Danke  %00N7E000000nl0L% für deine Nachricht, wir behandeln sie so schnell wie möglich.';
                     $to = $match['email'];
                     $subject = ($request['lang'] == 'fr') ? 'Votre message à Greenpeace Luxembourg ' : 'Ihre Nachricht an Greenpeace Luxemburg';
                     $subject = ( ($request['selection'] != '') ? $subject  . ' - ' . $request['selection'] : $subject );

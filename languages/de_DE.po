@@ -290,3 +290,11 @@ msgstr "Unsere Kommunikationsbeauftragten stehen Ihnen zur Verfügung."
 
 msgid "Contactez Pauline Maes sur "
 msgstr "Kontaktieren Sie Pauline Maes "
+
+msgid "Désolé, une erreur technique nous empêche d\'envoyer le formulaire. Merci de réssayer plus tard."
+msgstr "Entschuldigung, ein technischer Fehler verhindert, dass wir das Formular abschicken. Vielen Dank für die spätere Neuaufnahme."
+
+msgid "Merci ! Nous vous répondons dans les meilleurs délais."
+msgstr "Danke! Wir werden Ihnen so schnell wie möglich antworten."
+
+

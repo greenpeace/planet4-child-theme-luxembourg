@@ -22,8 +22,8 @@ $(document).ready(function() {
         orgid = 'orgid',
         form_var = {},
         form_id,
-        confirm_text = 'Votre message a bien été envoyé.',
-        fail_text = 'Oups, une erreur technique est survenue.',
+        confirm_text = 'success',
+        fail_text = 'failed',
         maskPatterns = {
             date: {
                 J: {pattern: /[0-3]/},
@@ -123,7 +123,6 @@ $(document).ready(function() {
 
 
     function init($context) {
-        console.log('init');
         if ($context.length == 0)
             return;
 
@@ -229,10 +228,7 @@ $(document).ready(function() {
                 enurly = $this.data('enurly'),
                 enurln = $this.data('enurln');
 
-            // si pas de données pour EN alors on resolve son deferred
-            // sinon on configure les envois vers EN
-            if (enurly && enurln) prepareEN(enurly, enurln, $this);
-            else $this.data('defer_en').resolve();
+            $this.data('defer_en').resolve();
 
             if (window.init_form[id])
                 window.init_form[id]($this);
@@ -270,100 +266,14 @@ $(document).ready(function() {
 
 
 
-    /*
-     * configuration d'EN au cas où ça soit activé sur ce formulaire.
-     */
-    function prepareEN(en_url_y, en_url_n, $form) {
-        var en_form_var = {
-            "ea_requested_action": "ea_submit_user_form",
-            //      "ea_javascript_enabled": "true",
-            //      "ea.AJAX.submit": "true",
-            "ea.submitted.page": "1",
-            "medium": "WEB"
-        },
-            en_url,
-            email_ok = false;
-
-
-        $form.on('gp.submit_form', function() {
-            var $this = $(this);
-
-            email_ok = $this.find('#newsletter-yes').is(':checked');
-
-            if (email_ok) {
-                en_url = en_url_y;
-                en_form_var.email_ok = 'Y';
-            }
-            else {
-                en_url = en_url_n;
-            }
-
-            // recuperation utm_*
-            for (var param in urlParams) {
-                var value = urlParams[param];
-
-                switch (param) {
-                    case 'tracking':
-                        param = 'ea.tracking.id';
-                        // pas de break
-                    case 'utm_campaign':
-                    case 'utm_medium':
-                    case 'utm_source':
-                    case 'utm_term':
-                    case 'utm_content':
-                    case 'ea.tracking.id':
-                        en_form_var[param] = value;
-                        break;
-                }
-            }
-
-            // il nous faut email, phone, firstname, lastname
-            $this.find('[data-en]').each(function() {
-                var $t = $(this);
-                en_form_var[ $t.data('en') ] = $.trim($t.val());
-            });
-
-
-            // puis envoie
-
-            $.get(en_url, en_form_var, function(data, status) {
-                if (status === "success"
-                 && data.pages
-                 && data.pages[0]
-                 && data.pages[0].number
-                 && data.pages[0].number > 1
-                ) {
-                    // tout va bien
-                }
-                else {
-                    // tout va mal
-                    var msg = [];
-
-                    if (data.messages) {
-
-                        for (var i = 0, l = data.messages.length; i < l; i++) {
-                            var message = data.messages[i],
-                                error = message.error,
-                                field = message.fieldName;
-
-                            msg.push(error);
-                        }
-                    }
-                    else {
-                        msg.push('Erreur EN.');
-                    }
-                }
-
-                // on resolve de toute façon. Pas grave s'il y a une erreur
-                $this.data('defer_en').resolve(msg);
-            }, 'jsonp');
-
-        });
-    }
 
 
     function displayMessage(msg) {
-        $('#main-form').html(msg);
+        $('#main-form').fadeOut();
+        if(msg == 'success')
+            $('#on-form-submit-success').fadeIn();
+        else
+            $('#on-form-submit-failed').fadeIn();
     }
 
 
@@ -382,16 +292,13 @@ $(document).ready(function() {
         })
                     .done(function(data, status) {
                         if (data.success) {
-                            console.log("SUCCESS");
                             $context.data('defer_confirm').resolve(confirm_text);
                         }
                         else{
-                            console.log("NO SUCCESS");
                             $context.data('defer_confirm').reject(confirm_text);
                         }
                     })
                     .fail(function(a, b, c) {
-                        console.log("FAIL");
                         $context.data('defer_confirm').reject(fail_text);
                     });
 
@@ -879,6 +786,8 @@ $(document).ready(function() {
 
 
     function init_form_contact($form) {
+        $('#on-form-submit-success').hide();
+        $('#on-form-submit-failed').hide();
         $submit = $submit.add($form.find('#form-submit'));
         $submit = $submit.add($form.find('#nl-part'));
 
