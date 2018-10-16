@@ -1,0 +1,273 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Greenpeace Planet 4 Master Theme\n"
+"POT-Creation-Date: 2018-08-10 12:32+0000\n"
+"PO-Revision-Date: 2018-10-16 14:38+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: de_DE\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+# contact.twig
+msgid "Votre prénom"
+msgstr "Ihr Vorname"
+
+msgid "Veuillez indiquer votre prénom"
+msgstr "Geben Sie ihren Vornamen ein"
+
+msgid "Votre nom"
+msgstr "Ihr Name"
+
+msgid "Veuillez indiquer votre nom"
+msgstr "Geben Sie ihren Namen ein"
+
+msgid "Email"
+msgstr "E-Mail-Adresse"
+
+msgid "Merci de rentrer une adresse e-mail valide"
+msgstr "Geben Sie bitte eine gültige E-Mail Adresse ein"
+
+msgid "Téléphone"
+msgstr "Telefonnummer"
+
+msgid "Merci de rentrer un numéro de téléphone valide."
+msgstr "Geben Sie bitte eine gültige Telefonnummer ein."
+
+msgid "Je suis adhérent-e"
+msgstr "Ich bin Fördermitglied"
+
+msgid "Oui"
+msgstr "Ja"
+
+msgid "Non"
+msgstr "Nein"
+
+msgid "N° adhérent (facultatif)"
+msgstr "Fördermitglied-N° (optional)"
+
+msgid "Objet de votre message"
+msgstr "Verwendungszweck"
+
+msgid "Je souhaite..."
+msgstr "Ich möchte…"
+
+msgid "Gérer mon adhésion"
+msgstr "Meine Mitgliedschaft verwalten"
+
+msgid "Modifier mes coordonnées"
+msgstr "Meine Daten verwalten"
+
+msgid "Modifier mes coordonnées bancaires"
+msgstr "Meine Bankdaten verwalten"
+
+msgid "Obtenir un reçu fiscal"
+msgstr "Einen Steuerbescheid erhalten"
+
+msgid "Autre chose concernant mon adhésion"
+msgstr "Anderes bezüglich meiner Mitgliedschaft"
+
+msgid "Devenir bénévole pour Greenpeace"
+msgstr "Freiwillige(r)bei Greenpeace werden"
+
+msgid "Travailler chez Greenpeace"
+msgstr "Bei Greenpeace arbeiten"
+
+msgid "Faire un stage chez Greenpeace"
+msgstr "Ein Praktika bei Greenpeace absolvieren"
+
+msgid "Poser une question sur les campagnes de Greenpeace"
+msgstr "Frage(n) zu den Greenpeace Kampagnen stellen"
+
+msgid "Agriculture / Élevage"
+msgstr "Landwirtschaft / Viehzucht"
+
+msgid "Climat / Energie / Nucléaire"
+msgstr "Klima / Energie / Nuklear"
+
+msgid "Forêts"
+msgstr "Wälder"
+
+msgid "Océans"
+msgstr "Ozeane"
+
+msgid "Toxiques"
+msgstr "Gifte"
+
+msgid "Hors sujet"
+msgstr "Off-Topix"
+
+msgid "Poser une autre question sur Greenpeace"
+msgstr "Eine andere Frage bezüglich Greenpeace stellen"
+
+msgid "Poser une question pour mes études"
+msgstr "Eine Frage im Zusammenhang mit meinen Studien stellen"
+
+msgid "Poser une question sur Greenpeace"
+msgstr "Eine Frage zu Greenpeace stellen"
+
+msgid "Poser une question aux Relations Presse"
+msgstr "Eine Frage an die Presseabteilung stellen"
+
+msgid ""
+"Notre site Internet est plein de ressources. Pensez à vérifier si la réponse "
+"à votre question ne s’y trouve pas ! ;-)"
+msgstr ""
+"Unsere Website ist reich an Informationen. Denken Sie daran zu überprüfen, "
+"ob die Antwort auf Ihre Frage sich nicht bereits auf unserer Website "
+"befindet! ;-)"
+
+msgid "Rechercher dans le site"
+msgstr "Innerhalb der Website suchen"
+
+msgid "Posez-nous votre question ici :"
+msgstr "Stellen Sie unsere Ihre Frage(n) hier :"
+
+msgid ""
+"Travailler chez Greenpeace, c’est concilier professionnalisme et engagement, "
+"c’est participer au rayonnement de Greenpeace et développer ses acquis "
+"personnels. Venez faire la différence à nos côtés !"
+msgstr ""
+"Bei Greenpeace zu arbeiten bedeutet, Professionalität und Engagement in "
+"Einklang zu bringen, sich an der Ausstrahlung von Greenpeace zu beteiligen "
+"und persönliche Höchstleistungen zu bringen. Lassen Sie uns zusammen einen "
+"Unterschied bewirken!"
+
+msgid ""
+"Vous souhaitez mettre votre énergie au service des causes que nous "
+"défendons ? Consultez notre page emplois :"
+msgstr ""
+"Wollen Sie ihre Energie in den Dienst der Umwelt stellen, die wir "
+"verteidigen? Überprüfen Sie unsere Jobseite:"
+
+msgid ""
+"Si vous nous soutenez par prélèvement automatique, les reçus fiscaux sont "
+"automatiquement envoyés en début d’année."
+msgstr ""
+"Wenn Sie uns per Lastschrift unterstützen, werden die Steuerbescheide "
+"automatisch zu Beginn des Jahres versandt."
+
+msgid ""
+"Vous avez besoin du duplicata d’un de vos reçus fiscaux ? Dites-le nous ici :"
+msgstr ""
+"Benötigen Sie ein Duplikat einer Ihrer Steuerbescheide ? Geben Sie uns hier "
+"Bescheid :"
+
+msgid ""
+"Greenpeace est une association reconnue d’intérêt général. Ainsi, vous "
+"pouvez déduire 20% du total de vos dons de votre impôt sur le revenu dans la "
+"mesure où la somme des dons versés au cours d’une année dépasse 120€. Grâce "
+"à vos dons nous sommes à 100% efficaces sur le terrain !"
+msgstr ""
+"Greenpeace ist eine anerkannte Organisation von allgemeinem Interesse. Somit "
+"können Sie 20% Ihrer gesamten Spenden von Ihrer Einkommenssteuer absetzen. "
+"Dank Ihrer Spenden sind wir zu 100% effizient auf dem Feld!"
+
+msgid "Contactez-nous sur"
+msgstr "Kontaktieren Sie uns via :"
+
+msgid "Trouver la réponse à ma question sur le moteur de recherche"
+msgstr "Finden Sie die Antwort auf Ihre Frage(n) anhand der Suchmaschine"
+
+msgid ""
+"Vous souhaitez rejoindre les militants et bénévoles de Greenpeace pour "
+"participer à nos campagnes ? Quelle belle idée ! C’est tous ensemble que "
+"nous pourrons obtenir les avancées nécessaires à un monde meilleur !"
+msgstr ""
+"Möchten Sie sich den Greenpeace Aktivisten und Freiwilligen anschließen, um "
+"an unseren Kampagnen teilzunehmen? Tolle Idee! Gemeinsam können wir den "
+"notwendigen Fortschritt für eine bessere Welt erreichen!"
+
+msgid "Dites-nous tout"
+msgstr "Erzählen-Sie uns mehr"
+
+msgid ""
+"Vous souhaitez d’autres informations sur votre adhésion ? Vous désirez "
+"apporter une modification à votre soutien à Greenpeace ? Adressez-nous vos "
+"demandes et questions. Nous avons hâte de vous lire !"
+msgstr ""
+"Möchten Sie weitere Informationen zu Ihrer Mitgliedschaft erhalten? Möchten "
+"Sie Ihre Unterstützung für Greenpeace bearbeiten? Senden Sie uns Ihre "
+"Anfragen und Fragen. Wir können es kaum erwarten, sie zu lesen!"
+
+msgid ""
+"Pour continuer à prendre part aux campagnes de Greenpeace après avoir changé "
+"de compte bancaire, rien de plus simple ! Il vous suffit de nous indiquer "
+"vos nouvelles coordonnées bancaires juste ici :"
+msgstr ""
+"Wenn Sie nach einer Änderung Ihres Bankkontos weiterhin an Greenpeace-"
+"Kampagnen teilnehmen wollen, geben Sie einfach Ihre neuen Bankdaten hier "
+"an:\n"
+"Nom bénéficiaire Name des Empfängers :"
+
+msgid "Numéro IBAN"
+msgstr "IBAN-Nummer"
+
+msgid "Votre IBAN est obligatoire"
+msgstr "Ihre IBAN-N° ist obligatorisch"
+
+msgid "Votre IBAN est incorrect (trop court)"
+msgstr "Ihre IBAN-N° ist inkorrekt (zu kurz)"
+
+msgid "Votre IBAN est incorrect (trop long)"
+msgstr "Ihre IBAN-N° ist inkorrekt (zu lang)"
+
+msgid "Numéro BIC"
+msgstr "BIC Nummer"
+
+msgid "BIC invalide"
+msgstr "Ungültiger BIC"
+
+msgid ""
+"Vous renseignez vos anciennes et nouvelles coordonnées et nous nous occupons "
+"du reste ! Soyez précis pour une prise en compte plus rapide."
+msgstr ""
+"Geben Sie Ihre alten und neuen Daten ein und wir kümmern uns um den Rest !"
+
+msgid "Adresse postale"
+msgstr "Postanschrift"
+
+msgid "Ancienne adresse"
+msgstr "Alte Adresse"
+
+msgid "Nouvelle adresse"
+msgstr "Neue Adresse"
+
+msgid "Coordonnées téléphoniques"
+msgstr "Telefonische Daten"
+
+msgid "Ancien numéro fixe"
+msgstr "Alte Telefonnummer"
+
+msgid "Nouveau numéro fixe"
+msgstr "Neue Telefonnummer"
+
+msgid "Ancien numéro mobile"
+msgstr "Alte Mobiltelefpnnummer"
+
+msgid "Nouveau numéro mobile"
+msgstr "Neue Mobiltelefpnnummer"
+
+msgid "Nouvelle adresse e-mail"
+msgstr "Neue E-Mail-Adresse"
+
+msgid "Ancienne adresse e-mail"
+msgstr "Alte E-Mail-Adresse"
+
+msgid "Merci d’indiquer un numéro de téléphone valide"
+msgstr "Geben Sie bitte eine gültige Telefonnummer ein"
+
+msgid "En savoir plus sur le fonctionnement de Greenpeace"
+msgstr "Erfahren Sie mehr darüber, wie Greenpeace funktioniert"

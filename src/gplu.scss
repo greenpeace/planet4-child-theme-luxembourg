@@ -446,7 +446,11 @@ input[type="checkbox"]:checked + .custom-control-description:before {
     font-weight: bold;
 }
 
-
+.top-page-tags .tag-wrap {
+    display: inline;
+    position: relative;
+    color: $green-gp;
+}
 
 // header image background
 
@@ -517,7 +521,8 @@ input[type="checkbox"]:checked + .custom-control-description:before {
     }
 }
 
-.four-column a {
+.four-column a,
+.page-template-sitemap .page-sitemap a {
     color: $brown-light-gp;
         text-decoration: none;
         font-weight: bold;
@@ -526,3 +531,5 @@ input[type="checkbox"]:checked + .custom-control-description:before {
             text-decoration: underline;
         }
 }
+
+

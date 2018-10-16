@@ -1,0 +1,226 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Greenpeace Planet 4 Master Theme\n"
+"POT-Creation-Date: 2018-08-10 12:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Language: "
+
+#contact.twig
+msgid "Votre prénom"
+msgstr ""
+
+msgid "Veuillez indiquer votre prénom"
+msgstr ""
+
+msgid "Votre nom"
+msgstr ""
+
+msgid "Veuillez indiquer votre nom"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Merci de rentrer une adresse e-mail valide"
+msgstr ""
+
+msgid "Téléphone"
+msgstr ""
+
+msgid "Merci de rentrer un numéro de téléphone valide."
+msgstr ""
+
+msgid "Je suis adhérent-e"
+msgstr ""
+
+msgid "Oui"
+msgstr ""
+
+msgid "Non"
+msgstr ""
+
+msgid "N° adhérent (facultatif)"
+msgstr ""
+
+msgid "Objet de votre message"
+msgstr ""
+
+msgid "Je souhaite..."
+msgstr ""
+
+msgid "Gérer mon adhésion"
+msgstr ""
+
+msgid "Modifier mes coordonnées"
+msgstr ""
+
+msgid "Modifier mes coordonnées bancaires"
+msgstr ""
+
+msgid "Obtenir un reçu fiscal"
+msgstr ""
+
+msgid "Autre chose concernant mon adhésion"
+msgstr ""
+
+msgid "Devenir bénévole pour Greenpeace"
+msgstr ""
+
+msgid "Travailler chez Greenpeace"
+msgstr ""
+
+msgid "Faire un stage chez Greenpeace"
+msgstr ""
+
+msgid "Poser une question sur les campagnes de Greenpeace"
+msgstr ""
+
+msgid "Agriculture / Élevage"
+msgstr ""
+
+msgid "Climat / Energie / Nucléaire"
+msgstr ""
+
+msgid "Forêts"
+msgstr ""
+
+msgid "Océans"
+msgstr ""
+
+msgid "Toxiques"
+msgstr ""
+
+msgid "Hors sujet"
+msgstr ""
+
+msgid "Poser une autre question sur Greenpeace"
+msgstr ""
+
+msgid "Poser une question pour mes études"
+msgstr ""
+
+msgid "Poser une question sur Greenpeace"
+msgstr ""
+
+msgid "Poser une question aux Relations Presse"
+msgstr ""
+
+msgid "Notre site Internet est plein de ressources. Pensez à vérifier si la réponse à votre question ne s’y trouve pas ! ;-)"
+msgstr ""
+
+msgid "Rechercher dans le site"
+msgstr ""
+
+msgid "Posez-nous votre question ici :"
+msgstr ""
+
+msgid "Travailler chez Greenpeace, c’est concilier professionnalisme et engagement, c’est participer au rayonnement de Greenpeace et développer ses acquis personnels. Venez faire la différence à nos côtés !"
+msgstr ""
+
+msgid "Vous souhaitez mettre votre énergie au service des causes que nous défendons ? Consultez notre page emplois :"
+msgstr ""
+
+msgid "Si vous nous soutenez par prélèvement automatique, les reçus fiscaux sont automatiquement envoyés en début d’année."
+msgstr ""
+
+msgid "Vous avez besoin du duplicata d’un de vos reçus fiscaux ? Dites-le nous ici :"
+msgstr ""
+
+msgid "Greenpeace est une association reconnue d’intérêt général. Ainsi, vous pouvez déduire 20% du total de vos dons de votre impôt sur le revenu dans la mesure où la somme des dons versés au cours d’une année dépasse 120€. Grâce à vos dons nous sommes à 100% efficaces sur le terrain !"
+msgstr ""
+
+msgid "Contactez-nous sur"
+msgstr ""
+
+msgid "Trouver la réponse à ma question sur le moteur de recherche"
+msgstr ""
+
+msgid "Vous souhaitez rejoindre les militants et bénévoles de Greenpeace pour participer à nos campagnes ? Quelle belle idée ! C’est tous ensemble que nous pourrons obtenir les avancées nécessaires à un monde meilleur !"
+msgstr ""
+
+msgid "Dites-nous tout"
+msgstr ""
+
+msgid "Vous souhaitez d’autres informations sur votre adhésion ? Vous désirez apporter une modification à votre soutien à Greenpeace ? Adressez-nous vos demandes et questions. Nous avons hâte de vous lire !"
+msgstr ""
+
+msgid "Pour continuer à prendre part aux campagnes de Greenpeace après avoir changé de compte bancaire, rien de plus simple ! Il vous suffit de nous indiquer vos nouvelles coordonnées bancaires juste ici :"
+msgstr ""
+
+msgid "Numéro IBAN"
+msgstr ""
+
+msgid "Votre IBAN est obligatoire"
+msgstr ""
+
+msgid "Votre IBAN est incorrect (trop court)"
+msgstr ""
+
+msgid "Votre IBAN est incorrect (trop long)"
+msgstr ""
+
+msgid "Numéro BIC"
+msgstr ""
+
+msgid "BIC invalide"
+msgstr ""
+
+msgid "Vous renseignez vos anciennes et nouvelles coordonnées et nous nous occupons du reste ! Soyez précis pour une prise en compte plus rapide."
+msgstr ""
+
+msgid "Adresse postale"
+msgstr ""
+
+msgid "Ancienne adresse"
+msgstr ""
+
+msgid "Nouvelle adresse"
+msgstr ""
+
+msgid "Coordonnées téléphoniques"
+msgstr ""
+
+msgid "Ancien numéro fixe"
+msgstr ""
+
+msgid "Nouveau numéro fixe"
+msgstr ""
+
+msgid "Ancien numéro mobile"
+msgstr ""
+
+msgid "Nouveau numéro mobile"
+msgstr ""
+
+msgid "Nouvelle adresse e-mail"
+msgstr ""
+
+msgid "Ancienne adresse e-mail"
+msgstr ""
+
+msgid "Merci d’indiquer un numéro de téléphone valide"
+msgstr ""
+
+msgid "En savoir plus sur le fonctionnement de Greenpeace"
+msgstr ""
+
+
+
+

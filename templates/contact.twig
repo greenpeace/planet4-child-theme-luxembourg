@@ -22,25 +22,25 @@
 
                                 <div class="field-row two-in-row">
                                     <div class="field-wrap">
-                                        <label for="00N7E000000nl0L">{{ __( 'Votre prénom', 'planet4-master-theme' ) }}*</label>
-                                        <input type="text" value="" name="00N7E000000nl0L" id="00N7E000000nl0L" data-msg="{{ __( 'Veuillez indiquer votre prénom', 'planet4-master-theme' ) }}" data-rule-required="true" data-en="first_name"  data-hj-masked/>
+                                        <label for="00N7E000000nl0L">{{ __( 'Votre prénom', 'planet4-child-theme-luxembourg' ) }}*</label>
+                                        <input type="text" value="" name="00N7E000000nl0L" id="00N7E000000nl0L" data-msg="{{ __( 'Veuillez indiquer votre prénom', 'planet4-child-theme-luxembourg' ) }}" data-rule-required="true" data-en="first_name"  data-hj-masked/>
                                     </div>
 
                                     <div class="field-wrap">
-                                        <label for="00N7E000000nl0Q">{{ __( 'Votre nom', 'planet4-master-theme' ) }}*</label>
-                                        <input type="text" value="" name="00N7E000000nl0Q" id="00N7E000000nl0Q" data-msg="{{ __( 'Veuillez indiquer votre nom', 'planet4-master-theme' ) }}" data-rule-required="true" data-en="last_name"  data-hj-masked/>
+                                        <label for="00N7E000000nl0Q">{{ __( 'Votre nom', 'planet4-child-theme-luxembourg' ) }}*</label>
+                                        <input type="text" value="" name="00N7E000000nl0Q" id="00N7E000000nl0Q" data-msg="{{ __( 'Veuillez indiquer votre nom', 'planet4-child-theme-luxembourg' ) }}" data-rule-required="true" data-en="last_name"  data-hj-masked/>
                                     </div>
                                 </div>
 
                                 <div class="field-row two-in-row">
                                     <div class="field-wrap">
-                                        <label for="email">{{ __( 'Email', 'planet4-master-theme' ) }}*</label>
-                                        <input type="email" data-rule-required="true" value="" id="email" name="email" data-rule-email="true" data-msg-email="{{ __( 'Merci de rentrer une adresse e-mail valide', 'planet4-master-theme' ) }}" data-en="email"  data-hj-masked/>
+                                        <label for="email">{{ __( 'Email', 'planet4-child-theme-luxembourg' ) }}*</label>
+                                        <input type="email" data-rule-required="true" value="" id="email" name="email" data-rule-email="true" data-msg-email="{{ __( 'Merci de rentrer une adresse e-mail valide', 'planet4-child-theme-luxembourg' ) }}" data-en="email"  data-hj-masked/>
                                     </div>
 
                                     <div class="field-wrap">
-                                        <label for="phone">{{ __( 'Téléphone', 'planet4-master-theme' ) }}</label>
-                                        <input type="text" value="" name="phone" id="phone" data-rule-phone="true" data-msg-phone="{{ __( 'Merci de rentrer un numéro de téléphone valide.', 'planet4-master-theme' ) }}" data-en="phone_number" />
+                                        <label for="phone">{{ __( 'Téléphone', 'planet4-child-theme-luxembourg' ) }}</label>
+                                        <input type="text" value="" name="phone" id="phone" data-rule-phone="true" data-msg-phone="{{ __( 'Merci de rentrer un numéro de téléphone valide.', 'planet4-child-theme-luxembourg' ) }}" data-en="phone_number" />
                                     </div>
                                 </div>
 
@@ -49,18 +49,18 @@
 
                                 <div class="field-row two-in-row">
                                     <div class="field-wrap radio-box">
-                                        <label>{{ __( 'Je suis adhérent-e*', 'planet4-master-theme' ) }}</label>
+                                        <label>{{ __( 'Je suis adhérent-e', 'planet4-child-theme-luxembourg' ) }}*</label>
                                         <div class="radio-wrap">
                                             <input type="radio" name="is_adherent" value="1" id="adherent-oui"/>
-                                            <label for="adherent-oui">{{ __( 'Oui', 'planet4-master-theme' ) }}</label>
+                                            <label for="adherent-oui">{{ __( 'Oui', 'planet4-child-theme-luxembourg' ) }}</label>
                                         </div>
                                         <div class="radio-wrap">
                                             <input type="radio" name="is_adherent" value="0" id="adherent-non" checked/>
-                                            <label for="adherent-non">{{ __( 'Non', 'planet4-master-theme' ) }}</label>
+                                            <label for="adherent-non">{{ __( 'Non', 'planet4-child-theme-luxembourg' ) }}</label>
                                         </div>
                                     </div>
                                     <div class="field-wrap" id="numadherent-part" style="display:none ">
-                                        <label for="numadherent">{{ __( 'N° adhérent (facultatif)', 'planet4-master-theme' ) }}</label>
+                                        <label for="numadherent">{{ __( 'N° adhérent (facultatif)', 'planet4-child-theme-luxembourg' ) }}</label>
                                         <input type="text" name="numadherent" id="numadherent" value="" data-hj-masked/>
                                     </div>
                                 </div>
@@ -70,33 +70,33 @@
 
 
                                 <div class="field-wrap">
-                                    <label for="selection">{{ __( 'Objet de votre message', 'planet4-master-theme' ) }}</label>
+                                    <label for="selection">{{ __( 'Objet de votre message', 'planet4-child-theme-luxembourg' ) }}</label>
                                     <select name="selection" id="selection" style="width: 100%">
-                                        <option value="">{{ __( 'Je souhaite...', 'planet4-master-theme' ) }}</option>
-                                        <optgroup label="{{ __( 'Gérer mon adhésion', 'planet4-master-theme' ) }}" data-type="Admin">
-                                            <option value="Changement de coordonnées personnelles" data-action="show-coords" >{{ __( 'Modifier mes coordonnées', 'planet4-master-theme' ) }}</option>
-                                            <option value="Changement de coordonnées bancaires" data-action="show-iban">{{ __( 'Modifier mes coordonnées bancaires', 'planet4-master-theme' ) }}</option>
-                                            <option value="Reçu fiscal" data-action="show-fiscal">{{ __( 'Obtenir un reçu fiscal', 'planet4-master-theme' ) }}</option>
-                                            <option value="" data-action="show-autre">{{ __( 'Autre chose concernant mon adhésion', 'planet4-master-theme' ) }}</option>
+                                        <option value="">{{ __( 'Je souhaite...', 'planet4-child-theme-luxembourg' ) }}</option>
+                                        <optgroup label="{{ __( 'Gérer mon adhésion', 'planet4-child-theme-luxembourg' ) }}" data-type="Admin">
+                                            <option value="Changement de coordonnées personnelles" data-action="show-coords" >{{ __( 'Modifier mes coordonnées', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Changement de coordonnées bancaires" data-action="show-iban">{{ __( 'Modifier mes coordonnées bancaires', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Reçu fiscal" data-action="show-fiscal">{{ __( 'Obtenir un reçu fiscal', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="" data-action="show-autre">{{ __( 'Autre chose concernant mon adhésion', 'planet4-child-theme-luxembourg' ) }}</option>
                                         </optgroup>
 
-                                        <optgroup label="En savoir plus sur le fonctionnement de Greenpeace">
-                                            <option value="Devenir bénévole pour Greenpeace" data-action="show-benevolat">{{ __( 'Devenir bénévole pour Greenpeace', 'planet4-master-theme' ) }}</option>
-                                            <option value="Travailler chez Greenpeace" data-action="show-travail">{{ __( 'Travailler chez Greenpeace', 'planet4-master-theme' ) }}</option>
+                                        <optgroup label="{{ __( 'En savoir plus sur le fonctionnement de Greenpeace', 'planet4-child-theme-luxembourg' ) }}">
+                                            <option value="Devenir bénévole pour Greenpeace" data-action="show-benevolat">{{ __( 'Devenir bénévole pour Greenpeace', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Travailler chez Greenpeace" data-action="show-travail">{{ __( 'Travailler chez Greenpeace', 'planet4-child-theme-luxembourg' ) }}</option>
                                         </optgroup>
 
-                                        <optgroup label="{{ __( 'Poser une question sur les campagnes de Greenpeace', 'planet4-master-theme' ) }}" data-type="Réactions Campagnes">
-                                            <option value="Agriculture / OGM" data-action="show-campagne" >{{ __( 'Agriculture / Élevage', 'planet4-master-theme' ) }}</option>
-                                            <option value="Climat" data-action="show-campagne" >{{ __( 'Climat / Energie / Nucléaire', 'planet4-master-theme' ) }}</option>
-                                            <option value="Forêt" data-action="show-campagne" >{{ __( 'Forêts', 'planet4-master-theme' ) }}</option>
-                                            <option value="Océan" data-action="show-campagne" >{{ __( 'Océans', 'planet4-master-theme' ) }}</option>
-                                            <option value="Toxique" data-action="show-campagne" >{{ __( 'Toxiques', 'planet4-master-theme' ) }}</option>
-                                            <option value="HS Autre" data-action="show-campagne" >{{ __( 'Hors sujet', 'planet4-master-theme' ) }}</option>
+                                        <optgroup label="{{ __( 'Poser une question sur les campagnes de Greenpeace', 'planet4-child-theme-luxembourg' ) }}" data-type="Réactions Campagnes">
+                                            <option value="Agriculture / OGM" data-action="show-campagne" >{{ __( 'Agriculture / Élevage', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Climat" data-action="show-campagne" >{{ __( 'Climat / Energie / Nucléaire', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Forêt" data-action="show-campagne" >{{ __( 'Forêts', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Océan" data-action="show-campagne" >{{ __( 'Océans', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Toxique" data-action="show-campagne" >{{ __( 'Toxiques', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="HS Autre" data-action="show-campagne" >{{ __( 'Hors sujet', 'planet4-child-theme-luxembourg' ) }}</option>
                                         </optgroup>
 
-                                        <optgroup label="{{ __( 'Poser une autre question sur Greenpeace', 'planet4-master-theme' ) }}" data-type="Fonctionnement">
-                                            <option value="" data-action="show-greenpeace">{{ __( 'Poser une question sur Greenpeace', 'planet4-master-theme' ) }}</option>
-                                            <option value="Poser une question aux Relations Presse" data-action="show-presse">{{ __( 'Poser une question aux Relations Presse', 'planet4-master-theme' ) }}</option>
+                                        <optgroup label="{{ __( 'Poser une autre question sur Greenpeace', 'planet4-child-theme-luxembourg' ) }}" data-type="Fonctionnement">
+                                            <option value="" data-action="show-greenpeace">{{ __( 'Poser une question sur Greenpeace', 'planet4-child-theme-luxembourg' ) }}</option>
+                                            <option value="Poser une question aux Relations Presse" data-action="show-presse">{{ __( 'Poser une question aux Relations Presse', 'planet4-child-theme-luxembourg' ) }}</option>
 
                                         </optgroup>
 
@@ -108,17 +108,17 @@
                                 <div id="campagne-part"  class="form-part hidden" >
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Notre site Internet est plein de ressources. Pensez à vérifier si la réponse à votre question ne s’y trouve pas ! ;-)', 'planet4-master-theme' ) }}
+                                            {{ __( 'Notre site Internet est plein de ressources. Pensez à vérifier si la réponse à votre question ne s’y trouve pas ! ;-)', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
 
                                         <p>
-                                            <a href="/?s=" class="btn btn-secondary open-search-form">{{ __( 'Rechercher dans le site', 'planet4-master-theme' ) }}</a>
+                                            <a href="/?s=" class="btn btn-secondary open-search-form">{{ __( 'Rechercher dans le site', 'planet4-child-theme-luxembourg' ) }}</a>
                                         </p>
                                     </div>
 
                                     <div class="field-wrap">
                                         <label for="message">
-                                            {{ __( 'Posez-nous votre question ici :', 'planet4-master-theme' ) }}
+                                            {{ __( 'Posez-nous votre question ici :', 'planet4-child-theme-luxembourg' ) }}
                                         </label>
                                     </div>
 
@@ -128,7 +128,7 @@
                                     <div class="important">
 
                                         <p>
-                                             {{ __( 'Vous souhaitez mettre votre énergie au service des causes que nous défendons ? Consultez notre page emplois :', 'planet4-master-theme' ) }}
+                                             {{ __( 'Vous souhaitez mettre votre énergie au service des causes que nous défendons ? Consultez notre page emplois :', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
 
                                         <p>
@@ -148,16 +148,16 @@
                                 <div id="fiscal-part" class="form-part hidden">
                                     <div class="important">
                                         <p>
-                                             {{ __( 'Si vous nous soutenez par prélèvement automatique, les reçus fiscaux sont automatiquement envoyés en début d’année.', 'planet4-master-theme' ) }}
+                                             {{ __( 'Si vous nous soutenez par prélèvement automatique, les reçus fiscaux sont automatiquement envoyés en début d’année.', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                     </div>
 
                                     <div class="field-wrap">
                                         <label for="message">
-                                            {{ __( 'Vous avez besoin du duplicata d’un de vos reçus fiscaux ?', 'planet4-master-theme' ) }}
+                                            {{ __( 'Vous avez besoin du duplicata d’un de vos reçus fiscaux ?', 'planet4-child-theme-luxembourg' ) }}
 
                                             <br/><br/>
-                                            {{ __( 'Dites-le nous ici :', 'planet4-master-theme' ) }}
+                                            {{ __( 'Dites-le nous ici :', 'planet4-child-theme-luxembourg' ) }}
                                         </label>
                                     </div>
 
@@ -167,7 +167,7 @@
                                 <div id="fiscal2-part" class="form-part hidden">
                                     <div class="field-wrap" >
                                         <p style="font-size: 12px;">
-                                            {{ __( 'Greenpeace est une association reconnue d’intérêt général. Ainsi, vous pouvez déduire 66% du total de vos dons de votre impôt sur le revenu. Grâce à vos dons nous sommes à 100% efficaces sur le terrain !', 'planet4-master-theme' ) }}
+                                            {{ __( 'Greenpeace est une association reconnue d’intérêt général. Ainsi, vous pouvez déduire 66% du total de vos dons de votre impôt sur le revenu. Grâce à vos dons nous sommes à 100% efficaces sur le terrain !', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                     </div>
                                 </div>
@@ -177,10 +177,10 @@
                                     <div class="important">
                                         <p>
                                             {{ __( 'Vous êtes journaliste ? Nos chargés de communication sont à votre écoute.
-                                        ', 'planet4-master-theme' ) }}
+                                        ', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                         <p>
-                                            {{ __( 'Contactez Pauline Maes sur ', 'planet4-master-theme' ) }} <a href="mailto:pauline.maes@greenpeace.org">pauline.maes@greenpeace.org</a>
+                                            {{ __( 'Contactez Pauline Maes sur ', 'planet4-child-theme-luxembourg' ) }} <a href="mailto:pauline.maes@greenpeace.org">pauline.maes@greenpeace.org</a>
                                         </p>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@
                                 <div id="greenpeace-part" class="form-part hidden">
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages ', 'planet4-master-theme' ) }}
+                                            {{ __( 'Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages ', 'planet4-child-theme-luxembourg' ) }}
                                             {% if ( lang == 'fr' ) %}
                                                 <a href="/fr/sinformer/nous-decouvrir/" target="_blank" >Greenpeace</a>.
                                             {% else %}
@@ -200,7 +200,7 @@
                                     </div>
 
                                     <div class="field-wrap">
-                                        <label for="message">{{ __( 'Vous n’avez pas trouvé ? Posez-nous votre question ici.', 'planet4-master-theme' ) }}
+                                        <label for="message">{{ __( 'Vous n’avez pas trouvé ? Posez-nous votre question ici.', 'planet4-child-theme-luxembourg' ) }}
                                         </label>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                                 <div id="benevolat-part" class="form-part hidden">
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Vous souhaitez rejoindre les militants et bénévoles de Greenpeace pour participer à nos campagnes ? Quelle belle idée ! C’est tous ensemble que nous pourrons obtenir les avancées nécessaires à un monde meilleur !', 'planet4-master-theme' ) }}
+                                            {{ __( 'Vous souhaitez rejoindre les militants et bénévoles de Greenpeace pour participer à nos campagnes ? Quelle belle idée ! C’est tous ensemble que nous pourrons obtenir les avancées nécessaires à un monde meilleur !', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                         <p>
                                             {% if ( lang == 'fr' ) %}
@@ -225,13 +225,13 @@
                                 <div id="autre-part" class="form-part hidden">
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Vous souhaitez d’autres informations sur votre adhésion ? Vous désirez apporter une modification à votre soutien à Greenpeace ? Adressez-nous vos demandes et questions. Nous avons hâte de vous lire !', 'planet4-master-theme' ) }}
+                                            {{ __( 'Vous souhaitez d’autres informations sur votre adhésion ? Vous désirez apporter une modification à votre soutien à Greenpeace ? Adressez-nous vos demandes et questions. Nous avons hâte de vous lire !', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                     </div>
 
                                     <div class="field-wrap">
                                         <p>
-                                            {{ __( 'Dites-nous tout', 'planet4-master-theme' ) }}
+                                            {{ __( 'Dites-nous tout', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                     </div>
                                 </div>
@@ -240,29 +240,29 @@
                                 <div id="iban-part" class="form-part hidden">
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Pour continuer à prendre part aux campagnes de Greenpeace après avoir changé de compte bancaire, rien de plus simple ! Il vous suffit de nous indiquer vos nouvelles coordonnées bancaires juste ici :', 'planet4-master-theme' ) }}
+                                            {{ __( 'Pour continuer à prendre part aux campagnes de Greenpeace après avoir changé de compte bancaire, rien de plus simple ! Il vous suffit de nous indiquer vos nouvelles coordonnées bancaires juste ici :', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                     </div>
                                     <div class="field-row two-in-row">
                                         <div class="field-wrap">
-                                            <label for="beneficiaire">{{ __( 'Nom bénéficiaire', 'planet4-master-theme' ) }}*</label>
+                                            <label for="beneficiaire">{{ __( 'Nom bénéficiaire', 'planet4-child-theme-luxembourg' ) }}*</label>
                                             <input type="text" value="" name="beneficiaire" id="beneficiaire" data-rule-required="true" data-msg="Veuillez entrer un nom" data-hj-masked/>
                                         </div>
                                     </div>
 
                                     <div class="field-row">
                                         <div class="field-wrap">
-                                            <label for="">{{ __( 'Numéro IBAN', 'planet4-master-theme' ) }}*</label>
+                                            <label for="">{{ __( 'Numéro IBAN', 'planet4-child-theme-luxembourg' ) }}*</label>
                                             <div class="iban-wrap">
-                                                <input type="text" name="iban" id="iban" data-rule-required="true" data-mask="SS00 AAAA AAAA AAAA AAAA AAAA AAAZ ZZZZ ZZ" data-rule-maxlength="42" data-rule-minlength="33" data-msg-required="{{ __( 'Votre IBAN est obligatoire', 'planet4-master-theme' ) }}" data-msg-minlength="{{ __( 'Votre IBAN est incorrect (trop court)', 'planet4-master-theme' ) }}" data-msg-maxlength="{{ __( 'Votre IBAN est incorrect (trop long)', 'planet4-master-theme' ) }}" data-mask-translation="iban" data-rule-iban="true"  data-hj-masked>
+                                                <input type="text" name="iban" id="iban" data-rule-required="true" data-mask="SS00 AAAA AAAA AAAA AAAA AAAA AAAZ ZZZZ ZZ" data-rule-maxlength="42" data-rule-minlength="33" data-msg-required="{{ __( 'Votre IBAN est obligatoire', 'planet4-child-theme-luxembourg' ) }}" data-msg-minlength="{{ __( 'Votre IBAN est incorrect (trop court)', 'planet4-child-theme-luxembourg' ) }}" data-msg-maxlength="{{ __( 'Votre IBAN est incorrect (trop long)', 'planet4-child-theme-luxembourg' ) }}" data-mask-translation="iban" data-rule-iban="true"  data-hj-masked>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="field-row two-in-row">
                                         <div class="field-wrap">
-                                            <label for="bic">{{ __( 'Numéro BIC', 'planet4-master-theme' ) }}*</label>
-                                            <input type="text" name="bic" id="bic" data-rule-required="true" data-mask="SSSSSSAAZZZ" data-mask-translation="bic" data-rule-maxlength="11" data-rule-minlength="8" data-msg="{{ __( 'BIC invalide', 'planet4-master-theme' ) }}"  data-hj-masked/>
+                                            <label for="bic">{{ __( 'Numéro BIC', 'planet4-child-theme-luxembourg' ) }}*</label>
+                                            <input type="text" name="bic" id="bic" data-rule-required="true" data-mask="SSSSSSAAZZZ" data-mask-translation="bic" data-rule-maxlength="11" data-rule-minlength="8" data-msg="{{ __( 'BIC invalide', 'planet4-child-theme-luxembourg' ) }}"  data-hj-masked/>
                                         </div>
                                     </div>
                                 </div>
@@ -276,24 +276,24 @@
                                 <div id="coords-part" class="form-part hidden" >
                                     <div class="important">
                                         <p>
-                                            {{ __( 'Vous renseignez vos anciennes et nouvelles coordonnées et nous nous occupons du reste& ! Soyez précis pour une prise en compte plus rapide.', 'planet4-master-theme' ) }}
+                                            {{ __( 'Vous renseignez vos anciennes et nouvelles coordonnées et nous nous occupons du reste& ! Soyez précis pour une prise en compte plus rapide.', 'planet4-child-theme-luxembourg' ) }}
 
                                         </p>
                                     </div>
 
 
                                     <div class="field-row">
-                                        <p><strong>{{ __( 'Adresse postale', 'planet4-master-theme' ) }}</strong></p>
+                                        <p><strong>{{ __( 'Adresse postale', 'planet4-child-theme-luxembourg' ) }}</strong></p>
                                     </div>
 
                                     <div class="field-row two-in-row">
                                         <div class="field-wrap">
-                                            <label for="adresse"><strong>{{ __( 'Ancienne adresse', 'planet4-master-theme' ) }} </strong> </label>
+                                            <label for="adresse"><strong>{{ __( 'Ancienne adresse', 'planet4-child-theme-luxembourg' ) }} </strong> </label>
                                             <textarea name="old_adresse" id="old_adresse" data-hj-masked></textarea>
                                         </div>
 
                                         <div class="field-wrap">
-                                            <label for="adresse"><strong>{{ __( 'Nouvelle adresse', 'planet4-master-theme' ) }}</strong></label>
+                                            <label for="adresse"><strong>{{ __( 'Nouvelle adresse', 'planet4-child-theme-luxembourg' ) }}</strong></label>
                                             <textarea name="new_adresse" id="new_adresse" data-hj-masked></textarea>
                                         </div>
                                     </div>
@@ -302,33 +302,33 @@
 
 
                                     <div class="field-row">
-                                        <p><strong>{{ __( 'Coordonnées téléphoniques', 'planet4-master-theme' ) }}</strong></p>
+                                        <p><strong>{{ __( 'Coordonnées téléphoniques', 'planet4-child-theme-luxembourg' ) }}</strong></p>
                                     </div>
 
 
 
                                     <div class="field-row two-in-row">
                                         <div class="field-wrap">
-                                            <label for="old_phone"><strong>{{ __( 'Ancien numéro fixe', 'planet4-master-theme' ) }} </strong></label>
-                                            <input type="text" value="" name="old_phone" id="old_phone" data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-master-theme' ) }}" />
+                                            <label for="old_phone"><strong>{{ __( 'Ancien numéro fixe', 'planet4-child-theme-luxembourg' ) }} </strong></label>
+                                            <input type="text" value="" name="old_phone" id="old_phone" data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-child-theme-luxembourg' ) }}" />
                                         </div>
 
                                         <div class="field-wrap">
-                                            <label for="new_phone"><strong>{{ __( 'Nouveau  numéro fixe', 'planet4-master-theme' ) }} </strong></label>
-                                            <input type="text" value="" name="new_phone" id="new_phone" data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-master-theme' ) }}" />
+                                            <label for="new_phone"><strong>{{ __( 'Nouveau  numéro fixe', 'planet4-child-theme-luxembourg' ) }} </strong></label>
+                                            <input type="text" value="" name="new_phone" id="new_phone" data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-child-theme-luxembourg' ) }}" />
                                         </div>
                                     </div>
 
 
                                     <div class="field-row two-in-row">
                                         <div class="field-wrap">
-                                            <label for="old_phone_mobile"><strong>{{ __( 'Ancien numéro mobile', 'planet4-master-theme' ) }}</strong></label>
-                                            <input type="text" value="" name="old_phone_mobile" id="old_phone_mobile"  data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-master-theme' ) }}" />
+                                            <label for="old_phone_mobile"><strong>{{ __( 'Ancien numéro mobile', 'planet4-child-theme-luxembourg' ) }}</strong></label>
+                                            <input type="text" value="" name="old_phone_mobile" id="old_phone_mobile"  data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-child-theme-luxembourg' ) }}" />
                                         </div>
 
                                         <div class="field-wrap">
-                                            <label for="new_phone_mobile"><strong>{{ __( 'Nouveau numéro mobile', 'planet4-master-theme' ) }}</strong></label>
-                                            <input type="text" value="" name="new_phone_mobile" id="new_phone_mobile"  data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-master-theme' ) }}" />
+                                            <label for="new_phone_mobile"><strong>{{ __( 'Nouveau numéro mobile', 'planet4-child-theme-luxembourg' ) }}</strong></label>
+                                            <input type="text" value="" name="new_phone_mobile" id="new_phone_mobile"  data-msg-phone="{{ __( 'Merci d’indiquer un numéro de téléphone valide', 'planet4-child-theme-luxembourg' ) }}" />
                                         </div>
                                     </div>
 
@@ -341,13 +341,13 @@
 
                                     <div class="field-row two-in-row">
                                         <div class="field-wrap">
-                                            <label for="old_email"><strong>{{ __( 'Ancienne adresse e-mail', 'planet4-master-theme' ) }}</strong></label>
-                                            <input type="email" id="old_email" name="old_email" maxlength="80" data-rule-email="true" data-msg-mail="{{ __( 'Veuillez entrer une adresse email correcte', 'planet4-master-theme' ) }}"  data-hj-masked />
+                                            <label for="old_email"><strong>{{ __( 'Ancienne adresse e-mail', 'planet4-child-theme-luxembourg' ) }}</strong></label>
+                                            <input type="email" id="old_email" name="old_email" maxlength="80" data-rule-email="true" data-msg-mail="{{ __( 'Veuillez entrer une adresse email correcte', 'planet4-child-theme-luxembourg' ) }}"  data-hj-masked />
                                         </div>
 
                                         <div class="field-wrap">
-                                            <label for="old_email"><strong>{{ __( 'Nouvelle adresse e-mail', 'planet4-master-theme' ) }}</strong></label>
-                                            <input type="email" id="new_email" name="new_email" maxlength="80" data-rule-email="true" data-msg-mail="{{ __( 'Veuillez entrer une adresse email correcte', 'planet4-master-theme' ) }}"  data-hj-masked />
+                                            <label for="old_email"><strong>{{ __( 'Nouvelle adresse e-mail', 'planet4-child-theme-luxembourg' ) }}</strong></label>
+                                            <input type="email" id="new_email" name="new_email" maxlength="80" data-rule-email="true" data-msg-mail="{{ __( 'Veuillez entrer une adresse email correcte', 'planet4-child-theme-luxembourg' ) }}"  data-hj-masked />
                                         </div>
                                     </div>
 
