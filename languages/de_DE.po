@@ -107,7 +107,7 @@ msgid "Toxiques"
 msgstr "Gifte"
 
 msgid "Hors sujet"
-msgstr "Off-Topix"
+msgstr "Off-Topic"
 
 msgid "Poser une autre question sur Greenpeace"
 msgstr "Eine andere Frage bezüglich Greenpeace stellen"
@@ -294,7 +294,7 @@ msgstr "Kontaktieren Sie Pauline Maes "
 msgid "Désolé, une erreur technique nous empêche d\'envoyer le formulaire. Merci de réssayer plus tard."
 msgstr "Entschuldigung, ein technischer Fehler verhindert, dass wir das Formular abschicken. Vielen Dank für die spätere Neuaufnahme."
 
-msgid "Merci ! Nous vous répondons dans les meilleurs délais."
-msgstr "Danke! Wir werden Ihnen so schnell wie möglich antworten."
+msgid "Merci, pour votre message. Un e-mail de confirmation vous a été envoyé à l’adresse mail indiquée."
+msgstr "Wir danken Ihnen für Ihre Nachricht. Eine Bestätigungs-E-Mail wurde an die von Ihnen angegebene E-Mail-Adresse versendet."
 
 

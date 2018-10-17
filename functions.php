@@ -78,15 +78,15 @@ function gpf_form_submit() {
 
 
                 $to = ["renaud@qodop.com"];
-                //$to[] = ["anais.hector@greenpeace.org",""];
+                $to[] = ["anais.hector@greenpeace.org",""];
                 $subject = 'Un message du formulaire de contact greenpeace.lu - ' . $request['selection'];
 
                 if(in_array($subject, ["Agriculture / OGM", "Climat", "Forêt", "Océan", "Toxique", "HS Autre", "Poser une question sur Greenpeace" ,"Poser une question aux Relations Presse"] ) ) {
                     $to[] = "renaud+contact@qodop.com";
-                    //$to[] = "contact.luxembourg@greenpeace.org";
+                    $to[] = "contact.luxembourg@greenpeace.org";
                 } else {
                     $to[] = "renaud+membre@qodop.com";
-                    //$to[] = "membres.lu@greenpeace.org";
+                    $to[] = "membres.lu@greenpeace.org";
                 }
 
 
@@ -117,7 +117,7 @@ function gpf_form_submit() {
 
                 if (!empty(trim($request['email'])) && preg_match("/^(.*<)?(?<email>[a-zA-Z0-9_\.\+-]+[^\.]@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+)>?$/", trim($request['email']), $match)) {
 
-                    $thankyouMsg = ($request['lang']) == 'fr' ? 'Merci %00N7E000000nl0L% pour votre message, nous le traitons dans les meilleurs délais.<br><br> L\'équipe Greenpeace Luxembourg. ' :'Danke  %00N7E000000nl0L% für deine Nachricht, wir behandeln sie so schnell wie möglich.<br><br>Das Greenpeace Luxemburg Team.';
+                    $thankyouMsg = ($request['lang']) == 'fr' ? 'Bonjour %00N7E000000nl0L% %00N7E000000nl0Q%, <br><br> Nous accusons bonne réception de votre message et y répondrons dans les meilleurs délais.<br><br> Bien à vous,<br>L\'équipe Greenpeace Luxembourg.' :'Hallo  %00N7E000000nl0L% %00N7E000000nl0Q%, <br><br> Wir bestätigen den Erhalt Ihrer Nachricht und  werden uns schnellstmöglich um Ihr Anliegen kümmern.<br><br>Mit freundlichen Grüßen,<br>Das Greenpeace Luxemburg-Team';
                     $to = $match['email'];
                     $subject = ($request['lang'] == 'fr') ? 'Votre message à Greenpeace Luxembourg ' : 'Ihre Nachricht an Greenpeace Luxemburg';
                     $subject = ( ($request['selection'] != '') ? $subject  . ' - ' . $request['selection'] : $subject );
