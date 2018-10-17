@@ -77,8 +77,8 @@ function gpf_form_submit() {
                 }, $form_target_text);
 
 
-                $to = ["renaud@qodop.com"];
-                $to[] = ["anais.hector@greenpeace.org",""];
+                //$to = ["renaud@qodop.com"];
+                $to[] = ["anais.hector@greenpeace.org"];
                 $subject = 'Un message du formulaire de contact greenpeace.lu - ' . $request['selection'];
 
                 if(in_array($subject, ["Agriculture / OGM", "Climat", "Forêt", "Océan", "Toxique", "HS Autre", "Poser une question sur Greenpeace" ,"Poser une question aux Relations Presse"] ) ) {

@@ -279,6 +279,9 @@ msgstr "Erfahren Sie mehr darüber, wie Greenpeace funktioniert"
 msgid "ENVOYER"
 msgstr "SENDEN"
 
+msgid "Envoi en cours..."
+msgstr "Senden..."
+
 msgid "Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages"
 msgstr "Um mehr über Greenpeace zu erfahren, besuchen Sie unsere Seiten"
 

@@ -224,6 +224,10 @@ msgstr ""
 msgid "ENVOYER"
 msgstr ""
 
+msgid "Envoi en cours..."
+msgstr ""
+
+
 msgid "Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages"
 msgstr ""
 
@@ -239,7 +243,7 @@ msgstr ""
 msgid "Désolé, une erreur technique nous empêche d\'envoyer le formulaire. Merci de réssayer plus tard."
 msgstr ""
 
-msgid "Merci ! Nous vous répondons dans les meilleurs délais."
+msgid "Merci, pour votre message. Un e-mail de confirmation vous a été envoyé à l’adresse mail indiquée."
 msgstr ""
 
 
