@@ -300,4 +300,6 @@ msgstr "Entschuldigung, ein technischer Fehler verhindert, dass wir das Formular
 msgid "Merci, pour votre message. Un e-mail de confirmation vous a été envoyé à l’adresse mail indiquée."
 msgstr "Wir danken Ihnen für Ihre Nachricht. Eine Bestätigungs-E-Mail wurde an die von Ihnen angegebene E-Mail-Adresse versendet."
 
+msgid "Nom bénéficiaire"
+msgstr "Name des Empfängers"
 

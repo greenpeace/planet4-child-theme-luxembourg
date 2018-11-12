@@ -4,9 +4,12 @@
  * Additional code for the child theme goes in here.
  */
 
+
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 99);
 function enqueue_child_styles() {
 	$css_creation = filectime(get_stylesheet_directory() . '/style.css');
+
+    wp_enqueue_style('gplux_style', get_stylesheet_directory_uri() . '/dist/gplux.min.css', [], $css_creation);
 
     wp_enqueue_script( 'validator', get_stylesheet_directory_uri() . '/vendor/validator.js', array('jquery'), $css_creation, true );
     wp_enqueue_script( 'mask', get_stylesheet_directory_uri() . '/vendor/jquery.mask.min.js', array('jquery'), $css_creation, true );
@@ -22,10 +25,14 @@ function set_locale() {
 }
 
 
-// submit du formulaire
+// contact form submit
 add_action('wp_ajax_nopriv_form_submit', 'gpf_form_submit');
 add_action('wp_ajax_form_submit', 'gpf_form_submit');
 function gpf_form_submit() {
+
+
+
+
     $data = [
         'success' => true
     ];
@@ -49,6 +56,10 @@ function gpf_form_submit() {
             // on envoie les emails à l'administrateur
             register_shutdown_function(function($request, $form, $app) {
 
+                $dev = 0;
+                if(strpos(get_site_url(), 'dev.gp.lu') !== false
+                    || strpos(get_site_url(), 'k8s.p4.greenpeace.org') !== false)
+                    $dev = '1';
 
                 $form_target_text = "
                 Prénom : %00N7E000000nl0L%
@@ -76,20 +87,14 @@ function gpf_form_submit() {
                     return isset($request[$match[1]]) ? $request[$match[1]] : '';
                 }, $form_target_text);
 
-
-                //$to = ["renaud@qodop.com"];
-                $to[] = ["anais.hector@greenpeace.org"];
+                $to = $dev ? ["renaud@qodop.com"] : ["anais.hector@greenpeace.org"];
                 $subject = 'Un message du formulaire de contact greenpeace.lu - ' . $request['selection'];
 
                 if(in_array($subject, ["Agriculture / OGM", "Climat", "Forêt", "Océan", "Toxique", "HS Autre", "Poser une question sur Greenpeace" ,"Poser une question aux Relations Presse"] ) ) {
-                    $to[] = "renaud+contact@qodop.com";
-                    $to[] = "contact.luxembourg@greenpeace.org";
+                    $to[] = $dev ? "renaud+contact@qodop.com" : "contact.luxembourg@greenpeace.org";
                 } else {
-                    $to[] = "renaud+membre@qodop.com";
-                    $to[] = "membres.lu@greenpeace.org";
+                    $to[] =  $dev ? "renaud+membre@qodop.com" : "membres.lu@greenpeace.org";
                 }
-
-
 
                 $body = preg_replace_callback('/%([0-9a-zA-Z_]+)%/', function($match) use ($request) {
                     $value = '';
@@ -114,6 +119,11 @@ function gpf_form_submit() {
 
             // on envoie les emails à l'internaute
             register_shutdown_function(function($request, $form, $app) {
+
+                $dev = 0;
+                if(strpos(get_site_url(), 'dev.gp.lu') !== false
+                    || strpos(get_site_url(), 'k8s.p4.greenpeace.org') !== false)
+                    $dev = '1';
 
                 if (!empty(trim($request['email'])) && preg_match("/^(.*<)?(?<email>[a-zA-Z0-9_\.\+-]+[^\.]@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+)>?$/", trim($request['email']), $match)) {
 
@@ -157,3 +167,48 @@ function gpf_form_submit() {
 }
 
 
+// shortcode for CTA button
+// Filter Functions with Hooks
+function gplux_cta_mce_button() {
+  // Check if user have permission
+  if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
+    return;
+  }
+  // Check if WYSIWYG is enabled
+  if ( 'true' == get_user_option( 'rich_editing' ) ) {
+    add_filter( 'mce_external_plugins', 'gplux_cta_tinymce_plugin' );
+    add_filter( 'mce_buttons', 'gplux_cta_register_mce_button' );
+  }
+}
+add_action('admin_head', 'gplux_cta_mce_button');
+
+// Function for new button
+function gplux_cta_tinymce_plugin( $plugin_array ) {
+  $plugin_array['gplux_cta_mce_button'] = get_stylesheet_directory_uri() .'/editor_plugin.js';
+  return $plugin_array;
+}
+
+// Register new button in the editor
+function gplux_cta_register_mce_button( $buttons ) {
+  array_push( $buttons, 'gplux_cta_mce_button' );
+  return $buttons;
+}
+
+function gplux_cta_shortcode( $atts, $content ) {
+
+    // get the options defined for this shortcode
+    extract( shortcode_atts( array(
+        'text'     => '',
+        'link'     => '',
+        'type'        => '',
+        'height'        => '',
+        'width'        => '',
+        'target'     => '',
+    ), $atts ) );
+    var_dump($type);
+    $btn_type = ($type == 'action') ? 'btn-primary' : (($type == 'donate') ? 'btn-donate' : 'btn-secondary' );
+
+    return '<a href="' . $link . '" target="' . $target . '" class="btn ' . $btn_type . ' ' . $height . ' page-header-btn ' . $width . '">' . $text . '</a>';
+
+}
+add_shortcode( 'cta', 'gplux_cta_shortcode' );

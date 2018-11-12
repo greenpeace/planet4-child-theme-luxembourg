@@ -246,6 +246,12 @@ msgstr ""
 msgid "Merci, pour votre message. Un e-mail de confirmation vous a été envoyé à l’adresse mail indiquée."
 msgstr ""
 
+msgid "Nom bénéficiaire"
+msgstr ""
+
+
+Name des Empfängers
+
 
 
 

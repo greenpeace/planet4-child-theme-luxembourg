@@ -1,5 +1,14 @@
-
 @import 'variables.scss';
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,6 +51,33 @@ p{font-size:1.125em; } //!important;
 }
 
 // button
+
+.btn.auto {
+    width:auto;
+    display:inline-block;
+}
+.btn.xsmall {
+    max-width:100px;
+}
+.btn.small {
+    max-width:150px;
+}
+.btn.medium {
+    max-width:200px;
+}
+.btn.large {
+    max-width:250px;
+}
+.btn.xlarge {
+    max-width:300px;
+}
+.btn.xxlarge {
+    max-width:350px;
+}
+.btn.fullwidth {
+    max-width:100%;
+}
+
 .btn-primary {
     background-color: $green-gp;
     color: white;
@@ -155,7 +191,7 @@ p{font-size:1.125em; } //!important;
 // ---- COOKIE BAR
 
 .cookie-block {
-    max-height: 20vh;
+    max-height: 30vh !important;
     background-size: cover;
     p {line-height: 20px;font-size: 0.9rem}
     a {
@@ -165,6 +201,8 @@ p{font-size:1.125em; } //!important;
         font-size: 1.125rem;
     }
 }
+
+
 
 @media (min-width: 576px){
     .cookie-block {
@@ -204,6 +242,8 @@ p{font-size:1.125em; } //!important;
 }
 
 // navbar search
+
+
 @media (max-width: 992px){
     .btn.btn-navbar-toggle.navbar-dropdown-toggle {
         font-size: 1.3rem;
@@ -225,6 +265,8 @@ input[type="checkbox"] + .custom-control-description:before {
 }
 
 
+
+
 .navbar-dropdown {
     .active .nav-link {
         color: $grey;
@@ -243,12 +285,16 @@ input[type="checkbox"] + .custom-control-description:before {
     }
     li.menu-item a {
         line-height: 3.75rem;
-        font-size: 1.5rem;
+        font-size: 18px !important;
         font-weight: bold;
     }
     .nav-item.wpml-ls-item .nav-link:not(:last-child)::after {
         margin-left: 7px;
     }
+}
+
+.nav-item.wpml-ls-item .nav-link {
+    font-size: .875rem !important;
 }
 
 @media (min-width: 992px){
@@ -283,17 +329,23 @@ input[type="checkbox"] + .custom-control-description:before {
 
 }
 
+@media screen and (max-width: 1200px) and (min-width: 992px){
+    .navbar-dropdown li.menu-item a {
+        font-size: 14px !important;
+    }
+}
+
+
 
 
 // donate button
-.top-navigation .btn-donate {
+.top-navigation .btn-donate, .btn-donate, .btn-donate:hover , .btn-donate:focus, .btn-donate:active, {
     background-color: #f36d3a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     font-size: 1.125rem;
     line-height: 2rem;
     font-weight: bold;
     color: #fff;
-    //max-width: 20vh;
     height: auto;
 }
 
@@ -436,6 +488,25 @@ input[type="checkbox"]:checked + .custom-control-description:before {
     opacity: 0.1 !important;
 }
 
+@media (max-width: 576px){
+    .happy-point-block-wrap .happy-point iframe {
+    height: 620px;
+}
+    .happy-point-block-wrap {height: 620px;}
+    .happy-point-block-wrap .happy-point {height: 670px;}
+
+    .happy-point-block-wrap img {
+    height: 620px;
+}
+
+    .happy-point iframe from .en__component--copyblock {
+        text-align: center;
+        padding:0 10px;
+    }
+
+}
+
+
 
 
 // Actu bloc
@@ -475,10 +546,10 @@ input[type="checkbox"]:checked + .custom-control-description:before {
     background: linear-gradient(360deg, #faf7ec 0%, transparent 100%);
 }
 
-.home.brown-bg .page-header-background:after {
-    background: linear-gradient(360deg, #a3c8cc 0%, transparent 100%);
-}
 
+.home.brown-bg .page-header-background:after {
+    background: linear-gradient(360deg, #d6d6d6 0%, transparent 100%);
+}
 
 
 
@@ -532,5 +603,25 @@ input[type="checkbox"]:checked + .custom-control-description:before {
             text-decoration: underline;
         }
 }
+
+
+.submenu-block .submenu-menu a { color: #294928;
+  text-decoration: none;
+    font-weight: bold;
+}
+.submenu-block .submenu-menu a:hover{
+        color: #030;
+    text-decoration: underline;
+}
+.submenu-block .submenu-menu li:before {
+    display: inline-block;
+    font: normal normal normal 14px/1 ForkAwesome;
+    font-weight: 900;
+    content: "\f105";
+    color: #030;
+    margin-right: 5px;
+    font-size: .8em;
+}
+
 
 
