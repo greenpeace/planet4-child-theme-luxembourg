@@ -111,7 +111,6 @@ function gpf_form_submit() {
 
                 $res = wp_mail( $to, $subject, $body, $headers );
 
-
             }, $request, $post, $app);
 
 
@@ -184,7 +183,7 @@ add_action('admin_head', 'gplux_cta_mce_button');
 
 // Function for new button
 function gplux_cta_tinymce_plugin( $plugin_array ) {
-  $plugin_array['gplux_cta_mce_button'] = get_stylesheet_directory_uri() .'/editor_plugin.js';
+  $plugin_array['gplux_cta_mce_button'] = get_stylesheet_directory_uri() .'/mce_plugins/cta_plugin.js';
   return $plugin_array;
 }
 
@@ -205,7 +204,6 @@ function gplux_cta_shortcode( $atts, $content ) {
         'width'        => '',
         'target'     => '',
     ), $atts ) );
-    var_dump($type);
     $btn_type = ($type == 'action') ? 'btn-primary' : (($type == 'donate') ? 'btn-donate' : 'btn-secondary' );
 
     return '<a href="' . $link . '" target="' . $target . '" class="btn ' . $btn_type . ' ' . $height . ' page-header-btn ' . $width . '">' . $text . '</a>';

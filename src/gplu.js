@@ -127,18 +127,17 @@ $(document).ready(function() {
             return;
 
 
-        var defer_en = $.Deferred(),
-            defer_form = $.Deferred(),
+        var defer_form = $.Deferred(),
             defer_confirm = $.Deferred();
 
-        $context.data('defer_en', defer_en);
+        //$context.data('defer_en', defer_en);
         $context.data('defer_form', defer_form);
         $context.data('defer_confirm', defer_confirm);
 
         /*
          * Interception des résolutions des différents traitement (formulaire, EN)
          */
-        $.when(defer_en, defer_form)
+        $.when( defer_form)
          .done(function(en, form) {
              if (en && en.length && en.length > 0) {
                  form.en_error = en.join('|');
@@ -228,7 +227,7 @@ $(document).ready(function() {
                 enurly = $this.data('enurly'),
                 enurln = $this.data('enurln');
 
-            $this.data('defer_en').resolve();
+            //$this.data('defer_en').resolve();
 
             if (window.init_form[id])
                 window.init_form[id]($this);

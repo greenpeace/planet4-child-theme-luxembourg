@@ -227,6 +227,8 @@ msgstr ""
 msgid "Envoi en cours..."
 msgstr ""
 
+msgid "Devenir bénévole à nos côtés !"
+msgstr ""
 
 msgid "Pour tout savoir sur Greenpeace, notre fonctionnement comme nos missions, consultez nos pages"
 msgstr ""

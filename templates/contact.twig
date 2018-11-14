@@ -15,7 +15,7 @@
                     <div class="contacts-form form-classic">
 
 
-                         <form class="gp-form form-lg" id="form-contact" novalidate="novalidate" data-enurly="https://act.greenpeace.org/ea-action/action?ea.client.id=1849&amp;ea.campaign.id=56223&amp;format=json" data-enurln="https://act.greenpeace.org/ea-action/action?ea.client.id=1849&amp;ea.campaign.id=64770&amp;format=json">
+                         <form class="gp-form form-lg" id="form-contact" novalidate="novalidate">
 
                             <div id="on-form-submit-success" class="field-wrap label form-part hidden">
                                 {{ __( 'Merci, pour votre message. Un e-mail de confirmation vous a été envoyé à l’adresse mail indiquée.', 'planet4-child-theme-luxembourg' ) }}
@@ -31,24 +31,24 @@
                                 <div class="field-row two-in-row">
                                     <div class="field-wrap">
                                         <label for="00N7E000000nl0L">{{ __( 'Votre prénom', 'planet4-child-theme-luxembourg' ) }}*</label>
-                                        <input type="text" value="" name="00N7E000000nl0L" id="00N7E000000nl0L" data-msg="{{ __( 'Veuillez indiquer votre prénom', 'planet4-child-theme-luxembourg' ) }}" data-rule-required="true" data-en="first_name"  data-hj-masked/>
+                                        <input type="text" value="" name="00N7E000000nl0L" id="00N7E000000nl0L" data-msg="{{ __( 'Veuillez indiquer votre prénom', 'planet4-child-theme-luxembourg' ) }}" data-rule-required="true" data-hj-masked/>
                                     </div>
 
                                     <div class="field-wrap">
                                         <label for="00N7E000000nl0Q">{{ __( 'Votre nom', 'planet4-child-theme-luxembourg' ) }}*</label>
-                                        <input type="text" value="" name="00N7E000000nl0Q" id="00N7E000000nl0Q" data-msg="{{ __( 'Veuillez indiquer votre nom', 'planet4-child-theme-luxembourg' ) }}" data-rule-required="true" data-en="last_name"  data-hj-masked/>
+                                        <input type="text" value="" name="00N7E000000nl0Q" id="00N7E000000nl0Q" data-msg="{{ __( 'Veuillez indiquer votre nom', 'planet4-child-theme-luxembourg' ) }}" data-rule-required="true" data-hj-masked/>
                                     </div>
                                 </div>
 
                                 <div class="field-row two-in-row">
                                     <div class="field-wrap">
                                         <label for="email">{{ __( 'Email', 'planet4-child-theme-luxembourg' ) }}*</label>
-                                        <input type="email" data-rule-required="true" value="" id="email" name="email" data-rule-email="true" data-msg-email="{{ __( 'Merci de rentrer une adresse e-mail valide', 'planet4-child-theme-luxembourg' ) }}" data-en="email"  data-hj-masked/>
+                                        <input type="email" data-rule-required="true" value="" id="email" name="email" data-rule-email="true" data-msg-email="{{ __( 'Merci de rentrer une adresse e-mail valide', 'planet4-child-theme-luxembourg' ) }}"  data-hj-masked/>
                                     </div>
 
                                     <div class="field-wrap">
                                         <label for="phone">{{ __( 'Téléphone', 'planet4-child-theme-luxembourg' ) }}</label>
-                                        <input type="text" value="" name="phone" id="phone" data-rule-phone="true" data-msg-phone="{{ __( 'Merci de rentrer un numéro de téléphone valide.', 'planet4-child-theme-luxembourg' ) }}" data-en="phone_number" />
+                                        <input type="text" value="" name="phone" id="phone" data-rule-phone="true" data-msg-phone="{{ __( 'Merci de rentrer un numéro de téléphone valide.', 'planet4-child-theme-luxembourg' ) }}" />
                                     </div>
                                 </div>
 
@@ -219,11 +219,14 @@
                                             {{ __( 'Vous souhaitez rejoindre les militants et bénévoles de Greenpeace pour participer à nos campagnes ? Quelle belle idée ! C’est tous ensemble que nous pourrons obtenir les avancées nécessaires à un monde meilleur !', 'planet4-child-theme-luxembourg' ) }}
                                         </p>
                                         <p>
+
                                             {% if ( lang == 'fr' ) %}
-                                                <a href="/luxembourg/fr/agir/benevolat/" class="more-link">Devenir bénévole à nos côtés !</a>
+                                                <a href="/luxembourg/fr/agir/benevolat/" class="more-link">
                                             {% else %}
-                                                <a href="/luxembourg/de/handeln/ehrenamtlicher-helferin-werden/" class="more-link">Ehrenamtlicher HelferIn werden</a>
+                                                <a href="/luxembourg/de/handeln/ehrenamtlicher-helferin-werden/" class="more-link">
                                             {% endif %}
+                                            {{ __( 'Devenir bénévole à nos côtés !' , 'planet4-child-theme-luxembourg' ) }}
+                                                </a>
 
                                         </p>
                                     </div>
@@ -273,10 +276,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
 
 
 

@@ -10,7 +10,7 @@
         };
 
         function html( cls, data ,con) {
-            var placeholder = url + '/dist/' + getAttr(data,'type') + '.png';
+            var placeholder = url + '/' + getAttr(data,'type') + '.png';
             data = window.encodeURIComponent( data );
             content = window.encodeURIComponent( con );
 
