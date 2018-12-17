@@ -13,6 +13,11 @@
             <span>{{ __( 'Menu', 'planet4-master-theme' ) }}</span>
         </button>
         <ul id="navbar-dropdown" class="navbar-dropdown list-unstyled">
+            <li class="nav-item">
+                <button class="close-navbar-dropdown">
+                    <span class="screen-reader-text">{{ __( 'Close Menu', 'planet4-master-theme' ) }}</span>
+                </button>
+            </li>
             {% for key,item in navbar_menu.get_items %}
                 {% if 'wpml-ls-item' in item.class %}
                     {% if key == 0 %}

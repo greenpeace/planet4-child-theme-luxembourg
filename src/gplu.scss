@@ -143,7 +143,6 @@ p{font-size:1.125em; } //!important;
             color: $green-gp;
         }
     }
-
 }
 
 .footer-links-country .country-dropdown-toggle{
@@ -178,7 +177,7 @@ p{font-size:1.125em; } //!important;
 
 .country-dropdown-toggle:focus::after,
 .country-dropdown-toggle:hover::after {
-    background-image: url(/wp-content/themes/planet4-master-theme/images/down-arrow-green.svg);
+    background-image: url(/wp-content/themes/planet4-child-theme/dist/down-arrow-green.svg);
 }
 
 
