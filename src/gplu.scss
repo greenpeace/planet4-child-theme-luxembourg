@@ -40,6 +40,26 @@ a.stress-link {
 
 p{font-size:1.125em; } //!important;
 
+
+
+.responsively-container{
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.responsively-container iframe,
+.responsively-container object,
+.responsively-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .gplux-text-block{
     padding-bottom : 30px;
 }

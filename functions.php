@@ -203,10 +203,51 @@ function gplux_cta_shortcode( $atts, $content ) {
         'height'        => '',
         'width'        => '',
         'target'     => '',
+        'align'     => '',
     ), $atts ) );
     $btn_type = ($type == 'action') ? 'btn-primary' : (($type == 'donate') ? 'btn-donate' : 'btn-secondary' );
 
-    return '<a href="' . $link . '" target="' . $target . '" class="btn ' . $btn_type . ' ' . $height . ' page-header-btn ' . $width . '">' . $text . '</a>';
+    return '<p style="text-align:'. $align .'"><a href="' . $link . '" target="' . $target . '" class="btn ' . $btn_type . ' ' . $height . ' page-header-btn ' . $width . '">' . $text . '</a></p><p>&nbsp;</p>';
 
 }
 add_shortcode( 'cta', 'gplux_cta_shortcode' );
+
+
+// shortcode for Responsively button
+// Filter Functions with Hooks
+function gplux_responsively_mce_button() {
+  // Check if user have permission
+  if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
+    return;
+  }
+  // Check if WYSIWYG is enabled
+  if ( 'true' == get_user_option( 'rich_editing' ) ) {
+    add_filter( 'mce_external_plugins', 'gplux_responsively_tinymce_plugin' );
+    add_filter( 'mce_buttons', 'gplux_responsively_register_mce_button' );
+  }
+}
+add_action('admin_head', 'gplux_responsively_mce_button');
+
+// Function for responsively iframe editor button
+function gplux_responsively_tinymce_plugin( $plugin_array ) {
+  $plugin_array['gplux_responsively_mce_button'] = get_stylesheet_directory_uri() .'/mce_plugins/responsively_plugin.js';
+  return $plugin_array;
+}
+
+// Register new button in the editor
+function gplux_responsively_register_mce_button( $buttons ) {
+  array_push( $buttons, 'gplux_responsively_mce_button' );
+  return $buttons;
+}
+
+function gplux_responsively_shortcode( $atts, $content ) {
+
+    // get the options defined for this shortcode
+    extract( shortcode_atts( array(
+        'src'     => ''
+    ), $atts ) );
+
+    return '<div class="responsively-container"><iframe src="'.$src.'" frameborder="0" allowfullscreen scrolling="no"></iframe></div>';
+
+}
+add_shortcode( 'responsively', 'gplux_responsively_shortcode' );

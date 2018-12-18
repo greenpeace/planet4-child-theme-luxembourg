@@ -14,7 +14,7 @@
             data = window.encodeURIComponent( data );
             content = window.encodeURIComponent( con );
 
-            return '<img src="' + placeholder + '" class="mceItem ' + cls + '" ' + 'data-sh-attr="' + data + '" data-sh-content="'+ con+'" data-mce-resize="false" data-mce-placeholder="1" />';
+            return '<p style="text-align:center;"><img src="' + placeholder + '" class="mceItem ' + cls + '" ' + 'data-sh-type="cta" data-sh-attr="' + data + '" data-sh-content="'+ con+'" data-mce-resize="false" data-mce-placeholder="1" /></p>';
         }
 
         function replaceShortcodes( content ) {
@@ -24,12 +24,13 @@
         }
 
         function restoreShortcodes( content ) {
+            console.log('restoreShortcodesCoucou');
             //match any image tag with our class and replace it with the shortcode's content and attributes
             return content.replace( /(?:<p(?: [^>]+)?>)*(<img [^>]+>)(?:<\/p>)*/g, function( match, image ) {
                 var data = getAttr( image, 'data-sh-attr' );
                 var con = getAttr( image, 'data-sh-content' );
-
-                if ( data ) {
+                var type = getAttr( image, 'data-sh-type' );
+                if ( data && type == "cta" ) {
                     return '[' + sh_tag + data + ']' + con + '[/'+sh_tag+']';
                 }
                 return match;
@@ -67,6 +68,9 @@
             var CTATarget = '';
             if (v.CTATarget)
                 CTATarget = v.CTATarget;
+             var CTAAlign = '';
+            if (v.CTAAlign)
+                CTAAlign = v.CTAAlign;
 
             editor.windowManager.open({
                     title: 'Insert CTA',
@@ -101,7 +105,7 @@
                     {
                         type: 'listbox',
                         name: 'CTAHeight',
-                        label: 'CTA height',
+                        label: 'CTA Height',
                         value: CTAHeight,
                         values: [{
                             text: 'Normal',
@@ -114,7 +118,7 @@
                     {
                         type: 'listbox',
                         name: 'CTAWidth',
-                        label: 'CTA width',
+                        label: 'CTA Width',
                         value: CTAWidth,
                         values: [{
                             text: 'Auto',
@@ -141,6 +145,21 @@
                             text: 'Full width',
                             value: 'fullwidth'
                         }]
+                    },{
+                        type: 'listbox',
+                        name: 'CTAAlign',
+                        label: 'CTA align',
+                        value: CTAAlign,
+                        values: [{
+                            text: 'Left',
+                            value: 'left'
+                        },{
+                            text: 'Center',
+                            value: 'center'
+                        }, {
+                            text: 'Right',
+                            value: 'right'
+                        }]
                     },
                     {
                         type: 'listbox',
@@ -164,9 +183,11 @@
                             '" text="' +
                             e.data.CTAText +
                             '" width="' +
-                            e.data.CTAHeight +
-                            '" height="' +
                             e.data.CTAWidth +
+                            '" height="' +
+                            e.data.CTAHeight +
+                            '" align="' +
+                            e.data.CTAAlign +
                             '" type="' +
                             e.data.CTAType +
                             '"]' +
@@ -190,6 +211,7 @@
                     CTAHeight   : getAttr(title,'height'),
                     CTAWidth   : getAttr(title,'width'),
                     CTAType   : getAttr(title,'type'),
+                    CTAAlign   : getAttr(title,'align'),
                     content: content
                 });
             }
@@ -207,6 +229,7 @@
                     CTAHeight   : 'normal',
                     CTAWidth   : 'auto',
                     CTAType   : 'action',
+                    CTAAlign   : 'center',
                     content: ''
                 });
             }
