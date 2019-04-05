@@ -1,10 +1,53 @@
 
+function createCountryList(selector) {
 
+  // Get Countries List from <script> data block.
+  let countries_json = JSON.parse( $('#countries_script').text() );
+
+  // Build html for countries drop down list.
+  let countries_html = $(
+    '<div class="country-list">' +
+      '<a class="international" href=""></a>' +
+      '<ul class="countries_list"></ul>' +
+    '</div>'
+  );
+
+  $.each(countries_json, function (index, element) {
+    if ( '0' === index ) {
+      $('.international', countries_html)
+        .attr( 'href', element[0].url )
+        .text( element[0].name );
+
+    } else {
+      let countries_sublist = $(
+        '<li>' +
+          '<h3 class="country-group-letter">' + index + '</h3>' +
+          '<ul class="countries_sublist"></ul>' +
+        '</li>'
+      );
+      $('.countries_list', countries_html).append( countries_sublist );
+
+      $.each(element, function (index, inner_element) {
+        $('.countries_sublist', countries_sublist).append(
+          '<li>' +
+            '<a href="' + inner_element.url + '">' + inner_element.name + '</a>' +
+          '</li>');
+      });
+    }
+  });
+
+  $(selector).append( countries_html );
+}
 
 $(document).ready(function() {
-    if( $('.filter').length )
-        $('.filter').fadeIn();
-  });
+    var $f = $('.filter');
+
+    if ($f.length ) {
+        $f.fadeIn();
+    }
+
+    createCountryList('#country-list-footer');
+});
 
 ;
 ;(function($, window, document, location, gp_data, undefined) {
@@ -48,7 +91,7 @@ $(document).ready(function() {
                 }
             }
         },
-
+/*
         enform_options = {
             mandatory: {
                 email: 'Votre adresse e-mail est obligatoire'
@@ -71,7 +114,7 @@ $(document).ready(function() {
 
         };
 
-
+*/
 
     while (match = search.exec(query))
         urlParams[decode(match[1])] = decode(match[2]);
@@ -127,22 +170,20 @@ $(document).ready(function() {
             return;
 
 
-        var defer_form = $.Deferred(),
-            defer_confirm = $.Deferred();
+        var defer_form = $.Deferred();
+        var defer_confirm = $.Deferred();
 
-        //$context.data('defer_en', defer_en);
+
+
         $context.data('defer_form', defer_form);
         $context.data('defer_confirm', defer_confirm);
+
 
         /*
          * Interception des résolutions des différents traitement (formulaire, EN)
          */
-        $.when( defer_form)
-         .done(function(en, form) {
-             if (en && en.length && en.length > 0) {
-                 form.en_error = en.join('|');
-             }
-
+        $.when(defer_form)
+         .done(function(form) {
              sendToWebsite($context, form);
          })
          .fail(function() {
@@ -227,7 +268,7 @@ $(document).ready(function() {
                 enurly = $this.data('enurly'),
                 enurln = $this.data('enurln');
 
-            //$this.data('defer_en').resolve();
+            $this.data('defer_en').resolve();
 
             if (window.init_form[id])
                 window.init_form[id]($this);
@@ -528,7 +569,7 @@ $(document).ready(function() {
 
 
         // on se colle sur tous les cas possibles
-
+/*
         // les formulaire uniquement EN dans les pages
         $('form.en-form').each(function() {
             var $this = $(this),
@@ -545,34 +586,11 @@ $(document).ready(function() {
                 };
             })(id, success_msg||'Merci !', window.dataLayer||[]);
 
-            /*
-            if (success_msg) {
-                enform_options.success = function() {
-                    displayMessage(success_msg);
-                    var dataLayer = window.dataLayer||[];
-                    dataLayer.push({
-                        'virtualPageURL':'/'+id+'/succeed',
-                        'virtualPageTitle' : 'Validation ' + id,
-                        'event':'VirtualPageview'
-                    });
-                }
-            }
-            else {
-                enform_options.success = function() {
-                    displayMessage("Merci !");
-                    var dataLayer = window.dataLayer||[];
-                    dataLayer.push({
-                        'virtualPageURL':'/'+id+'/succeed',
-                        'virtualPageTitle' : 'Validation ' + id,
-                        'event':'VirtualPageview'
-                    });
-                }
-            }
-*/
+
             $this.enform(enform_options);
 
         });
-
+*/
         if (adminAjaxUrl) {
 
             // les boutons qui ouvrent un CPT Form
