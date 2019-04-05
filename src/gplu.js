@@ -90,7 +90,7 @@ $(document).ready(function() {
                     optional: true
                 }
             }
-        },
+        };
 /*
         enform_options = {
             mandatory: {
