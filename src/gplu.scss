@@ -172,6 +172,9 @@ p{font-size:1.125em; } //!important;
 
 
 
+#country-list {
+    display: none !important;
+}
 
 .country-list {
     position: absolute;
@@ -358,7 +361,7 @@ input[type="checkbox"] + .custom-control-description:before {
 
 
 // donate button
-.top-navigation .btn-donate, .btn-donate, .btn-donate:hover , .btn-donate:focus, .btn-donate:active, {
+.top-navigation .btn-donate, .btn-donate, .btn-donate:hover , .btn-donate:focus, .btn-donate:active {
     background-color: #f36d3a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     font-size: 1.125rem;

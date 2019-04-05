@@ -24,14 +24,14 @@
             <button
                         class="country-dropdown-toggle"
                         data-toggle="open"
-                        data-target="#country-list"
+                        data-target="#country-list-footer"
                         aria-expanded="false"
                         aria-label="{{ data_nav_bar.country_dropdown_toggle }}"
                 >
                     <span class="screen-reader-text">{{ __( 'Selected', 'planet4-master-theme' ) }}:</span> {{ website_navbar_title }}
                     <span class="screen-reader-text">{{ __( 'Change Country', 'planet4-master-theme' ) }}</span>
                 </button>
-                {% include 'countries.twig' %}
+                <div id="country-list-footer"></div>
         </ul>
         <p class="copyright-text col-md-8">
             {{ copyright_text_line1|e('wp_kses_post')|raw }}
@@ -39,3 +39,4 @@
         <p class="gp-year"><i class="fab fa-creative-commons"></i> {{ copyright_text_line2|e('wp_kses_post')|raw }} {{"now"|date('Y')}}</p>
     </div>
 </footer>
+<script id="countries_script" type="application/json">{% include "countries.json" %}</script>
