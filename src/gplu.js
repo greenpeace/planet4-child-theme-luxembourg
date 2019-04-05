@@ -2,10 +2,10 @@
 function createCountryList(selector) {
 
   // Get Countries List from <script> data block.
-  let countries_json = JSON.parse( $('#countries_script').text() );
+  var countries_json = JSON.parse( $('#countries_script').text() );
 
   // Build html for countries drop down list.
-  let countries_html = $(
+  var countries_html = $(
     '<div class="country-list">' +
       '<a class="international" href=""></a>' +
       '<ul class="countries_list"></ul>' +
@@ -19,7 +19,7 @@ function createCountryList(selector) {
         .text( element[0].name );
 
     } else {
-      let countries_sublist = $(
+      var countries_sublist = $(
         '<li>' +
           '<h3 class="country-group-letter">' + index + '</h3>' +
           '<ul class="countries_sublist"></ul>' +
