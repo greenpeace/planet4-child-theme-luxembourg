@@ -17,7 +17,6 @@
 
 a {
     color: $brown-light-gp;
-    text-decoration: none;
     font-weight: bold;
     &:hover {
         color: $brown-gp;
@@ -170,32 +169,11 @@ p{font-size:1.125em; } //!important;
     background-color: white;
 }
 
-
-
-#country-list {
-    display: none !important;
-}
-
-.country-list {
-    position: absolute;
-
-            top: -600px;
-            height: 600px;
-            width: 100%;
-            background: white;
-            border : 1px solid $green-gp;
-            a {
-                color: $grey;
-                &:hover {
-                    color: $green-gp;
-                }
-            }
-        }
-
-@media (min-width: 992px){
-        .country-list {
-           width: 80%;
-        }
+.country-dropdown-toggle {
+  color: #5c6978;
+  &:hover {
+    color: #323842;
+  }
 }
 
 .country-dropdown-toggle:focus::after,

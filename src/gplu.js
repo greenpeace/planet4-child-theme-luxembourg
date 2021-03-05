@@ -1,58 +1,5 @@
-
-function createCountryList(selector) {
-
-  // Get Countries List from <script> data block.
-  var countries_json = JSON.parse( $('#countries_script').text() );
-
-  // Build html for countries drop down list.
-  var countries_html = $(
-    '<div id="populated-country-list" class="country-list">' +
-      '<a class="international" href=""></a>' +
-      '<ul class="countries_list"></ul>' +
-    '</div>'
-  );
-
-  $.each(countries_json, function (index, element) {
-    if ( '0' === index ) {
-      $('.international', countries_html)
-        .attr( 'href', element[0].url )
-        .text( element[0].name );
-
-    } else {
-      var countries_sublist = $(
-        '<li>' +
-          '<h3 class="country-group-letter">' + index + '</h3>' +
-          '<ul class="countries_sublist"></ul>' +
-        '</li>'
-      );
-      $('.countries_list', countries_html).append( countries_sublist );
-
-      $.each(element, function (index, inner_element) {
-        $('.countries_sublist', countries_sublist).append(
-          '<li>' +
-            '<a href="' + inner_element.url + '">' + inner_element.name + '</a>' +
-          '</li>');
-      });
-    }
-  });
-
-  $(selector).append( countries_html );
-}
-
-$(document).ready(function() {
-    var $f = $('.filter');
-
-    if ($f.length ) {
-        $f.fadeIn();
-    }
-
-    createCountryList('#country-list-footer');
-});
-
-;
 ;(function($, window, document, location, gp_data, undefined) {
     var $window = $(window),
-        urlParams,
         match,
         pl     = /\+/g,
         search = /([^&=]+)=?([^&]*)/g,
@@ -61,8 +8,6 @@ $(document).ready(function() {
         urlParams = {},
         querying = false,
         loaded = false,
-        modal = window.modal,
-        orgid = 'orgid',
         form_var = {},
         form_id,
         confirm_text = 'success',
@@ -599,7 +544,7 @@ $(document).ready(function() {
                 e.stopPropagation();
 
                 var $this = $(e.target),
-                    data = {};
+                    data;
 
                 var id = $this.data('form');
 
