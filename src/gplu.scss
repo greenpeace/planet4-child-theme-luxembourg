@@ -210,9 +210,6 @@ p { font-size: 1.125em; } //!important;
 // ---- NAVBAR
 .top-navigation {
   background: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   transition: all 0.1s linear;
 
   a { color: $grey; }
@@ -227,10 +224,13 @@ p { font-size: 1.125em; } //!important;
   }
 
   .top-nav-search-btn {
-    line-height: 2.5rem;
     color: $green-gp;
     font-size: 1rem;
   }
+}
+
+.country-list {
+  background-color: white;
 }
 
 // navbar search
@@ -279,14 +279,14 @@ input[type="checkbox"] + .custom-control-description:before {
     font-size: 18px !important;
     font-weight: bold;
   }
-
-  .nav-item.wpml-ls-item .nav-link:not(:last-child)::after {
-    margin-left: 7px;
-  }
 }
 
 .nav-item.wpml-ls-item .nav-link {
   font-size: .875rem !important;
+
+  &:first-child {
+    padding-left: 0;
+  }
 }
 
 @media (min-width: 992px) {
