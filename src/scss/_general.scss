@@ -1,0 +1,113 @@
+a {
+  color: $brown-light-gp;
+  font-weight: bold;
+
+  &:hover {
+    color: $brown-gp;
+    text-decoration: underline;
+  }
+}
+
+a.stress-link {
+  color: $green-gp;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: white;
+  padding: 0 3px;
+  border-radius: 3px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+p { font-size: 1.125em; } //!important;
+
+.responsively-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.responsively-container iframe,
+.responsively-container object,
+.responsively-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gplux-text-block {
+  padding-bottom: 30px;
+}
+
+// post content
+.post-content {
+  min-height: 60vh;
+}
+
+// button
+.btn.auto {
+  width: auto;
+  display: inline-block;
+}
+
+.btn.xsmall {
+  max-width: 100px;
+}
+
+.btn.small {
+  max-width: 150px;
+}
+
+.btn.medium {
+  max-width: 200px;
+}
+
+.btn.large {
+  max-width: 250px;
+}
+
+.btn.xlarge {
+  max-width: 300px;
+}
+
+.btn.xxlarge {
+  max-width: 350px;
+}
+
+.btn.fullwidth {
+  max-width: 100%;
+}
+
+.btn-primary {
+  background-color: $green-gp;
+  color: white;
+  font-weight: 600;
+  border: 0 solid;
+  transition: 0.2s all ease-in;
+
+  &:hover, &:focus, &:not(:disabled):not(.disabled):active {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+    background-color: $green-gp;
+    border: 0 solid;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(115, 190, 49, .5);
+    }
+  }
+}
+
+.btn-secondary, .post-content .more-link, .post-content .page-links a {
+  color: $grey;
+  border-color: $grey-black;
+
+  &:hover, &:focus {
+    background-color: $green-gp;
+    border-color: $green-gp;
+  }
+}

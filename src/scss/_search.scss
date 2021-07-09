@@ -1,0 +1,41 @@
+.filter-sidebar .filteritem a {
+  border: 1px solid $grey;
+}
+
+.filter-sidebar .active-filter .activefilter-list .activefilter-tag {
+  color: $black;
+  border: 1px solid $grey;
+}
+
+.filter-sidebar .active-filter .activefilter-list .clearall {
+  background: $green-gp;
+  color: white;
+  border: none;
+}
+
+.search-bar .search-btn i {
+  margin-top: 0;
+  line-height: 40px;
+}
+
+@media (max-width: 992px) {
+  .search-bar .search-btn i {
+    margin-top: 0;
+    line-height: 32px;
+  }
+}
+
+.search-result-tags {
+  .search-result-item-head, .search-result-item-tag, a {
+    color: $green-gp;
+
+    &:hover {
+      text-decoration: underline;
+      color: $green-gp;
+    }
+  }
+}
+
+input[type="checkbox"]:checked + .custom-control-description:before {
+  background: $grey;
+}

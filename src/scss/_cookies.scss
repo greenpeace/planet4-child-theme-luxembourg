@@ -1,0 +1,33 @@
+.cookie-block {
+  max-height: 30vh !important;
+  background-size: cover;
+
+  p {
+    line-height: 20px;
+    font-size: 0.9rem;
+  }
+
+  a {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .cookie-block {
+    max-height: 20vh;
+    background-size: cover;
+
+    p {
+      line-height: 20px;
+      font-size: 0.95rem;
+    }
+
+    a { font-size: 0.95rem; }
+
+    .btn { font-size: 1.125rem; }
+  }
+}

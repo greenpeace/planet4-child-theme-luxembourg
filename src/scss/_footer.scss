@@ -1,0 +1,28 @@
+.site-footer {
+  clear: both;// fix empty article with related call to action
+  background: white;
+  color: $grey;
+
+  .footer-social-media, .footer-links, .footer-links-secondary, .copyright-text, .gp-year, a {
+    color: $grey;
+  }
+
+  .footer-social-media a {
+    &:hover {
+      color: $green-gp;
+    }
+  }
+}
+
+.footer-links-country .country-dropdown-toggle {
+  color: $grey;
+  background-color: white;
+}
+
+.country-dropdown-toggle {
+  color: #5c6978;
+
+  &:hover {
+    color: #323842;
+  }
+}
