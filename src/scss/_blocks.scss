@@ -105,38 +105,51 @@
   }
 }
 
-// Carousel
+// Carousel Header
 .carousel-header .main-header .action-button .btn {
   font-size: 1.125rem;
 }
 
-// information block
-@media (min-width: 1200px) {
-  .four-column-information a {
-    font-size: 1.125rem;
-  }
-
-  .four-column-information h5 a {
-    font-size: 1.45rem;
-  }
+.carousel-header_full-width-classic .carousel-item .carousel-caption .carousel-captions-wrapper {
+  margin-left: 10px;
 }
 
-@media (min-width: 992px) {
-  .four-column-information a {
-    font-size: 0.9375rem;
-  }
-}
-@media (min-width: 768px) {
-  .four-column-information a {
-    font-size: 1.125rem;
-  }
-
-  .four-column-information h5 a {
-    font-size: 1.45rem;
-  }
+.carousel-header_full-width-classic .carousel-item .carousel-caption .main-header .action-button .btn {
+  margin-left: 60px;
 }
 
-.four-column a,
+.carousel-header_full-width-classic .carousel-item .carousel-caption {
+  background: #f1f1f1;
+}
+
+/* Columns */
+.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner {
+  background-color: #003300;
+  border-color: #73be31;
+}
+
+.columns-block.block-style-tasks .can-do-steps .step-number {
+  background-color: #003300;
+}
+
+.columns-block a {
+  color:#003300;
+}
+
+.columns-block.block-style-tasks .can-do-steps-mobile .card .card-header {
+  background-color:#73be31;
+}
+
+.columns-block.block-style-tasks .can-do-steps .step-number.active .step-number-inner {
+  background-color:#73be31;
+  border-color: #003300;
+}
+
+.columns-block.block-style-tasks .can-do-steps .step-number.active {
+  background-color:#73be31;
+}
+
+// sitemap
 .page-template-sitemap .page-sitemap a {
   color: $brown-light-gp;
   text-decoration: none;
@@ -148,6 +161,7 @@
   }
 }
 
+// submenu
 .submenu-block .submenu-menu a {
   color: #294928;
   text-decoration: none;
@@ -167,4 +181,20 @@
   color: #030;
   margin-right: 5px;
   font-size: .8em;
+}
+
+// en form
+.enform-full-width .enform {
+  background-color:#73be31;
+}
+
+.enform .btn-primary {
+  background-color: #f36d3a;
+}
+
+.en__field--NOT_TAGGED_12 {
+  resize: vertical!important;
+  overflow: auto!important;
+  background-color: rgb(255, 255, 255)!important;
+  border: 2px solid #f36d3a
 }

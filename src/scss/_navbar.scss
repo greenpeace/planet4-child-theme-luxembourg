@@ -66,6 +66,11 @@ input[type="checkbox"] + .custom-control-description:before {
     min-width: 30px;
     flex: 1;
     text-align: center;
+    color: #5d646b;
+
+    &:hover {
+      color: #5d646b;
+    }
   }
 
   li.menu-item a {

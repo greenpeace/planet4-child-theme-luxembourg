@@ -1,3 +1,20 @@
+.body.theme-climate .page-template a {
+  color: white;
+}
+
+a.pdf-link:before {
+  display: none;
+}
+
+p a {
+  color: $green-gp;
+  text-decoration: underline;
+}
+
+.wp-block-quote .is-style-default {
+  font-size: 1 rem;
+}
+
 a {
   color: $brown-light-gp;
   font-weight: bold;
@@ -50,7 +67,12 @@ p { font-size: 1.125em; } //!important;
   min-height: 60vh;
 }
 
-// button
+// buttons
+.btn,
+.wp-block-button__link {
+  text-transform: uppercase;
+}
+
 .btn.auto {
   width: auto;
   display: inline-block;
@@ -102,12 +124,25 @@ p { font-size: 1.125em; } //!important;
   }
 }
 
-.btn-secondary, .post-content .more-link, .post-content .page-links a {
-  color: $grey;
-  border-color: $grey-black;
+.btn-secondary, .post-content .more-link,
+.post-content .page-links a,
+.wp-block-button.is-style-secondary a,
+.wp-block-file .wp-block-file__button,
+[class=wp-block-button] a {
+  color: #ffffff;
+  border-color: #73be31;
+  background-color: #73be31;
+}
 
-  &:hover, &:focus {
-    background-color: $green-gp;
-    border-color: $green-gp;
-  }
+.wp-block-button__link:active,
+.wp-block-button__link:focus,
+.wp-block-button__link:hover,
+.wp-block-button__link:visited {
+  color: #ffffff;
+  border-color: none;
+}
+
+// external icon
+.external-icon {
+  display: none;
 }
