@@ -4,16 +4,41 @@
  * Additional code for the child theme goes in here.
  */
 
-
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 99);
-function enqueue_child_styles() {
-    $css_creation = filectime(get_stylesheet_directory() . '/dist/bundle.js');
+function theme_filectime( $path ) {
+	return filectime( get_stylesheet_directory() . $path );
+}
 
-    wp_enqueue_script( 'validator', get_stylesheet_directory_uri() . '/vendor/validator.js', array('jquery'), $css_creation, true );
-    wp_enqueue_script( 'mask', get_stylesheet_directory_uri() . '/vendor/jquery.mask.min.js', array('jquery'), $css_creation, true );
-    wp_enqueue_script( 'bundle', get_stylesheet_directory_uri() . '/dist/bundle.js', array('jquery','validator'), $css_creation, true );
-    wp_localize_script( 'bundle', 'adminAjaxUrl', admin_url( 'admin-ajax.php' ) );
-    wp_localize_script( 'bundle', 'lang', ICL_LANGUAGE_CODE);
+function enqueue_child_styles() {
+	wp_enqueue_style(
+		'gplux_style',
+		get_stylesheet_directory_uri() . '/style.css',
+		[],
+		theme_filectime( '/style.css' )
+	);
+	wp_enqueue_script(
+		'validator',
+		get_stylesheet_directory_uri() . '/vendor/validator.js',
+		array( 'jquery' ),
+		theme_filectime('/vendor/validator.js'),
+		true
+	);
+	wp_enqueue_script(
+		'mask',
+		get_stylesheet_directory_uri() . '/vendor/jquery.mask.min.js',
+		array( 'jquery' ),
+		theme_filectime('/vendor/jquery.mask.min.js'),
+		true
+	);
+	wp_enqueue_script(
+		'bundle',
+		get_stylesheet_directory_uri() . '/dist/bundle.js',
+		array( 'jquery', 'validator' ),
+		theme_filectime('/dist/bundle.js'),
+		true
+	);
+	wp_localize_script( 'bundle', 'adminAjaxUrl', admin_url( 'admin-ajax.php' ) );
+	wp_localize_script( 'bundle', 'lang', ICL_LANGUAGE_CODE );
 }
 
 add_action( 'after_setup_theme', 'set_locale' );
@@ -26,10 +51,6 @@ function set_locale() {
 add_action('wp_ajax_nopriv_form_submit', 'gpf_form_submit');
 add_action('wp_ajax_form_submit', 'gpf_form_submit');
 function gpf_form_submit() {
-
-
-
-
     $data = [
         'success' => true
     ];

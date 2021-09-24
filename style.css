@@ -12,4 +12,28 @@ Tags: light, accessibility-ready
 Text Domain: planet4-child-theme
 */
 
-
+:root {
+    --btn-navbar-toggle--background-color: #73be31;
+    --btn-navbar-toggle--font-size: 1.3rem;
+    --btn-navbar-toggle--hover--background-color: #73be31;
+    --btn-navbar-toggle--margin: 4px;
+    --button-donate--background: #f36d3a;
+    --button-donate--color: #ffffff;
+    --button-donate--hover--background: #f36d3a;
+    --button-donate--hover--color: #ffffff;
+    --button-primary--background: #73be31;
+    --button-primary--hover--background: #73be31;
+    --button-primary--hover--border-color: transparent;
+    --footer--background: #73be31;
+    --footer-social-media--color: #5d646b;
+    --nav-item--wpml-ls-item--nav-link--font-weight: bold;
+    --nav-link--color: #5d646b;
+    --nav-link--hover--color: #5d646b;
+    --nav-link--hover--large-and-up--border-bottom-color: #66cc01;
+    --nav-search-wrap--top-nav-search-btn--color: #73be31;
+    --navigation-items--medium-and-up--font-size: 1.125rem;
+    --top-navigation--background: #ffffff;
+    --top-page-tags--tag-item--color: #73be31;
+    --top-page-tags--tag-item--font-weight: bold;
+    --top-page-tags--tag-item--main--font-weight: bold;
+}
