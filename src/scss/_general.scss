@@ -2,6 +2,10 @@
   color: white;
 }
 
+.has-background > img {
+  float: left;
+}
+
 a.stress-link {
   color: $green-gp;
   text-decoration: none;
