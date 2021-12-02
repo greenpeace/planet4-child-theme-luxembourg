@@ -1,148 +1,12 @@
 // form
 .form-part.hidden { display: none; }
 
-// steps
-.can-do-steps-mobile .card .card-header {
-  background: $green-gp;
-  line-height: 2.5rem;
-  font-weight: bolder;
-  color: $brown-light-gp;
-
-  .step-number {
-    font-size: 1.7rem;
-    color: $brown-light-gp;
-
-    &:after {
-      content: "\00a0-\00a0";
-    }
-  }
-}
-
-@media (min-width: 992px) {
-  .can-do-steps .step-number, .can-do-steps .step-number.active {
-    background: $green-gp;
-    opacity: 0.85;
-
-    .step-number-inner {
-      position: absolute;
-      background-color: $brown-gp;
-      border-color: white;
-      color: white;
-    }
-  }
-}
-
-// image happy point
-.happy-point-block-wrap img {
-  opacity: 0.1 !important;
-}
-
-@media (max-width: 576px) {
-  .happy-point-block-wrap .happy-point iframe {
-    height: 620px;
-  }
-
-  .happy-point-block-wrap { height: 620px; }
-
-  .happy-point-block-wrap .happy-point { height: 670px; }
-
-  .happy-point-block-wrap img {
-    height: 620px;
-  }
-
-  .happy-point iframe .from .en__component--copyblock {
-    text-align: center;
-    padding: 0 10px;
-  }
-}
-
 // Actu bloc
+// The following makes the tags look a lot better when over a background image.
 .article-list-item-body .article-list-item-tags .tag-item, .top-page-tags .tag-item {
   background-color: white;
-  color: $green-gp;
   padding: 2px 5px;
   border-radius: 3px;
-  font-weight: bold;
-}
-
-.top-page-tags .tag-wrap {
-  display: inline;
-  position: relative;
-  color: $green-gp;
-}
-
-// header image background
-
-// can do steps
-.can-do-steps .step-info .steps-action a.btn {
-  width: auto;
-  display: inline-block;
-}
-
-.can-do-steps-mobile .card .info-with-image-wrap .btn-secondary {
-  font-size: 0.8rem;
-  width: 90%;
-  padding: 5px 0;
-}
-
-.page-header-background:after {
-  background: linear-gradient(360deg, #fff 0%, transparent 100%);
-}
-
-.brown-bg .page-header-background:after {
-  background: linear-gradient(360deg, #faf7ec 0%, transparent 100%);
-}
-
-.home.brown-bg .page-header-background:after {
-  background: linear-gradient(360deg, #d6d6d6 0%, transparent 100%);
-}
-
-// page header (button header cut on medium screens)
-@media (min-width: 768px) and (max-width: 992px) {
-  .page-header-btn {
-    display: inline-block;
-    width: auto;
-  }
-}
-
-// Carousel Header
-.carousel-header .main-header .action-button .btn {
-  font-size: 1.125rem;
-}
-
-.carousel-header_full-width-classic .carousel-item .carousel-caption .carousel-captions-wrapper {
-  margin-left: 10px;
-}
-
-.carousel-header_full-width-classic .carousel-item .carousel-caption .main-header .action-button .btn {
-  margin-left: 60px;
-}
-
-/* Columns */
-.columns-block.block-style-tasks .can-do-steps .step-number .step-number-inner {
-  background-color: #003300;
-  border-color: #73be31;
-}
-
-.columns-block.block-style-tasks .can-do-steps .step-number {
-  background-color: #003300;
-}
-
-.columns-block a {
-  color:#003300;
-}
-
-.columns-block.block-style-tasks .can-do-steps-mobile .card .card-header {
-  background-color:#73be31;
-}
-
-.columns-block.block-style-tasks .can-do-steps .step-number.active .step-number-inner {
-  background-color:#73be31;
-  border-color: #003300;
-}
-
-.columns-block.block-style-tasks .can-do-steps .step-number.active {
-  background-color:#73be31;
 }
 
 // sitemap
@@ -155,28 +19,6 @@
     color: $brown-gp;
     text-decoration: underline;
   }
-}
-
-// submenu
-.submenu-block .submenu-menu a {
-  color: #294928;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.submenu-block .submenu-menu a:hover {
-  color: #030;
-  text-decoration: underline;
-}
-
-.submenu-block .submenu-menu li:before {
-  display: inline-block;
-  font: normal normal normal 14px/1 ForkAwesome;
-  font-weight: 900;
-  content: "\f105";
-  color: #030;
-  margin-right: 5px;
-  font-size: .8em;
 }
 
 // en form

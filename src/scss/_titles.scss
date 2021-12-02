@@ -1,20 +1,8 @@
 .page-header-title {
-  width: auto;
   background-image: linear-gradient(10deg, $green-gp 0%, rgba(115, 190, 49, 0.3) 100%);
-  transition: background-size 0.25s ease-in;
-
   background-repeat: repeat-x;
   display: inline;
-  padding: 0 10px 20px 0;
+  padding-right: 0;
   background-position: 0 0.8em;
   background-size: 10px 9px;
-}
-
-.share-buttons {
-  padding-top: 40px;
-}
-
-.comments-block {
-
-  border-top: 1px solid $green-gp;
 }
