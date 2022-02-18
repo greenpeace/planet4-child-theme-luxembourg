@@ -194,3 +194,25 @@
   background-color: rgb(255, 255, 255)!important;
   border: 2px solid #f36d3a
 }
+
+.accordion-block.accordion-lux .accordion-content .accordion-headline {
+  color: #f36b35;
+  background-color: transparent;
+  text-align: center;
+  border:0px;
+  border-bottom: 1px dotted;
+  border-radius:0px;
+  font-weight:bold;
+  font-family: Lora,serif;
+}
+.accordion-block.accordion-lux .accordion-content .accordion-headline:hover {
+  color: #b33514;
+  background-color: transparent;
+}
+.accordion-block .panel {
+  background-image: url(https://www.greenpeace.org/static/planet4-luxembourg-stateless/2022/02/851ac2b4-paper-background-scaled.jpg);
+  padding-top: 100px;
+}
+.accordion-block .panel .accordion-text {
+  padding-top: 30px;
+}
