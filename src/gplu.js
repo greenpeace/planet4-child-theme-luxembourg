@@ -273,7 +273,7 @@
             data: form,
             dataType: 'jsonp',
             method: 'POST',
-            url: adminAjaxUrl
+            url: p4lux.adminAjaxUrl
         })
                     .done(function(data, status) {
                         if (data.success) {
@@ -536,7 +536,7 @@
 
         });
 */
-        if (adminAjaxUrl) {
+        if (p4lux.adminAjaxUrl) {
 
             // les boutons qui ouvrent un CPT Form
             $(this).on('click', '[data-action="contact_form"]', function(e) {
@@ -564,7 +564,7 @@
                 }
 
                 // récupération des données du formulaire
-                $.get(adminAjaxUrl,
+                $.get(p4lux.adminAjaxUrl,
                       data,
                       function(data, status) {
                           querying = false;
@@ -869,7 +869,7 @@
 
 
         function searchSite(query) {
-            location.href = "/" + lang + "/?s=" + encodeURIComponent(query);
+            location.href = "/" + p4lux.lang + "/?s=" + encodeURIComponent(query);
         }
 
         $form.find('.open-search-form').on('click', function() {
