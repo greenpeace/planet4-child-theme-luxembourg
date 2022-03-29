@@ -1,0 +1,35 @@
+/* NO UPPERCASE FOR BLIND PEOPLE */
+
+.btn, .wp-block-button__link {
+	text-transform: none;
+}
+
+.btn, .wp-block-button__link {
+	text-transform: none;
+}
+
+/* BTN-SECONDARY */
+
+.btn-secondary {
+	background-color:transparent;
+ 	border:2px solid #73be31;
+ 	color: #73be31;
+}
+
+.btn-secondary:hover {
+	background-color:#73be31;
+ 	color: white;
+ 	border:2px solid #73be31;
+}
+
+/* BTN-PRIMARY */
+
+.carousel-header .main-header .action-button .btn span{
+	color:white;
+}
+
+/* ALL VISITED LINKS */
+
+a:visited {
+  color: none;
+}
