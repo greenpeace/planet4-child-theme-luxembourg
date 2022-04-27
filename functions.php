@@ -13,6 +13,9 @@ add_filter(
         ) {
             unset( $data['supporter']['questions']['question.3805'] );
         }
+        if ( empty( $data['supporter']['questions'] ) ) {
+            unset( $data['supporter']['questions'] );
+        }
         return $data;
     }
 );
