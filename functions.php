@@ -4,6 +4,18 @@
  * Additional code for the child theme goes in here.
  */
 
+// Adding a hook to allow to modify data before it is sent to EN
+add_filter(
+    'planet4_enform_data',
+    function ( $data ) {
+        if ( isset( $data['supporter']['questions']['question.3805'] )
+            && $data['supporter']['questions']['question.3805'] === 'N'
+        ) {
+            unset( $data['supporter']['questions']['question.3805'] );
+        }
+        return $data;
+    }
+);
 
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 99);
 function enqueue_child_styles() {
