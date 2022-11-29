@@ -205,6 +205,9 @@
   font-weight:bold;
   font-family: Lora,serif;
 }
+
+/* ACCORDION BLOCKS 
+
 .accordion-block.accordion-lux .accordion-content .accordion-headline:hover {
   color: #b33514;
   background-color: transparent;
@@ -215,6 +218,33 @@
 }
 .accordion-block .panel .accordion-text {
   padding-top: 30px;
+}
+
+*/
+
+.accordion-block .accordion-content .accordion-headline {
+  background-color: transparent;
+  border-bottom: 1px solid black;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  cursor: pointer;
+  color: black;
+}
+
+.accordion-block .accordion-content .accordion-headline:hover {
+  background-color: transparent;
+  border-bottom: 1px solid black;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  cursor: pointer;
+  color: black;
+
+}
+
+.accordion-block .panel .accordion-text {
+  font-family: 'Roboto';
 }
 
 .columns-block.is-style-image-full .column-wrap img, .columns-block.block-style-tasks .column-wrap img {
