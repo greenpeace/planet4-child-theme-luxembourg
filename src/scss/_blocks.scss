@@ -195,6 +195,8 @@
   border: 2px solid #f36d3a
 }
 
+/* ACCORDION BLOCKS FINANCE
+
 .accordion-block.accordion-lux .accordion-content .accordion-headline {
   color: #f36b35;
   background-color: transparent;
@@ -205,8 +207,6 @@
   font-weight:bold;
   font-family: Lora,serif;
 }
-
-/* ACCORDION BLOCKS FINANCE
 
 .accordion-block.accordion-lux .accordion-content .accordion-headline:hover {
   color: #b33514;
@@ -232,6 +232,7 @@
   border-top: none;
   cursor: pointer;
   color: black;
+  font-family:'Roboto';
 }
 
 .accordion-block .accordion-content .accordion-headline:hover {
