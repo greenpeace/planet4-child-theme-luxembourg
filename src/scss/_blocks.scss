@@ -232,7 +232,7 @@
   border-top: none;
   cursor: pointer;
   font-family:'Roboto';
-  border-radius:0px;
+  border-radius:0px !important;
   color:black;
 }
 
@@ -242,7 +242,7 @@
   border-right: none;
   border-top: none;
   cursor: pointer;
-  border-radius:0px;
+  border-radius:0px !important ;
   color:black;
 }
 
@@ -253,10 +253,11 @@
 .accordion-block .accordion-content .panel {
   background-color: transparent !important;
 }
+
 /* BACKGROUND BLUE, White text */
 
 .has-blue-background-color {
-  color:white !important;
+  color:white !important ;
 }
 
 
