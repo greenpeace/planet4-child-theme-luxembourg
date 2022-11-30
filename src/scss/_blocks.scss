@@ -225,35 +225,38 @@
 /* NEW ACCORDION BLOCKS */
 
 .accordion-block .accordion-content .accordion-headline {
-  background-color: transparent;
+  background-color: transparent !important;
   border-bottom: 1px solid black;
   border-left: none;
   border-right: none;
   border-top: none;
   cursor: pointer;
-  color: black;
   font-family:'Roboto';
+  border-radius:0px;
+  color:black;
 }
 
 .accordion-block .accordion-content .accordion-headline:hover {
-  background-color: transparent;
   border-bottom: 1px solid black;
   border-left: none;
   border-right: none;
   border-top: none;
   cursor: pointer;
-  color: black;
-
+  border-radius:0px;
+  color:black;
 }
 
 .accordion-block .panel .accordion-text {
   font-family: 'Roboto';
 }
 
+.accordion-block .accordion-content .panel {
+  background-color:transparent;
+}
 /* BACKGROUND BLUE, White text */
 
 .has-blue-background-color {
-  color:white;
+  color:white !important;
 }
 
 
