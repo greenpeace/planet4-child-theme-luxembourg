@@ -206,7 +206,7 @@
   font-family: Lora,serif;
 }
 
-/* ACCORDION BLOCKS 
+/* ACCORDION BLOCKS FINANCE
 
 .accordion-block.accordion-lux .accordion-content .accordion-headline:hover {
   color: #b33514;
@@ -220,7 +220,9 @@
   padding-top: 30px;
 }
 
-*/
+*/ 
+
+/* NEW ACCORDION BLOCKS */
 
 .accordion-block .accordion-content .accordion-headline {
   background-color: transparent;
@@ -246,6 +248,13 @@
 .accordion-block .panel .accordion-text {
   font-family: 'Roboto';
 }
+
+/* BACKGROUND BLUE, White text */
+
+.has-blue-background-color {
+  color:white;
+}
+
 
 .columns-block.is-style-image-full .column-wrap img, .columns-block.block-style-tasks .column-wrap img {
   width:100%;
