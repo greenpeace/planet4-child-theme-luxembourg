@@ -1,3 +1,4 @@
+var $ = jQuery;
 ;(function($, window, document, location, gp_data, undefined) {
     var $window = $(window),
         match,
