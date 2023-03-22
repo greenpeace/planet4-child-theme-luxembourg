@@ -20,7 +20,7 @@ class Plugin {
 	public function __construct() {
 
 		// chargement des plugins et champs
-		add_action( 'gform_loaded', [$this, 'loaded'], 5 );
+		add_action( 'gform_loaded', [$this, 'loaded'], 50 );
 
 		// modif form (exemple: changer la classe CSS)
 		add_filter( 'gform_pre_render', [$this, 'pre_render'], 10, 3 );
