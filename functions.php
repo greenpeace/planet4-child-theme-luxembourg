@@ -265,3 +265,8 @@ function gplux_responsively_shortcode( $atts, $content ) {
 
 }
 add_shortcode( 'responsively', 'gplux_responsively_shortcode' );
+
+
+// PLUGIN GRAVITYFORM 
+
+require __DIR__ . '/plugins/custom_gf/index.php';

@@ -1,0 +1,15 @@
+{
+    "name": "greenpeacefrance/gravityforms",
+    "autoload": {
+        "psr-4": {
+            "Greenpeacefrance\\Gravityforms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hugo Ponce de Leon",
+            "email": "hugo.poncedeleon@greenpeace.org"
+        }
+    ],
+    "require": {}
+}

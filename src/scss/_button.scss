@@ -32,7 +32,6 @@
 
 /* ALL VISITED LINKS */
 
-a:visited {
-  color: none;
-}
-
+	a.external-link:after {
+		display:none;
+	}
