@@ -2,7 +2,6 @@
 
 // PLUGIN GRAVITYFORM 
 
-require __DIR__ . '/plugins/custom_gf/index.php';
 
 /**
  * Additional code for the child theme goes in here.
@@ -270,4 +269,6 @@ function gplux_responsively_shortcode( $atts, $content ) {
 }
 add_shortcode( 'responsively', 'gplux_responsively_shortcode' );
 
+define('THIS_IS_LUXEMBOURG', 1);
 
+require __DIR__ . "/plugins/gravityforms-gpf/index.php";

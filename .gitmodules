@@ -1,0 +1,6 @@
+[submodule "plugins/plugins/gravityforms-gpf"]
+	path = plugins/plugins/gravityforms-gpf
+	url = https://bitbucket.org/greenpeacefrance/gravityforms-gpf.git
+[submodule "plugins/gravityforms-gpf"]
+	path = plugins/gravityforms-gpf
+	url = https://bitbucket.org/greenpeacefrance/gravityforms-gpf.git
