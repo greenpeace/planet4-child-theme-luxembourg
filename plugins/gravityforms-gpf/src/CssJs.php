@@ -111,6 +111,23 @@ class CssJs extends \GFAddOn {
 			}, 9999);
 		}
 
+
+
+
+
+		$inline_js_confirm = trim( $form['css-js']['inline_js_confirm'] ?? "" );
+
+		if ( $inline_js_confirm ) {
+			add_action( 'wp_footer', function() use ( $inline_js_confirm ) {
+				echo '<script> jQuery(document).on("gform_confirmation_loaded", function(event, formId) {' . PHP_EOL;
+				echo $inline_js_confirm;
+				echo PHP_EOL . '})</script>';
+			}, 9999);
+		}
+
+
+
+
 		// l'appel à cette méthode est doublée ...
 		remove_action( 'gform_enqueue_scripts', [$this, 'enqueue_assets'], 10 );
 	}
@@ -153,6 +170,14 @@ class CssJs extends \GFAddOn {
 						'type' => 'textarea',
 						'name' => 'js_files',
 						'label' => 'Fichiers JS à appeler avec le formulaire. Un fichier par ligne.',
+						'description' => "",
+						'class' => 'large',
+					],
+
+					[
+						'type' => 'textarea',
+						'name' => 'inline_js_confirm',
+						'label' => 'Javascript à intégrer sur le message de confirmation',
 						'description' => "",
 						'class' => 'large',
 					],

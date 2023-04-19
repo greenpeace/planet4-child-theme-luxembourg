@@ -28,13 +28,32 @@
 
 
 					input.addEventListener('blur', function(e) {
-						if (e.target.value.trim() === "") {
+						const value = e.target.value.trim()
+						if (value === "") {
 							field.classList.remove('field-activated')
+							return
+						}
+
+
+						switch (e.target.type) {
+							case 'email':
+								if ( ! value.match(/^[a-z0-9_\.\+-]*[a-z0-9]@([a-z0-9-]+\.)+[a-z0-9]+$/)) {
+									field.classList.add('field-invalid')
+								}
+							break;
+
+							case 'tel':
+								if ( "intlTelInput" in jQuery.fn && ! jQuery(e.target).intlTelInput('isValidNumber')) {
+									field.classList.add('field-invalid')
+								}
+							break;
 						}
 					})
 
 					input.addEventListener('input', function(e) {
 						field.classList.add('field-activated')
+						field.classList.remove('field-valid')
+						field.classList.remove('field-invalid')
 					})
 
 

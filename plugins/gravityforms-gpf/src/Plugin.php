@@ -8,6 +8,8 @@ use \GFFeedAddOn;
 use \GF_Fields;
 use \GFAPI;
 use \GFFormDisplay;
+use \GFFormsModel;
+
 
 class Plugin {
 
@@ -39,12 +41,12 @@ class Plugin {
 		GF_Fields::register( new Field\FirstNameField() );
 		GF_Fields::register( new Field\LastNameField() );
 
-		GF_Fields::register( new Field\OptOutField() );
+		// GF_Fields::register( new Field\OptOutField() );
 
 		GF_Fields::register( new Field\AddressField() );
 		GF_Fields::register( new Field\CityField() );
 		GF_Fields::register( new Field\PostcodeField() );
-		GF_Fields::register( new Field\FakeCountryField() );
+		// GF_Fields::register( new Field\FakeCountryField() );
 		GF_Fields::register( new Field\CountryField() );
 
 		GF_Fields::register( new Field\DirtyHtmlField() );
@@ -62,9 +64,37 @@ class Plugin {
 	}
 
 
+	public function submit_button( $button, $form ) {
+		$required = 0;
+		$obligatoire = "";
 
-	public function add_mentions_legales( $button, $form ) {
+		foreach ($form['fields'] as $field) {
+			if ($field->isRequired === true) {
+			$required ++;
+			}
+		}
+
+		if ($required > 0) {
+			$type_indicateur = $form['requiredIndicator'];
+// text
+// asterisk
+// custom
+//                      $custom_indicator = $form['customRequiredIndicator'];
+
+			if ($type_indicateur === 'asterisk') {
+				$obligatoire = '<div class="champs-obligatoires-label">* : ' . ($required > 1 ? 'champs obligatoires' : 'champ obligatoire') . '</div>';
+			}
+
+			// on ne gère pas les autres cas. C'est censé être indiqué dans les champs ...
+			// Au cas où, on peut simplement mettre le texte "MErci de vérifier les champs obligatoires"
+		}
+
+
+
+
+		// mentions légales
 		$display_mentions_legales = false;
+		$mentions = "";
 
 		if ( isset( $form['display_mentions_legales'] )
 			&& intval( $form['display_mentions_legales'] ) === 1 ) {
@@ -77,10 +107,23 @@ class Plugin {
 
 			$mentions = '<div class="form-disclaimer">'. wpautop( sprintf( $mentions_legales, $button_label ) ) . '</div>';
 
-			// $html = preg_replace( '#</div>$#', $mentions . '</div>', $html );
-			$button = '<div class="gpfgf-submit-button">' . $button . $mentions . '</div>';
 		}
 
+
+		// dernière chose, on change le type Input en Button
+		$button = preg_replace("/<input (.*)value='([^']*)'(.*)>/", '<button $1 $3>$2</button>', $button);
+
+
+		if ($required > 0 || $display_mentions_legales) {
+
+			return '<div class="gpfgf-submit-button">'
+				. $obligatoire
+				. '<div class="submit-button-area">'
+				. $button
+				. '</div>'
+				. $mentions
+				. '</div>';
+		}
 
 		return $button;
 	}
@@ -88,7 +131,7 @@ class Plugin {
 
 	public function pre_render($form, $ajax, $field_values) {
 // wp_mail('hugo.poncedeleon@greenpeace.org', 'form', print_r($form, true));
-		if ($form['has_floating_labels']) {
+		if (isset($form['has_floating_labels']) && $form['has_floating_labels']) {
 			$form['cssClass'] .= ' with-floating-label';
 		}
 
@@ -696,7 +739,7 @@ END;
 			'type' => 'textarea',
 			'use_editor' => true,
 			'label' => 'Texte des mentions légales',
-			'default_value' => 'En cliquant sur &laquo;&nbsp;%s&nbsp;&raquo; bla bla',
+			'default_value' => '	',
 		];
 
 		return $fields;
@@ -730,7 +773,7 @@ END;
 
 			<li class="gp_jauge_start_setting field_setting">
 				<label for="jauge_start" style="display:inline;">
-					Valeur de départ
+					Valeur de départ (sera additionné au nombre de signataires de ce formulaires)
 				</label>
 				<input type="text" id="jauge_start" oninput="SetFieldProperty('jauge_start', this.value);"/>
 			</li>
@@ -752,7 +795,7 @@ END;
 
 			<li class="gp_jauge_text_setting field_setting">
 				<label for="gp_jauge_text_value" style="display:inline;">
-					HTML affiché. Un %s sera remplacé par le nombre de signataires.
+					Texte affiché. Un %s sera remplacé par le nombre de signataires. Peut contenir du HTML.
 				</label>
 				<textarea id="jauge_text" oninput="SetFieldProperty('jauge_text', this.value);"></textarea>
 			</li>

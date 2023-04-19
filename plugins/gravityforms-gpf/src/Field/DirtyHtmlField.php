@@ -22,7 +22,7 @@ class DirtyHtmlField extends \GF_Field_HTML {
 
 	public function get_form_editor_button() {
 		return [
-			'group' => 'greenpeace_fields',
+			'group' => 'advanced_fields',
 			'text'  => $this->get_form_editor_field_title(),
 			'icon' => 'gpfgf-html',
 		];

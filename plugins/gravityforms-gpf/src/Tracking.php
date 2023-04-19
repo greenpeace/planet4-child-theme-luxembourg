@@ -263,49 +263,11 @@ class Tracking extends \GFAddOn {
 						'label' => 'Event Action',
 					],
 					[
-						'type' => 'select',
+						'type' => 'text',
 						'name' => 'event_category',
 						'label' => 'Catégorie',
 						'default_value' => "leads_acquisition",
-						'choices' => [
-							[
-								'label' => "leads_acquisition",
-								'value' => "leads_acquisition",
-							],
-							[
-								'label' => "engagement",
-								'value' => "engagement",
-							],
-							[
-								'label' => "collecte",
-								'value' => "collecte",
-							],
-							[
-								'label' => "contact",
-								'value' => "contact",
-							],
-							[
-								'label' => "désabonnement",
-								'value' => "désabonnement",
-							],
-							[
-								'label' => "greenvoice",
-								'value' => "greenvoice",
-							],
-							[
-								'label' => "legs",
-								'value' => "legs",
-							],
-							[
-								'label' => "rejoindre",
-								'value' => "rejoindre",
-							],
-							[
-								'label' => "wegreen",
-								'value' => "wegreen"
-							]
-						],
-
+						'description' => 'Par défaut : "leads_acquisition"',
 					],
 					[
 						'type' => 'text',

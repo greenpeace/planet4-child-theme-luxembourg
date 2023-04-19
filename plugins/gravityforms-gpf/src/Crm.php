@@ -82,6 +82,28 @@ class Crm extends \GFAddOn {
 
 		$nro = $this->get_plugin_setting( 'nro');
 
+		$journeys = [
+			'fr' => [
+				"APIEvent-2da7a81e-817a-f35e-0a0d-a9e82a85c377" => "FR_Event_Toutes_petitions_et_formulaires_de_telechargement_GP",
+				"APIEvent-9e827b4a-10f5-c0f9-189d-c1e62d699125" => "FR_Event_Mardis_Verts",
+				"APIEvent-d902bc5c-1025-0acf-7e56-7b21541a7f92" => "FR_Event_Formulaires_de_telechargements_specifiques",
+			],
+
+			'lu' => [
+				"APIEvent-ccf251f7-f26b-736b-77ad-6c83cf1da93f" => "LUX_Event_Toutes_petitions_et_formulaires_de_telechargement_GP",
+			]
+		];
+
+		$journey_list = array_map(function($event_key, $label) {
+			return [
+				"label" => $label . ' (' . $event_key . ')',
+				"value" => $event_key,
+			];
+			},
+			array_keys( $journeys[ $nro ] ),
+			array_values( $journeys[ $nro ] )
+		);
+
 
         return [
 			[
@@ -102,63 +124,17 @@ class Crm extends \GFAddOn {
 						'type' => 'select_custom',
 						'name' => 'mc_journey_id_new',
 						'label' => 'ID du parcours Marketing Cloud pour les nouveaux contacts (Event Key / Journey Id)',
-						'choices' => [
-							// [
-							// 	'label' => 'FR Don',
-							// 	'value' => 'APIEvent-e7d79a8b-0bc7-bff8-0a5a-bab51ebee41a',
-							// ],
-							[
-								'label' => 'FR Pétition - APIEvent-9c4988d2-fff2-5bde-4cb2-496e41649013',
-								'value' => 'APIEvent-9c4988d2-fff2-5bde-4cb2-496e41649013',
-							],
-							// [
-							// 	'label' => 'LU Don',
-							// 	'value' => 'APIEvent-17ce0fc1-4d88-d93b-4bfe-da5ec5748c5c',
-							// ],
-							[
-								'label' => 'LU Pétition - APIEvent-17ce0fc1-4d88-d93b-4bfe-da5ec5748c5c',
-								'value' => 'APIEvent-17ce0fc1-4d88-d93b-4bfe-da5ec5748c5c',
-							],
-						]
+						'choices' => $journey_list,
 					],
 					[
 						'type' => 'select_custom',
 						'name' => 'mc_journey_id_existing',
 						'label' => 'ID du parcours Marketing Cloud pour les contacts existants (Event Key / Journey Id)',
-						'choices' => [
-							// [
-							// 	'label' => 'FR Don',
-							// 	'value' => 'APIEvent-bde38f77-357f-dabf-102e-aa12588004ea',
-							// ],
-							[
-								'label' => 'FR Pétition - APIEvent-9c4988d2-fff2-5bde-4cb2-496e41649013',
-								'value' => 'APIEvent-9c4988d2-fff2-5bde-4cb2-496e41649013',
-							],
-							// [
-							// 	'label' => 'LU Don',
-							// 	'value' => 'APIEvent-17ce0fc1-4d88-d93b-4bfe-da5ec5748c5c',
-							// ],
-							[
-								'label' => 'LU Pétition - APIEvent-17ce0fc1-4d88-d93b-4bfe-da5ec5748c5c',
-								'value' => 'APIEvent-17ce0fc1-4d88-d93b-4bfe-da5ec5748c5c',
-							],
-						]
+						'choices' => $journey_list,
 					],
-					[
-						'type' => 'text',
-						'name' => 'api_reference_prefix',
-						'label' => 'Préfixe de l\'API Reference',
-						'description' => "Uniquement des lettres majuscules. <b>&Agrave; laisser vide sauf si besoin particulier.</b>",
-					],
-					[
-						'type' => 'text',
-						'name' => 'transformer',
-						'label' => 'Transformation',
-						'description' => 'Classe de POGO\\Services\\Transformers gérant la transformation des données de formulaires en données SF/MC. <b>&Agrave; laisser vide sauf si besoin particulier.</b>',
-					],
+
 				]
 			],
-
 
 			[
 				'title' => 'Localisation',
@@ -216,6 +192,24 @@ class Crm extends \GFAddOn {
 				]
 			],
 
+
+			[
+				'title' => 'Avancé',
+				'fields' => [
+					[
+						'type' => 'text',
+						'name' => 'api_reference_prefix',
+						'label' => 'Préfixe de l\'API Reference',
+						'description' => "Uniquement des lettres majuscules. <b>&Agrave; laisser vide sauf si besoin particulier.</b>",
+					],
+					[
+						'type' => 'text',
+						'name' => 'transformer',
+						'label' => 'Transformation',
+						'description' => 'Classe de POGO\\Services\\Transformers gérant la transformation des données de formulaires en données SF/MC. <b>&Agrave; laisser vide sauf si besoin particulier.</b>',
+					],
+				]
+			],
 
 		];
 	}

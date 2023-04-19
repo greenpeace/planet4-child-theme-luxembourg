@@ -215,22 +215,22 @@ class SfmcFeed extends \GFFeedAddOn {
 					],
 				],
 			],
-			[
-				'title' => 'Mapping Optins',
-				'description' => "",
-				'fields' => [
-					[
-						'type' => 'generic_map',
-						'name' => 'optin_mapping',
-						'key_field' => [
-							'title' => 'Champ SF/MC',
-						],
-						'value_field' => [
-							'title' => 'Champ du formulaire ou valeur',
-						],
-					],
-				],
-			],
+			// [
+			// 	'title' => 'Mapping Optins',
+			// 	'description' => "",
+			// 	'fields' => [
+			// 		[
+			// 			'type' => 'generic_map',
+			// 			'name' => 'optin_mapping',
+			// 			'key_field' => [
+			// 				'title' => 'Champ SF/MC',
+			// 			],
+			// 			'value_field' => [
+			// 				'title' => 'Champ du formulaire ou valeur',
+			// 			],
+			// 		],
+			// 	],
+			// ],
 			[
 				'fields' => [
 					[
@@ -317,25 +317,25 @@ class SfmcFeed extends \GFFeedAddOn {
 		}
 
 
-		$optins = [];
-		$optin_mapping = $feed['meta']['optin_mapping'];
+		// $optins = [];
+		// $optin_mapping = $feed['meta']['optin_mapping'];
 
-		foreach ($optin_mapping as $map) {
-			$optin_key = trim( $map['custom_key'] ) ;
+		// foreach ($optin_mapping as $map) {
+		// 	$optin_key = trim( $map['custom_key'] ) ;
 
-			if ( $map['value'] === 'gf_custom' ) {
-				$value = trim( $map['custom_value'] );
-			}
-			else {
-				$value = trim( $entry[ $map['value'] ] );
-			}
+		// 	if ( $map['value'] === 'gf_custom' ) {
+		// 		$value = trim( $map['custom_value'] );
+		// 	}
+		// 	else {
+		// 		$value = trim( $entry[ $map['value'] ] );
+		// 	}
 
-			$value = strtoupper($value);
+		// 	$value = strtoupper($value);
 
-			if ($value === 'Y' || $value === 'N') {
-				$optins[ $optin_key ] = $value;
-			}
-		}
+		// 	if ($value === 'Y' || $value === 'N') {
+		// 		$optins[ $optin_key ] = $value;
+		// 	}
+		// }
 
 
 		// $sf_campaign_id = $query['sfdc'] ?: rgars( $form, 'greenpeace-crm/sf_campaign_id' );
@@ -383,7 +383,8 @@ class SfmcFeed extends \GFFeedAddOn {
 			'nro' => $nro,
 			'lang' => $lang,
 			'campaign_id' => $sf_campaign_id,
-			'optins' => json_encode($optins),
+			'optins' => '{}',
+			// 'optins' => json_encode($optins),
 			'signup_date' => $datetime->format('Y-m-d'),
 			'signup_time' => $datetime->format('H:i:s'),
 			'form_id' => $source_reference,

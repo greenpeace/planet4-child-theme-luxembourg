@@ -13,7 +13,6 @@ https://wordpress.org/plugins/smart-phone-field-for-gravity-forms/
 */
 
 
-
 spl_autoload_register(function ($class_name) {
 	if (substr($class_name, 0, 30) === 'Greenpeacefrance\\Gravityforms\\') {
 		$class = str_replace('\\', '/', substr($class_name, 30) );
@@ -44,7 +43,6 @@ add_filter( 'gform_field_groups_form_editor', [$plugin, 'field_groups_editor'], 
 
 // ajoute du toggle Enable Ajax
 add_filter( 'gform_form_settings_fields', [$plugin, 'global_settings'], 10, 2);
-
 
 
 // Ajax automatique sur les formulaires
@@ -137,7 +135,8 @@ add_filter( 'gform_field_content', [ $plugin, 'field_content'], 10, 5 );
 add_filter( 'gform_field_choice_markup_pre_render', [$plugin, 'add_optgroup_to_select'], 10, 3 );
 
 
-add_filter( 'gform_submit_button', [$plugin, 'add_mentions_legales'], 10, 2 );
+add_filter( 'gform_submit_button', [$plugin, 'submit_button'], 10, 2 );
+
 
 // On peut modifier le placeholder du masque sur certains champs (pas le téléphone...)
 // C'est bourrin et il faut une priorité basse (100) pour passer après les plugins

@@ -10,22 +10,6 @@
 */
 
 
-.gform_wrapper.gravity-theme .button.gform_previous_button {
-background-color: var(--form-button-bgcolor, #73BE31);
-color: var(--form-button-fgcolor, #fff);
-}
-
-.gform_wrapper.gravity-theme input.button[type="submit"] {
-background-color: var(--form-button-bgcolor, #73BE31);
-color: var(--form-button-fgcolor, #fff);
-}
-
-.gform_wrapper.gravity-theme .button.gform_next_button {
-background-color: var(--form-button-bgcolor, #73BE31);
-color: var(--form-button-fgcolor, #fff);
-}
-
-
 
 .gform_wrapper.gravity-theme .field_description_above .gfield_validation_message.gfield_validation_message {
 padding: 1rem !important;
@@ -60,6 +44,17 @@ line-height: 1;
 margin: 0;
 }
 
+
+.gform_wrapper.gravity-theme .field-invalid input {
+	background-image:
+		linear-gradient(45deg, transparent calc(50% - .15em), red calc(50% - .15em), red calc(50% + .15em), transparent calc(50% + .15em)),
+		linear-gradient(-45deg, transparent calc(50% - .15em), red calc(50% - .15em), red calc(50% + .15em), transparent calc(50% + .15em));
+	box-shadow: 0 0 .25rem 1px inset red;
+	background-size: 2.5rem 1.2em;
+	background-repeat: no-repeat;
+	background-position: center right;
+	transition: none !important;
+}
 
 .gform_wrapper.gravity-theme .with-floating-label .field-activated label.gfield_label {
 	color: var(--form-label-color, #666);
@@ -222,7 +217,7 @@ position: relative;
 
 
 
-.gform_wrapper.gravity-theme input.button[type="submit"],
+.gform_wrapper.gravity-theme .button[type="submit"],
 .gform_wrapper.gravity-theme .button.gform_previous_button,
 .gform_wrapper.gravity-theme .button.gform_next_button {
 border-radius: 0;
@@ -291,6 +286,17 @@ h2.gform_submission_error {
 	position: absolute;
 }
 
+.champs-obligatoires-label {
+font-size: .9em;
+flex-basis: 100%;
+padding-bottom: .5rem;
+}
+
+.gform_required_legend {
+	display: none;
+}
+
+
 .gform_wrapper.gravity-theme .gfgpf-elements-gp_statebutton label {
 	display: block;
 
@@ -302,4 +308,26 @@ h2.gform_submission_error {
 	font-weight: bold;
 	background-color: var(--form-button-bgcolor, #73BE31);
 	color: var(--form-button-fgcolor, #fff);
+}
+
+
+
+.gform_wrapper.gravity-theme .button.gform_previous_button {
+	background-color: var(--form-button-bgcolor, #73BE31);
+	color: var(--form-button-fgcolor, #fff);
+}
+
+.gform_wrapper.gravity-theme .button[type="submit"] {
+background-color: var(--form-button-bgcolor, #73BE31);
+color: var(--form-button-fgcolor, #fff);
+}
+
+.gform_wrapper.gravity-theme .button.gform_next_button {
+background-color: var(--form-button-bgcolor, #73BE31);
+color: var(--form-button-fgcolor, #fff);
+}
+
+.gform_footer a,
+.gform_confirmation_message a {
+color: currentColor;
 }

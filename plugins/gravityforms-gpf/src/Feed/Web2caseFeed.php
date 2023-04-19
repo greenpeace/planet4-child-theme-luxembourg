@@ -155,7 +155,7 @@ class Web2caseFeed extends \GFFeedAddOn {
 			$sf_key = trim( $map['custom_key'] ) ;
 
 			if ( $map['value'] === 'gf_custom' ) {
-				$value = trim( $map['custom_value'] );
+				$value = \GFCommon::replace_variables( trim( $map['custom_value'] ), $form, $entry, false, false, false  );
 			}
 			else {
 				$value = trim( $entry[ $map['value'] ] );
@@ -165,19 +165,24 @@ class Web2caseFeed extends \GFFeedAddOn {
 		}
 
 
-		$case_data['description'] = \GFCommon::replace_variables( rgars( $feed, 'meta/message' ), $form, $entry, false, true, false );
+		$description = trim( rgars( $feed, 'meta/message' ) );
+		$description = \GFCommon::replace_variables( $description, $form, $entry, false, false, false );
+		$description = strip_tags( $description );
+		$description = html_entity_decode( $description );
+		$description = str_replace( '&#039;', "'", $description );
 
-
-
+		$case_data['description'] = $description;
 		$case_data['retURL'] = 'https://greenpeace.fr/';
 		$case_data['orgid'] = $plugin_settings['orgid']; // get_option('gpf_sf_orgid_prod');
 
-		$data = [
-			'case' => $case_data,
-			'entry' => $entry,
-			'feed' => $feed,
-			'form' => $form,
-		];
+		// array_walk( $case_data, "html_entity_decode" );
+
+		// $data = [
+		// 	'case' => $case_data,
+		// 	'entry' => $entry,
+		// 	'feed' => $feed,
+		// 	'form' => $form,
+		// ];
 
 
 
@@ -221,6 +226,10 @@ class Web2caseFeed extends \GFFeedAddOn {
 
 		}
 		else {
+			$note_message = "Envoi du WebCase correctement effectué.";
+			$this->add_note($entry_id, $note_message );
+
+
 			$this->log_debug( sprintf( '%s(): Web2case envoyé. code: %s; body: %s', __METHOD__, wp_remote_retrieve_response_code( $response ), wp_remote_retrieve_body( $response ) ) );
 		}
 

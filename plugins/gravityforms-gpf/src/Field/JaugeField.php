@@ -89,13 +89,11 @@ END;
 		}
 
 
-		$count = \GFAPI::count_entries( $form->id );
+		$count = \GFAPI::count_entries( $form['id'] );
 
 		$min = intval($this->jauge_minimum);
 
 		$number = intval($this->jauge_start) + $count;
-
-
 
 		if ($number < $min) {
 			return '';
