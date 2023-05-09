@@ -52,7 +52,7 @@ add_filter( 'gform_form_args', [$plugin, 'form_args'] );
 
 add_filter( 'gform_custom_merge_tags', [ $plugin, 'custom_merge_tags' ], 10, 4 );
 add_filter( 'gform_replace_merge_tags', [ $plugin, 'replace_merge_tags' ], 10, 3 );
-
+add_filter( 'gform_input_masks', [ $plugin, 'add_input_mask' ] );
 
 add_action( 'gform_enqueue_scripts', function($form, $is_ajax) {
 	wp_enqueue_style( 'gpfgf-default-styles', GPFGF_DIR_URL . 'assets/style.css' );

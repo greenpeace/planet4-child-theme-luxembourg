@@ -358,24 +358,24 @@ padding-bottom: .5rem;
 	font-size: 1rem;
 	font-weight: bold;
 	background-color: var(--cta-background);
-	color: var(--cta-foreground);
+	color: var(--cta-text);
 }
 
 
 
 .gform_wrapper.gravity-theme .button.gform_previous_button {
 	background-color: var(--cta-background);
-	color: var(--cta-foreground);
+	color: var(--cta-text);
 }
 
 .gform_wrapper.gravity-theme .button[type="submit"] {
 background-color: var(--cta-background);
-color: var(--cta-foreground);
+color: var(--cta-text);
 }
 
 .gform_wrapper.gravity-theme .button.gform_next_button {
 background-color: var(--cta-background);
-color: var(--cta-foreground);
+color: var(--cta-text);
 }
 
 .gform_footer a,

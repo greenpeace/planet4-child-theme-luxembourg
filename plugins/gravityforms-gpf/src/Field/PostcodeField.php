@@ -8,9 +8,9 @@ class PostcodeField extends \GF_Field_Text {
 
 	public $maxLength = 5;
 
-	public $inputMask = true;
-	public $inputMaskIsCustom = true;
-	public $inputMaskValue = '**********';
+	// public $inputMask = true;
+	// public $inputMaskIsCustom = true;
+	// public $inputMaskValue = '**********';
 
 
 	public function get_form_editor_field_title() {
@@ -28,6 +28,10 @@ class PostcodeField extends \GF_Field_Text {
 			if ($field->type === 'gp_country') {
 				$country_field_id = $field->id;
 			}
+		}
+
+		if ( $country_field_id === -1 ) {
+			return;
 		}
 
 		return <<<END

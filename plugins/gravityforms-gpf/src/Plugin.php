@@ -206,6 +206,17 @@ class Plugin {
 	}
 
 
+	public function add_input_mask( $masks ) {
+		$masks['Code postal FR'] = "99999";
+		$masks['Code postal LU'] = "L9999";
+		$masks['Code postal BE'] = "B9999";
+		$masks['Code postal CH'] = "9999";
+		$masks['Code postal DE'] = "99999";
+
+		return $masks;
+	}
+
+
 	public function field_content( $content, $field, $value, $entry_id, $form_id ) {
 
 		switch ( $field->type ) {
