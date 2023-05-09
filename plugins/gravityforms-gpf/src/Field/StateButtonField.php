@@ -88,4 +88,8 @@ class StateButtonField extends \GF_Field_Checkbox {
 	}
 
 
+	public function validate($value, $form) {
+		$this->failed_validation = false;
+	}
+
 }

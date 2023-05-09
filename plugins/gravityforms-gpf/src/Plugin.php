@@ -27,12 +27,15 @@ class Plugin {
 		GFForms::include_feed_addon_framework();
 		GFForms::include_addon_framework();
 
+		GFAddOn::register( __NAMESPACE__ . '\\Apparence' );
+		GFAddOn::register( __NAMESPACE__ . '\\ConfirmationScreen' );
 		GFAddOn::register( __NAMESPACE__ . '\\Crm' );
+		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\SfmcFeed' );
 		GFAddOn::register( __NAMESPACE__ . '\\Tracking' );
 		// GFAddOn::register( __NAMESPACE__ . '\\EngagingNetworks' );
 
 
-		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\SfmcFeed' );
+
 		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\Web2caseFeed' );
 		// GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\DoubleOptInFeed' );
 		GFAddOn::register( __NAMESPACE__ . '\\CssJs' );
@@ -46,10 +49,12 @@ class Plugin {
 		GF_Fields::register( new Field\AddressField() );
 		GF_Fields::register( new Field\CityField() );
 		GF_Fields::register( new Field\PostcodeField() );
+		// GF_Fields::register( new Field\PostcodeLuxField() );
 		// GF_Fields::register( new Field\FakeCountryField() );
 		GF_Fields::register( new Field\CountryField() );
 
 		GF_Fields::register( new Field\DirtyHtmlField() );
+		GF_Fields::register( new Field\SousAccrocheField() );
 		GF_Fields::register( new Field\StateButtonField() );
 		// GF_Fields::register( new Field\MentionsLegalesField() );
 
@@ -64,15 +69,18 @@ class Plugin {
 	}
 
 
+
 	public function submit_button( $button, $form ) {
 		$required = 0;
 		$obligatoire = "";
+		$hide_required = false;
 
 		foreach ($form['fields'] as $field) {
-			if ($field->isRequired === true) {
-			$required ++;
+			if ($field->isRequired) {
+				$required ++;
 			}
 		}
+
 
 		if ($required > 0) {
 			$type_indicateur = $form['requiredIndicator'];
@@ -82,7 +90,11 @@ class Plugin {
 //                      $custom_indicator = $form['customRequiredIndicator'];
 
 			if ($type_indicateur === 'asterisk') {
+
+				$hide_required = boolval($form['hide_required'] ?? 0);
 				$obligatoire = '<div class="champs-obligatoires-label">* : ' . ($required > 1 ? 'champs obligatoires' : 'champ obligatoire') . '</div>';
+
+
 			}
 
 			// on ne gère pas les autres cas. C'est censé être indiqué dans les champs ...
@@ -95,10 +107,17 @@ class Plugin {
 		// mentions légales
 		$display_mentions_legales = false;
 		$mentions = "";
+		$position_mentions = 'below';
+
+
+
 
 		if ( isset( $form['display_mentions_legales'] )
-			&& intval( $form['display_mentions_legales'] ) === 1 ) {
+			&& intval( $form['display_mentions_legales'] ) ) {
 				$display_mentions_legales = true;
+
+				$position_mentions = intval($form['display_mentions_legales_position'] ?? "0") ? 'above' : 'below';
+
 		}
 
 		if ( $display_mentions_legales ) {
@@ -113,19 +132,34 @@ class Plugin {
 		// dernière chose, on change le type Input en Button
 		$button = preg_replace("/<input (.*)value='([^']*)'(.*)>/", '<button $1 $3>$2</button>', $button);
 
+		preg_match("/id='([^']+)'/", $button, $match);
 
-		if ($required > 0 || $display_mentions_legales) {
+		$button = preg_replace("/id='([^']+)'/", "", $button);
 
-			return '<div class="gpfgf-submit-button">'
-				. $obligatoire
-				. '<div class="submit-button-area">'
-				. $button
-				. '</div>'
-				. $mentions
-				. '</div>';
+
+
+
+		$str = '<div class="gpfgf-submit-button" id="'.$match[1].'">';
+
+		if ( ! $hide_required) {
+			$str .= $obligatoire;
 		}
 
-		return $button;
+		if ($position_mentions === 'above') {
+			$str .= $mentions;
+		}
+
+		$str .= '<div class="submit-button-area">'
+			. $button
+			. '</div>';
+
+		if ($position_mentions === 'below') {
+				$str .= $mentions;
+			}
+
+		$str .= '</div>';
+
+		return $str;
 	}
 
 
@@ -144,6 +178,31 @@ class Plugin {
 			$classes .= 'field-activated ';
 		}
 		return $classes;
+	}
+
+
+	public function custom_merge_tags( $merge_tags, $form_id, $fields, $element_id ) {
+		$merge_tags[] = [
+			'label' => 'Langue de la page Luxembourg',
+			'tag' => '{luxembourg_page_lang}'
+		];
+
+		return $merge_tags;
+	}
+
+
+	public function replace_merge_tags( $text, $form, $entry ) {
+		if ( strpos( $text, '{luxembourg_page_lang}' ) !== false ) {
+
+			$url = $entry['source_url'];
+
+			if ( preg_match( '#/luxembourg/([a-z]{2})/#', $url, $matches ) ) {
+				$lang = $matches[1];
+				$text = str_replace( '{luxembourg_page_lang}', $lang, $text );
+			}
+		}
+
+		return $text;
 	}
 
 
@@ -203,407 +262,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 */
-var characterMap = {
-	"À": "A",
-	"Á": "A",
-	"Â": "A",
-	"Ã": "A",
-	"Ä": "A",
-	"Å": "A",
-	"Ấ": "A",
-	"Ắ": "A",
-	"Ẳ": "A",
-	"Ẵ": "A",
-	"Ặ": "A",
-	"Æ": "AE",
-	"Ầ": "A",
-	"Ằ": "A",
-	"Ȃ": "A",
-	"Ç": "C",
-	"Ḉ": "C",
-	"È": "E",
-	"É": "E",
-	"Ê": "E",
-	"Ë": "E",
-	"Ế": "E",
-	"Ḗ": "E",
-	"Ề": "E",
-	"Ḕ": "E",
-	"Ḝ": "E",
-	"Ȇ": "E",
-	"Ì": "I",
-	"Í": "I",
-	"Î": "I",
-	"Ï": "I",
-	"Ḯ": "I",
-	"Ȋ": "I",
-	"Ð": "D",
-	"Ñ": "N",
-	"Ò": "O",
-	"Ó": "O",
-	"Ô": "O",
-	"Õ": "O",
-	"Ö": "O",
-	"Ø": "O",
-	"Ố": "O",
-	"Ṍ": "O",
-	"Ṓ": "O",
-	"Ȏ": "O",
-	"Ù": "U",
-	"Ú": "U",
-	"Û": "U",
-	"Ü": "U",
-	"Ý": "Y",
-	"à": "a",
-	"á": "a",
-	"â": "a",
-	"ã": "a",
-	"ä": "a",
-	"å": "a",
-	"ấ": "a",
-	"ắ": "a",
-	"ẳ": "a",
-	"ẵ": "a",
-	"ặ": "a",
-	"æ": "ae",
-	"ầ": "a",
-	"ằ": "a",
-	"ȃ": "a",
-	"ç": "c",
-	"ḉ": "c",
-	"è": "e",
-	"é": "e",
-	"ê": "e",
-	"ë": "e",
-	"ế": "e",
-	"ḗ": "e",
-	"ề": "e",
-	"ḕ": "e",
-	"ḝ": "e",
-	"ȇ": "e",
-	"ì": "i",
-	"í": "i",
-	"î": "i",
-	"ï": "i",
-	"ḯ": "i",
-	"ȋ": "i",
-	"ð": "d",
-	"ñ": "n",
-	"ò": "o",
-	"ó": "o",
-	"ô": "o",
-	"õ": "o",
-	"ö": "o",
-	"ø": "o",
-	"ố": "o",
-	"ṍ": "o",
-	"ṓ": "o",
-	"ȏ": "o",
-	"ù": "u",
-	"ú": "u",
-	"û": "u",
-	"ü": "u",
-	"ý": "y",
-	"ÿ": "y",
-	"Ā": "A",
-	"ā": "a",
-	"Ă": "A",
-	"ă": "a",
-	"Ą": "A",
-	"ą": "a",
-	"Ć": "C",
-	"ć": "c",
-	"Ĉ": "C",
-	"ĉ": "c",
-	"Ċ": "C",
-	"ċ": "c",
-	"Č": "C",
-	"č": "c",
-	"C̆": "C",
-	"c̆": "c",
-	"Ď": "D",
-	"ď": "d",
-	"Đ": "D",
-	"đ": "d",
-	"Ē": "E",
-	"ē": "e",
-	"Ĕ": "E",
-	"ĕ": "e",
-	"Ė": "E",
-	"ė": "e",
-	"Ę": "E",
-	"ę": "e",
-	"Ě": "E",
-	"ě": "e",
-	"Ĝ": "G",
-	"Ǵ": "G",
-	"ĝ": "g",
-	"ǵ": "g",
-	"Ğ": "G",
-	"ğ": "g",
-	"Ġ": "G",
-	"ġ": "g",
-	"Ģ": "G",
-	"ģ": "g",
-	"Ĥ": "H",
-	"ĥ": "h",
-	"Ħ": "H",
-	"ħ": "h",
-	"Ḫ": "H",
-	"ḫ": "h",
-	"Ĩ": "I",
-	"ĩ": "i",
-	"Ī": "I",
-	"ī": "i",
-	"Ĭ": "I",
-	"ĭ": "i",
-	"Į": "I",
-	"į": "i",
-	"İ": "I",
-	"ı": "i",
-	"Ĳ": "IJ",
-	"ĳ": "ij",
-	"Ĵ": "J",
-	"ĵ": "j",
-	"Ķ": "K",
-	"ķ": "k",
-	"Ḱ": "K",
-	"ḱ": "k",
-	"K̆": "K",
-	"k̆": "k",
-	"Ĺ": "L",
-	"ĺ": "l",
-	"Ļ": "L",
-	"ļ": "l",
-	"Ľ": "L",
-	"ľ": "l",
-	"Ŀ": "L",
-	"ŀ": "l",
-	"Ł": "l",
-	"ł": "l",
-	"Ḿ": "M",
-	"ḿ": "m",
-	"M̆": "M",
-	"m̆": "m",
-	"Ń": "N",
-	"ń": "n",
-	"Ņ": "N",
-	"ņ": "n",
-	"Ň": "N",
-	"ň": "n",
-	"ŉ": "n",
-	"N̆": "N",
-	"n̆": "n",
-	"Ō": "O",
-	"ō": "o",
-	"Ŏ": "O",
-	"ŏ": "o",
-	"Ő": "O",
-	"ő": "o",
-	"Œ": "OE",
-	"œ": "oe",
-	"P̆": "P",
-	"p̆": "p",
-	"Ŕ": "R",
-	"ŕ": "r",
-	"Ŗ": "R",
-	"ŗ": "r",
-	"Ř": "R",
-	"ř": "r",
-	"R̆": "R",
-	"r̆": "r",
-	"Ȓ": "R",
-	"ȓ": "r",
-	"Ś": "S",
-	"ś": "s",
-	"Ŝ": "S",
-	"ŝ": "s",
-	"Ş": "S",
-	"Ș": "S",
-	"ș": "s",
-	"ş": "s",
-	"Š": "S",
-	"š": "s",
-	"Ţ": "T",
-	"ţ": "t",
-	"ț": "t",
-	"Ț": "T",
-	"Ť": "T",
-	"ť": "t",
-	"Ŧ": "T",
-	"ŧ": "t",
-	"T̆": "T",
-	"t̆": "t",
-	"Ũ": "U",
-	"ũ": "u",
-	"Ū": "U",
-	"ū": "u",
-	"Ŭ": "U",
-	"ŭ": "u",
-	"Ů": "U",
-	"ů": "u",
-	"Ű": "U",
-	"ű": "u",
-	"Ų": "U",
-	"ų": "u",
-	"Ȗ": "U",
-	"ȗ": "u",
-	"V̆": "V",
-	"v̆": "v",
-	"Ŵ": "W",
-	"ŵ": "w",
-	"Ẃ": "W",
-	"ẃ": "w",
-	"X̆": "X",
-	"x̆": "x",
-	"Ŷ": "Y",
-	"ŷ": "y",
-	"Ÿ": "Y",
-	"Y̆": "Y",
-	"y̆": "y",
-	"Ź": "Z",
-	"ź": "z",
-	"Ż": "Z",
-	"ż": "z",
-	"Ž": "Z",
-	"ž": "z",
-	"ſ": "s",
-	"ƒ": "f",
-	"Ơ": "O",
-	"ơ": "o",
-	"Ư": "U",
-	"ư": "u",
-	"Ǎ": "A",
-	"ǎ": "a",
-	"Ǐ": "I",
-	"ǐ": "i",
-	"Ǒ": "O",
-	"ǒ": "o",
-	"Ǔ": "U",
-	"ǔ": "u",
-	"Ǖ": "U",
-	"ǖ": "u",
-	"Ǘ": "U",
-	"ǘ": "u",
-	"Ǚ": "U",
-	"ǚ": "u",
-	"Ǜ": "U",
-	"ǜ": "u",
-	"Ứ": "U",
-	"ứ": "u",
-	"Ṹ": "U",
-	"ṹ": "u",
-	"Ǻ": "A",
-	"ǻ": "a",
-	"Ǽ": "AE",
-	"ǽ": "ae",
-	"Ǿ": "O",
-	"ǿ": "o",
-	"Þ": "TH",
-	"þ": "th",
-	"Ṕ": "P",
-	"ṕ": "p",
-	"Ṥ": "S",
-	"ṥ": "s",
-	"X́": "X",
-	"x́": "x",
-	"Ѓ": "Г",
-	"ѓ": "г",
-	"Ќ": "К",
-	"ќ": "к",
-	"A̋": "A",
-	"a̋": "a",
-	"E̋": "E",
-	"e̋": "e",
-	"I̋": "I",
-	"i̋": "i",
-	"Ǹ": "N",
-	"ǹ": "n",
-	"Ồ": "O",
-	"ồ": "o",
-	"Ṑ": "O",
-	"ṑ": "o",
-	"Ừ": "U",
-	"ừ": "u",
-	"Ẁ": "W",
-	"ẁ": "w",
-	"Ỳ": "Y",
-	"ỳ": "y",
-	"Ȁ": "A",
-	"ȁ": "a",
-	"Ȅ": "E",
-	"ȅ": "e",
-	"Ȉ": "I",
-	"ȉ": "i",
-	"Ȍ": "O",
-	"ȍ": "o",
-	"Ȑ": "R",
-	"ȑ": "r",
-	"Ȕ": "U",
-	"ȕ": "u",
-	"B̌": "B",
-	"b̌": "b",
-	"Č̣": "C",
-	"č̣": "c",
-	"Ê̌": "E",
-	"ê̌": "e",
-	"F̌": "F",
-	"f̌": "f",
-	"Ǧ": "G",
-	"ǧ": "g",
-	"Ȟ": "H",
-	"ȟ": "h",
-	"J̌": "J",
-	"ǰ": "j",
-	"Ǩ": "K",
-	"ǩ": "k",
-	"M̌": "M",
-	"m̌": "m",
-	"P̌": "P",
-	"p̌": "p",
-	"Q̌": "Q",
-	"q̌": "q",
-	"Ř̩": "R",
-	"ř̩": "r",
-	"Ṧ": "S",
-	"ṧ": "s",
-	"V̌": "V",
-	"v̌": "v",
-	"W̌": "W",
-	"w̌": "w",
-	"X̌": "X",
-	"x̌": "x",
-	"Y̌": "Y",
-	"y̌": "y",
-	"A̧": "A",
-	"a̧": "a",
-	"B̧": "B",
-	"b̧": "b",
-	"Ḑ": "D",
-	"ḑ": "d",
-	"Ȩ": "E",
-	"ȩ": "e",
-	"Ɛ̧": "E",
-	"ɛ̧": "e",
-	"Ḩ": "H",
-	"ḩ": "h",
-	"I̧": "I",
-	"i̧": "i",
-	"Ɨ̧": "I",
-	"ɨ̧": "i",
-	"M̧": "M",
-	"m̧": "m",
-	"O̧": "O",
-	"o̧": "o",
-	"Q̧": "Q",
-	"q̧": "q",
-	"U̧": "U",
-	"u̧": "u",
-	"X̧": "X",
-	"x̧": "x",
-	"Z̧": "Z",
-	"z̧": "z",
-};
+var characterMap = {"À": "A","Á": "A","Â": "A","Ã": "A","Ä": "A","Å": "A","Ấ": "A","Ắ": "A","Ẳ": "A","Ẵ": "A","Ặ": "A","Æ": "AE","Ầ": "A","Ằ": "A","Ȃ": "A","Ç": "C","Ḉ": "C","È": "E","É": "E","Ê": "E","Ë": "E","Ế": "E","Ḗ": "E","Ề": "E","Ḕ": "E","Ḝ": "E","Ȇ": "E","Ì": "I","Í": "I","Î": "I","Ï": "I","Ḯ": "I","Ȋ": "I","Ð": "D","Ñ": "N","Ò": "O","Ó": "O","Ô": "O","Õ": "O","Ö": "O","Ø": "O","Ố": "O","Ṍ": "O","Ṓ": "O","Ȏ": "O","Ù": "U","Ú": "U","Û": "U","Ü": "U","Ý": "Y","à": "a","á": "a","â": "a","ã": "a","ä": "a","å": "a","ấ": "a","ắ": "a","ẳ": "a","ẵ": "a","ặ": "a","æ": "ae","ầ": "a","ằ": "a","ȃ": "a","ç": "c","ḉ": "c","è": "e","é": "e","ê": "e","ë": "e","ế": "e","ḗ": "e","ề": "e","ḕ": "e","ḝ": "e","ȇ": "e","ì": "i","í": "i","î": "i","ï": "i","ḯ": "i","ȋ": "i","ð": "d","ñ": "n","ò": "o","ó": "o","ô": "o","õ": "o","ö": "o","ø": "o","ố": "o","ṍ": "o","ṓ": "o","ȏ": "o","ù": "u","ú": "u","û": "u","ü": "u","ý": "y","ÿ": "y","Ā": "A","ā": "a","Ă": "A","ă": "a","Ą": "A","ą": "a","Ć": "C","ć": "c","Ĉ": "C","ĉ": "c","Ċ": "C","ċ": "c","Č": "C","č": "c","C̆": "C","c̆": "c","Ď": "D","ď": "d","Đ": "D","đ": "d","Ē": "E","ē": "e","Ĕ": "E","ĕ": "e","Ė": "E","ė": "e","Ę": "E","ę": "e","Ě": "E","ě": "e","Ĝ": "G","Ǵ": "G","ĝ": "g","ǵ": "g","Ğ": "G","ğ": "g","Ġ": "G","ġ": "g","Ģ": "G","ģ": "g","Ĥ": "H","ĥ": "h","Ħ": "H","ħ": "h","Ḫ": "H","ḫ": "h","Ĩ": "I","ĩ": "i","Ī": "I","ī": "i","Ĭ": "I","ĭ": "i","Į": "I","į": "i","İ": "I","ı": "i","Ĳ": "IJ","ĳ": "ij","Ĵ": "J","ĵ": "j","Ķ": "K","ķ": "k","Ḱ": "K","ḱ": "k","K̆": "K","k̆": "k","Ĺ": "L","ĺ": "l","Ļ": "L","ļ": "l","Ľ": "L","ľ": "l","Ŀ": "L","ŀ": "l","Ł": "l","ł": "l","Ḿ": "M","ḿ": "m","M̆": "M","m̆": "m","Ń": "N","ń": "n","Ņ": "N","ņ": "n","Ň": "N","ň": "n","ŉ": "n","N̆": "N","n̆": "n","Ō": "O","ō": "o","Ŏ": "O","ŏ": "o","Ő": "O","ő": "o","Œ": "OE","œ": "oe","P̆": "P","p̆": "p","Ŕ": "R","ŕ": "r","Ŗ": "R","ŗ": "r","Ř": "R","ř": "r","R̆": "R","r̆": "r","Ȓ": "R","ȓ": "r","Ś": "S","ś": "s","Ŝ": "S","ŝ": "s","Ş": "S","Ș": "S","ș": "s","ş": "s","Š": "S","š": "s","Ţ": "T","ţ": "t","ț": "t","Ț": "T","Ť": "T","ť": "t","Ŧ": "T","ŧ": "t","T̆": "T","t̆": "t","Ũ": "U","ũ": "u","Ū": "U","ū": "u","Ŭ": "U","ŭ": "u","Ů": "U","ů": "u","Ű": "U","ű": "u","Ų": "U","ų": "u","Ȗ": "U","ȗ": "u","V̆": "V","v̆": "v","Ŵ": "W","ŵ": "w","Ẃ": "W","ẃ": "w","X̆": "X","x̆": "x","Ŷ": "Y","ŷ": "y","Ÿ": "Y","Y̆": "Y","y̆": "y","Ź": "Z","ź": "z","Ż": "Z","ż": "z","Ž": "Z","ž": "z","ſ": "s","ƒ": "f","Ơ": "O","ơ": "o","Ư": "U","ư": "u","Ǎ": "A","ǎ": "a","Ǐ": "I","ǐ": "i","Ǒ": "O","ǒ": "o","Ǔ": "U","ǔ": "u","Ǖ": "U","ǖ": "u","Ǘ": "U","ǘ": "u","Ǚ": "U","ǚ": "u","Ǜ": "U","ǜ": "u","Ứ": "U","ứ": "u","Ṹ": "U","ṹ": "u","Ǻ": "A","ǻ": "a","Ǽ": "AE","ǽ": "ae","Ǿ": "O","ǿ": "o","Þ": "TH","þ": "th","Ṕ": "P","ṕ": "p","Ṥ": "S","ṥ": "s","X́": "X","x́": "x","Ѓ": "Г","ѓ": "г","Ќ": "К","ќ": "к","A̋": "A","a̋": "a","E̋": "E","e̋": "e","I̋": "I","i̋": "i","Ǹ": "N","ǹ": "n","Ồ": "O","ồ": "o","Ṑ": "O","ṑ": "o","Ừ": "U","ừ": "u","Ẁ": "W","ẁ": "w","Ỳ": "Y","ỳ": "y","Ȁ": "A","ȁ": "a","Ȅ": "E","ȅ": "e","Ȉ": "I","ȉ": "i","Ȍ": "O","ȍ": "o","Ȑ": "R","ȑ": "r","Ȕ": "U","ȕ": "u","B̌": "B","b̌": "b","Č̣": "C","č̣": "c","Ê̌": "E","ê̌": "e","F̌": "F","f̌": "f","Ǧ": "G","ǧ": "g","Ȟ": "H","ȟ": "h","J̌": "J","ǰ": "j","Ǩ": "K","ǩ": "k","M̌": "M","m̌": "m","P̌": "P","p̌": "p","Q̌": "Q","q̌": "q","Ř̩": "R","ř̩": "r","Ṧ": "S","ṧ": "s","V̌": "V","v̌": "v","W̌": "W","w̌": "w","X̌": "X","x̌": "x","Y̌": "Y","y̌": "y","A̧": "A","a̧": "a","B̧": "B","b̧": "b","Ḑ": "D","ḑ": "d","Ȩ": "E","ȩ": "e","Ɛ̧": "E","ɛ̧": "e","Ḩ": "H","ḩ": "h","I̧": "I","i̧": "i","Ɨ̧": "I","ɨ̧": "i","M̧": "M","m̧": "m","O̧": "O","o̧": "o","Q̧": "Q","q̧": "q","U̧": "U","u̧": "u","X̧": "X","x̧": "x","Z̧": "Z","z̧": "z"};
 
 var chars = Object.keys(characterMap).join('|');
 var allAccents = new RegExp(chars, 'g');
@@ -718,6 +377,15 @@ END;
 
 
 		$fields['form_layout']['fields'][] = [
+			'name' => 'hide_required',
+			'type' => 'toggle',
+			'label' => "Cacher l'information \"champs obligatoires\"",
+			'default_value' => "0",
+			"description" => "Cette ligne de texte est affichée automatiquement. Cochez pour la cacher et la gérer à la main avec un champ HTML dans le formulaire. Ne fonctionne que pour le type \"astérisque *\"",
+		];
+
+
+		$fields['form_layout']['fields'][] = [
 			'name' => 'has_floating_labels',
 			'type' => 'toggle',
 			'label' => 'Label flottant (ils sont placés en placeholder puis se placent au dessus des champs lors du focus)',
@@ -728,18 +396,26 @@ END;
 		$fields['form_basics']['fields'][] = [
 			'name' => 'display_mentions_legales',
 			'type' => 'toggle',
-			'label' => 'Affichage des mentions légales',
+			'label' => 'Affichage automatique des mentions légales ci-dessous. Un %s dans le texte sera remplacé par le label du bouton.',
 			'default_value' => "0",
-			"description" => "Ces mentions légales seront affichées en bas du formulaire, sous le bouton. Un %s dans le texte sera remplacé par le label du bouton.",
 		];
+
 
 
 		$fields['form_basics']['fields'][] = [
 			'name' => 'mentions_legales',
 			'type' => 'textarea',
 			'use_editor' => true,
-			'label' => 'Texte des mentions légales',
-			'default_value' => '	',
+			'label' => '',
+			'default_value' => '',
+		];
+
+		$fields['form_basics']['fields'][] = [
+			'name' => 'display_mentions_legales_position',
+			'type' => 'toggle',
+			'label' => 'Coché : mentions affichées sous le bouton Valider. Non coché : mentions affichées au dessus du bouton.',
+			'default_value' => "0",
+			"description" => "",
 		];
 
 		return $fields;
@@ -801,20 +477,6 @@ END;
 			</li>
 
 
-			<li class="gp_jauge_fgcolor_setting field_setting">
-				<label for="gp_jauge_fgcolor_value" style="display:inline;">
-					Couleur de la jauge (code CSS)
-				</label>
-				<input type="text" id="jauge_fgcolor" oninput="SetFieldProperty('jauge_fgcolor', this.value);"/>
-			</li>
-
-
-			<li class="gp_jauge_bgcolor_setting field_setting">
-				<label for="gp_jauge_bgcolor_value" style="display:inline;">
-					Couleur du fond de la jauge (code CSS)
-				</label>
-				<input type="text" id="jauge_bgcolor" oninput="SetFieldProperty('jauge_bgcolor', this.value);"/>
-			</li>
 
 			<?php
 		}

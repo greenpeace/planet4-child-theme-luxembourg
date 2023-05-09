@@ -52,8 +52,6 @@ class JaugeField extends \GF_Field_Text {
 			'gp_jauge_target_setting',
 			'gp_jauge_min_setting',
 			'gp_jauge_text_setting',
-			'gp_jauge_fgcolor_setting',
-			'gp_jauge_bgcolor_setting',
 		];
 	}
 
@@ -114,30 +112,22 @@ END;
 		// wp_mail('hugo.poncedeleon@greenpeace.org', 'jauge', print_r($data, true));
 
 
-		$fgcolor = 'var(--primary-color)';
-		$bgcolor = 'transparent';
 
-		if ( ! empty($this->jauge_fgcolor) ) {
-			$fgcolor = esc_attr($this->jauge_fgcolor);
-		}
-
-		if ( ! empty($this->jauge_bgcolor) ) {
-			$bgcolor = esc_attr($this->jauge_bgcolor);
-		}
 
 		$id = 'progress-' . uniqid();
 
-		$text = sprintf($this->jauge_text, "<span class=\"petition-counter\">{$count}</span>");
+		$text = sprintf($this->jauge_text, "<span class=\"jauge-counter\">{$count}</span>");
 
 
 		return <<< "JAUGE"
 		<div class="fc-wprogress">
-			<div class="petition-progress show" id="{$id}">
+			<div class="petition-progress" id="{$id}">
+
+				<div class="progress-bar">
+					<div class="progress-clip"></div>
+				</div>
 				<div class="progress-item">
 					<span>{$text}</span>
-				</div>
-				<div class="progress-bar" style="background-color:{$bgcolor}">
-					<div class="progress-clip" style="background-color:{$fgcolor}"></div>
 				</div>
 			</div>
 		</div>

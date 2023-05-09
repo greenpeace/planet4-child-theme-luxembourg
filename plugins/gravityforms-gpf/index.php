@@ -50,6 +50,9 @@ add_filter( 'gform_form_settings_fields', [$plugin, 'global_settings'], 10, 2);
 // Ajax doit être désactivé (dans les Forms Settings)
 add_filter( 'gform_form_args', [$plugin, 'form_args'] );
 
+add_filter( 'gform_custom_merge_tags', [ $plugin, 'custom_merge_tags' ], 10, 4 );
+add_filter( 'gform_replace_merge_tags', [ $plugin, 'replace_merge_tags' ], 10, 3 );
+
 
 add_action( 'gform_enqueue_scripts', function($form, $is_ajax) {
 	wp_enqueue_style( 'gpfgf-default-styles', GPFGF_DIR_URL . 'assets/style.css' );
@@ -136,7 +139,6 @@ add_filter( 'gform_field_choice_markup_pre_render', [$plugin, 'add_optgroup_to_s
 
 
 add_filter( 'gform_submit_button', [$plugin, 'submit_button'], 10, 2 );
-
 
 // On peut modifier le placeholder du masque sur certains champs (pas le téléphone...)
 // C'est bourrin et il faut une priorité basse (100) pour passer après les plugins

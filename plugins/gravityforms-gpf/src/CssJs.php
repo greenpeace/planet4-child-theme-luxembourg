@@ -92,7 +92,7 @@ class CssJs extends \GFAddOn {
 		$inline_css = trim( $form['css-js']['inline_css'] ?? "" );
 
 		if ( $inline_css ) {
-			add_action( 'wp_head', function() use ( $inline_css ) {
+			add_action( 'wp_footer', function() use ( $inline_css ) {
 				echo '<style type="text/css">';
 				echo $inline_css;
 				echo '</style>';
@@ -144,7 +144,6 @@ class CssJs extends \GFAddOn {
 						'type' => 'textarea',
 						'name' => 'inline_css',
 						'label' => 'CSS à intégrer dans le formulaire',
-						'description' => "Des variables CSS peuvent être utilisées dans <code>:root</code> : --form-button-bgcolor, --form-button-fgcolor, --form-placeholder-color, --form-label-color",
 						'class' => 'large',
 					],
 					[

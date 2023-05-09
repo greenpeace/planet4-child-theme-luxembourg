@@ -1,4 +1,33 @@
 
+:root {
+	--secondary-color: #e30000; /* TODO: supprimer */
+	--primary-color: #73be31; /* TODO: à supprimer */
+
+	--form-text: #000;
+	--form-background: #FBD311;
+	--input-label: var(--form-text);
+	--input-placeholder: #888;
+	--confirm-first-line: var(--secondary-color, var(--form-text));
+	--confirm-block1-background: #fff;
+	--confirm-block1-text: var(--form-text);
+	--confirm-block1-first-line: var(--secondary-color);
+	--progress-foreground: var(--primary-color);
+	--progress-background: #fff;
+	--progress-counter: var(--secondary-color);
+	--cta-background: var(--secondary-color);
+	--cta-text: #fff;
+	--cta-background-hover: #fff;
+	--cta-text-hover: var(--secondary-color);
+	--don-background: var(--primary-color);
+	--don-text: #fff;
+	--don-background-hover: var(--confirm-block1-background);
+	--don-text-hover: var(--primary-color);
+	--petition-background: var(--form-background);
+	--petition-text: var(--secondary-color);
+	--petition-background-hover: var(--secondary-color);
+	--petition-text-hover: #fff;
+	}
+
 .gform_wrapper.gravity-theme .gform_fields {
 	grid-row-gap: 1em;
 }
@@ -21,15 +50,21 @@ width: 100%;
 max-width: 11ch;
 } */
 
+
+.iti__country-name,
+.iti__selected-dial-code {
+	color: #000;
+}
+
 .gform_wrapper.gravity-theme .gfield {
 	position: relative;
 }
 
-
+/*
 .gform_wrapper.gravity-theme label.gfield_label,
 .gform_wrapper.gravity-theme legend.gfield_label {
-	margin-bottom: .1rem;
-}
+
+} */
 
 .gform_wrapper.gravity-theme .with-floating-label label.gfield_label {
 top: min( 50%, 1.5rem );
@@ -37,7 +72,7 @@ transform: translateY(-50%);
 position: absolute;
 left: calc(1px + .85rem);
 font-weight: normal;
-color: var(--form-placeholder-color, #888);
+color: var(--input-placeholder);
 padding: 0;
 transition: all 100ms;
 line-height: 1;
@@ -57,7 +92,7 @@ margin: 0;
 }
 
 .gform_wrapper.gravity-theme .with-floating-label .field-activated label.gfield_label {
-	color: var(--form-label-color, #666);
+	color: var(--input-label);
 	transition: all 100ms;
 	top: 0;
 	/* font-size: 90%; */
@@ -134,11 +169,17 @@ padding: 0;
 .gform_wrapper.gravity-theme .with-floating-label input[type="time"],
 .gform_wrapper.gravity-theme .with-floating-label input[type="url"],
 .gform_wrapper.gravity-theme .with-floating-label input[type="week"],
-.gform_wrapper.gravity-theme .with-floating-label select,
-.gform_wrapper.gravity-theme .with-floating-label textarea {
+.gform_wrapper.gravity-theme .with-floating-label select {
+	line-height: 1 !important;
+	min-height: 0 !important;
 	padding: 1.3em 2.5em .6em 1em;
 }
 
+.gform_wrapper.gravity-theme .with-floating-label textarea {
+	line-height: 1.25 !important;
+	min-height: 0 !important;
+	padding: 1.3em 2.5em .6em 1em;
+}
 
 .gform_wrapper.gravity-theme .field-activated input[type="color"],
 .gform_wrapper.gravity-theme .field-activated input[type="date"],
@@ -163,7 +204,15 @@ font-weight: bold;
 .gform_wrapper.gravity-theme .form-disclaimer p {
 padding-top:.5em;
 font-size: .8rem;
+color: currentColor;
+opacity: .9;
 }
+
+.gform_wrapper.gravity-theme .form-disclaimer p {
+line-height: 1.2;
+margin: 1em 0;
+}
+
 
 .gform_wrapper.gravity-theme .gchoice {
 	display: flex;
@@ -227,6 +276,8 @@ padding: .5rem 1rem;
 color: #fff;
 font-size: 1rem;
 font-weight: bold;
+margin-top: .75rem;
+text-transform: none;
 }
 
 
@@ -306,28 +357,177 @@ padding-bottom: .5rem;
 	padding: .5rem 1rem;
 	font-size: 1rem;
 	font-weight: bold;
-	background-color: var(--form-button-bgcolor, #73BE31);
-	color: var(--form-button-fgcolor, #fff);
+	background-color: var(--cta-background);
+	color: var(--cta-foreground);
 }
 
 
 
 .gform_wrapper.gravity-theme .button.gform_previous_button {
-	background-color: var(--form-button-bgcolor, #73BE31);
-	color: var(--form-button-fgcolor, #fff);
+	background-color: var(--cta-background);
+	color: var(--cta-foreground);
 }
 
 .gform_wrapper.gravity-theme .button[type="submit"] {
-background-color: var(--form-button-bgcolor, #73BE31);
-color: var(--form-button-fgcolor, #fff);
+background-color: var(--cta-background);
+color: var(--cta-foreground);
 }
 
 .gform_wrapper.gravity-theme .button.gform_next_button {
-background-color: var(--form-button-bgcolor, #73BE31);
-color: var(--form-button-fgcolor, #fff);
+background-color: var(--cta-background);
+color: var(--cta-foreground);
 }
 
 .gform_footer a,
 .gform_confirmation_message a {
 color: currentColor;
+}
+
+
+
+.gform_wrapper.gravity-theme li {
+	color: currentColor;
+	line-height: 1.375;
+}
+
+
+
+
+
+.petition-progress {
+	padding: 0 0 .5rem 0;
+}
+
+.progress-bar {
+	position: relative;
+	background-color: var(--progress-background);
+	border-radius: 999rem;
+	height: 1rem;
+	overflow: hidden;
+	margin-bottom: .25rem;
+}
+
+
+
+.progress-clip {
+	background-color: var(--progress-foreground);
+	transition: width 2s ease;
+	border-radius: 999rem;
+	z-index: 0;
+	height: 100%;
+	width: 0;
+
+}
+
+.progress-item {
+	color: currentColor;
+	font-size: .9em;
+}
+
+
+.jauge-counter {
+	font-weight: bold;
+	font-size: 1.1em;
+	color: var(--progress-counter, currentColor);
+}
+
+.gfield_html ul,
+.gform_confirmation_message ul {
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.gfield_html li,
+.gform_confirmation_message li {
+	padding-left: 1em;
+	margin-left: 0;
+	list-style: none;
+	position: relative;
+}
+
+
+.gfield_html li::before {
+	position: absolute;
+	left: 0;
+	top: 0;
+	content: "";
+	width: .4em;
+	height: .4em;
+	border-radius: 100vw;
+	background-color: currentColor;
+	transform: translateY(.5em);
+  }
+
+
+.gfield_html p,
+.gform_confirmation_message p {
+	margin-bottom: 1em;
+	color: currentColor;
+}
+
+.gfield_html a,
+.gform_footer a,
+.gform_confirmation_message a {
+	color: currentColor;
+}
+
+
+.gform_wrapper.gravity-theme .button.gform_previous_button {
+	font-weight: normal;
+	border: none;
+	background: transparent;
+	text-decoration: underline;
+	font-size: .9em;
+	padding-left: 0;
+	color: currentColor;
+	opacity: .9;
+}
+
+.confirmation-block {
+	margin-bottom: 1em;
+}
+
+.confirmation-block-inner {
+	text-align: center;
+}
+
+
+.confirmation-first-block {
+background-color: var(--confirm-block1-background);
+padding: 1em;
+}
+
+
+.confirmation-first-message {
+font-weight: bold;
+color: var(--confirm-first-line);
+}
+
+.confirmation-second-message {
+	color: var(--form-text);
+}
+
+
+
+.confirmation-first-block .confirmation-first-message {
+	color: var(--confirm-block1-first-line);
+}
+
+.confirmation-first-block .confirmation-second-message {
+	color: var(--confirm-block1-text);
+}
+
+.share-items {
+	display: flex;
+}
+
+.share-item {
+	max-width: 2em;
+	flex-grow: 1;
+}
+
+.share-item img {
+	width: 100%;
+	height: auto;
+	display: block;
 }
