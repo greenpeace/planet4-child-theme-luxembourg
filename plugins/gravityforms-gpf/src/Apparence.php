@@ -37,7 +37,9 @@ class Apparence extends \GFAddOn {
 	public function init() {
 		parent::init();
 
-		add_filter( 'gform_form_tag', [ $this, 'render' ], 10, 2 );
+		add_filter( 'gform_get_form_filter', [ $this, 'render' ], 10, 2 );
+
+		// add_filter( 'gform_form_tag', [ $this, 'render' ], 10, 2 );
 	}
 
 
@@ -251,12 +253,12 @@ class Apparence extends \GFAddOn {
 
 
 
-	public function render($tag, $form) {
+	public function render($form_string, $form) {
 
 		$config = $form['greenpeace-design'] ?? false;
 
 		if ( ! $config) {
-			return $tag;
+			return '<div class="gpfgf_wrapper">'.$form_string.'</div>';
 		}
 
 
@@ -279,14 +281,16 @@ class Apparence extends \GFAddOn {
 			}
 		}
 
-		if ( empty($root)) {
-			return $tag;
+		if ( empty($root) ) {
+			return '<div class="gpfgf_wrapper">'.$form_string.'</div>';
 		}
 
-		$line = ' style="'.implode(PHP_EOL, $root).'"';
+		$styles = implode('', $root);
 
-		return str_replace('>', $line.'>', $tag);
-		// return '<style type="text/css">:root {' . implode(PHP_EOL, $root) . '}</style>';
+
+		return '<div class="gpfgf_wrapper" style="'.$styles.'">'.$form_string.'</div>';
+//		return str_replace('>', $styles.'>', $tag);
+
 	}
 
 }

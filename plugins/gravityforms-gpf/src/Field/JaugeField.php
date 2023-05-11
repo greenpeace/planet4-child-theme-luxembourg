@@ -116,7 +116,7 @@ END;
 
 		$id = 'progress-' . uniqid();
 
-		$text = sprintf($this->jauge_text, "<span class=\"jauge-counter\">{$count}</span>");
+		$text = sprintf($this->jauge_text, "<span class=\"jauge-counter\">{$number}</span>");
 
 
 		return <<< "JAUGE"
@@ -144,6 +144,14 @@ END;
 
 
 	public function get_field_content( $value, $force_frontend_label, $form ) {
+
+		$is_entry_detail = $this->is_entry_detail();
+		$is_form_editor  = $this->is_form_editor();
+
+		if ($is_entry_detail || $is_form_editor) {
+			return parent::get_field_content( $value, $force_frontend_label, $form );
+		}
+
 		return "{FIELD}";
 	}
 }

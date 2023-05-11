@@ -1,32 +1,38 @@
 
 :root {
-	--secondary-color: #e30000; /* TODO: supprimer */
-	--primary-color: #73be31; /* TODO: à supprimer */
+	--form-primary-color: var(--primary-color, #73be31);
+	--form-secondary-color: var(--secondary-color, #e30000);
 
 	--form-text: #000;
 	--form-background: #FBD311;
 	--input-label: var(--form-text);
 	--input-placeholder: #888;
-	--confirm-first-line: var(--secondary-color, var(--form-text));
+	--confirm-first-line: var(--form-secondary-color, var(--form-text));
 	--confirm-block1-background: #fff;
 	--confirm-block1-text: var(--form-text);
-	--confirm-block1-first-line: var(--secondary-color);
-	--progress-foreground: var(--primary-color);
+	--confirm-block1-first-line: var(--form-secondary-color);
+	--progress-foreground: var(--form-primary-color);
 	--progress-background: #fff;
-	--progress-counter: var(--secondary-color);
-	--cta-background: var(--secondary-color);
+	--progress-counter: var(--form-secondary-color);
+	--cta-background: var(--form-secondary-color);
 	--cta-text: #fff;
 	--cta-background-hover: #fff;
-	--cta-text-hover: var(--secondary-color);
-	--don-background: var(--primary-color);
+	--cta-text-hover: var(--form-secondary-color);
+	--don-background: var(--form-primary-color);
 	--don-text: #fff;
 	--don-background-hover: var(--confirm-block1-background);
-	--don-text-hover: var(--primary-color);
+	--don-text-hover: var(--form-primary-color);
 	--petition-background: var(--form-background);
-	--petition-text: var(--secondary-color);
-	--petition-background-hover: var(--secondary-color);
+	--petition-text: var(--form-secondary-color);
+	--petition-background-hover: var(--form-secondary-color);
 	--petition-text-hover: #fff;
-	}
+}
+
+
+.gform_confirmation_wrapper,
+.gform_wrapper {
+	color: var(--form-text);
+}
 
 .gform_wrapper.gravity-theme .gform_fields {
 	grid-row-gap: 1em;
@@ -394,11 +400,12 @@ color: currentColor;
 
 
 
-.petition-progress {
+.fc-wprogress .petition-progress {
 	padding: 0 0 .5rem 0;
+	display: block;
 }
 
-.progress-bar {
+.fc-wprogress .progress-bar {
 	position: relative;
 	background-color: var(--progress-background);
 	border-radius: 999rem;
@@ -409,7 +416,7 @@ color: currentColor;
 
 
 
-.progress-clip {
+.fc-wprogress .progress-clip {
 	background-color: var(--progress-foreground);
 	transition: width 2s ease;
 	border-radius: 999rem;
@@ -419,7 +426,7 @@ color: currentColor;
 
 }
 
-.progress-item {
+.fc-wprogress .progress-item {
 	color: currentColor;
 	font-size: .9em;
 }
@@ -429,6 +436,24 @@ color: currentColor;
 	font-weight: bold;
 	font-size: 1.1em;
 	color: var(--progress-counter, currentColor);
+}
+
+
+.gform_wrapper.gravity-theme .gform_footer {
+	display: block;
+	position: relative;
+}
+
+
+.gform_ajax_spinner {
+	position: absolute;
+	top: 3rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 3rem;
+	background-color: white;
+border-radius: 999rem;
+box-shadow: 0 0 0 1rem white;
 }
 
 .gfield_html ul,
@@ -531,3 +556,4 @@ color: var(--confirm-first-line);
 	height: auto;
 	display: block;
 }
+

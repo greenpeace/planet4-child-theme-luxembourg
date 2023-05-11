@@ -81,14 +81,13 @@ class Tracking extends \GFAddOn {
 
 		// wp_mail('hugo.poncedeleon@greenpeace.org', 'entry_details', print_r($entry, true) );
 
+
+		/*
 		$sf_campaign_id = $query['sfdc'] ?: rgars( $form, 'greenpeace-crm/sf_campaign_id' );
 		$sf_campaign_id = sanitize_text_field( $sf_campaign_id );
-
-
 		gform_update_meta( $entry_id, 'sf_campaign_id', $sf_campaign_id, $form_id );
-
 		$entry['sf_campaign_id'] = $sf_campaign_id;
-
+		*/
 
 
 		return $entry;
@@ -206,7 +205,7 @@ class Tracking extends \GFAddOn {
 
 		$params = [
 			'entry_reference' => 'API Reference',
-			'sf_campaign_id' => 'Campaign ID Salesforce (codespec)',
+			// 'sf_campaign_id' => 'Campaign ID Salesforce (codespec)',
 			// 'codespec' => 'Codespec',
 			'utm_campaign' => 'UTM_campaign',
 			'utm_source' => 'UTM_source',

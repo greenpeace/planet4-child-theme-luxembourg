@@ -30,36 +30,30 @@ class Plugin {
 		GFAddOn::register( __NAMESPACE__ . '\\Apparence' );
 		GFAddOn::register( __NAMESPACE__ . '\\ConfirmationScreen' );
 		GFAddOn::register( __NAMESPACE__ . '\\Crm' );
-		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\SfmcFeed' );
 		GFAddOn::register( __NAMESPACE__ . '\\Tracking' );
+		GFAddOn::register( __NAMESPACE__ . '\\CssJs' );
+
+		// mettre les Feeds après les Addons
+		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\SfmcFeed' );
 		// GFAddOn::register( __NAMESPACE__ . '\\EngagingNetworks' );
-
-
-
 		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\Web2caseFeed' );
 		// GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\DoubleOptInFeed' );
-		GFAddOn::register( __NAMESPACE__ . '\\CssJs' );
-		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\TestFeed' );
+		// GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\TestFeed' );
 
 		GF_Fields::register( new Field\FirstNameField() );
 		GF_Fields::register( new Field\LastNameField() );
-
 		// GF_Fields::register( new Field\OptOutField() );
-
 		GF_Fields::register( new Field\AddressField() );
 		GF_Fields::register( new Field\CityField() );
 		GF_Fields::register( new Field\PostcodeField() );
 		// GF_Fields::register( new Field\PostcodeLuxField() );
 		// GF_Fields::register( new Field\FakeCountryField() );
 		GF_Fields::register( new Field\CountryField() );
-
 		GF_Fields::register( new Field\DirtyHtmlField() );
 		GF_Fields::register( new Field\SousAccrocheField() );
 		GF_Fields::register( new Field\StateButtonField() );
 		// GF_Fields::register( new Field\MentionsLegalesField() );
-
 		//GF_Fields::register( new Field\IbanField() );
-
 		GF_Fields::register( new Field\JaugeField() );
 
 

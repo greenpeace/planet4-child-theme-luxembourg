@@ -100,14 +100,15 @@ class CssJs extends \GFAddOn {
 		}
 
 
+		$form_id = $form['id'];
 
 		$inline_js = trim( $form['css-js']['inline_js'] ?? "" );
 
 		if ( $inline_js ) {
-			add_action( 'wp_footer', function() use ( $inline_js ) {
-				echo '<script>';
+			add_action( 'wp_footer', function() use ( $inline_js, $form_id ) {
+				echo '<script>(function(formId) {';
 				echo $inline_js;
-				echo '</script>';
+				echo '})('.$form_id.')</script>';
 			}, 9999);
 		}
 
@@ -118,11 +119,17 @@ class CssJs extends \GFAddOn {
 		$inline_js_confirm = trim( $form['css-js']['inline_js_confirm'] ?? "" );
 
 		if ( $inline_js_confirm ) {
-			add_action( 'wp_footer', function() use ( $inline_js_confirm ) {
-				echo '<script> jQuery(document).on("gform_confirmation_loaded", function(event, formId) {' . PHP_EOL;
-				echo $inline_js_confirm;
-				echo PHP_EOL . '})</script>';
-			}, 9999);
+
+			// if ($is_ajax) {
+				add_action( 'wp_footer', function() use ( $inline_js_confirm ) {
+					echo '<script> jQuery(document).on("gform_confirmation_loaded", function(event, formId) {' . PHP_EOL;
+					echo $inline_js_confirm;
+					echo PHP_EOL . '})</script>';
+				}, 9999);
+			// }
+			// else {
+
+			// }
 		}
 
 
@@ -161,7 +168,7 @@ class CssJs extends \GFAddOn {
 					[
 						'type' => 'textarea',
 						'name' => 'inline_js',
-						'label' => 'Javascript à intégrer dans le formulaire',
+						'label' => 'Javascript à intégrer dans le formulaire. Ce code est dans une IIFE dans laquelle passe le paramètre formId.',
 						'description' => "",
 						'class' => 'large',
 					],
@@ -176,7 +183,7 @@ class CssJs extends \GFAddOn {
 					[
 						'type' => 'textarea',
 						'name' => 'inline_js_confirm',
-						'label' => 'Javascript à intégrer sur le message de confirmation',
+						'label' => 'Javascript à intégrer sur le message de confirmation. Ce code est dans l\'événement "gform_confirmation_loaded" dans lequel passe le paramètre formId. Ne fonctionne que sur les formulaires en Ajax.',
 						'description' => "",
 						'class' => 'large',
 					],

@@ -44,6 +44,14 @@ add_filter( 'gform_field_groups_form_editor', [$plugin, 'field_groups_editor'], 
 // ajoute du toggle Enable Ajax
 add_filter( 'gform_form_settings_fields', [$plugin, 'global_settings'], 10, 2);
 
+add_action( 'gfiframe_form_footer', function() {
+	// Action appelée dans le footer de la page (embed)
+	// quand le formulaire est affiché via iframe.
+	// On ajoute un peu de marge sur les côtés,
+	// sinon les inputs débordent et sont rognés.
+	echo '<style type="text/css">body {padding: 0 2px 0 1px;}</style>';
+} );
+
 
 // Ajax automatique sur les formulaires
 // Attention, ça casse la preview. Pour que la preview fonctionne,

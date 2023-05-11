@@ -50,7 +50,7 @@ class SfmcFeed extends \GFFeedAddOn {
 		$entry_meta['sf_campaign_id'] = [
 			'label' => 'Campaign ID',
 			'is_numeric' => false,
-			'is_default_column' => true,
+			'is_default_column' => false,
 			'filter' => [
 				'operators' => [ 'is', 'contains' ]
 			],
@@ -316,6 +316,22 @@ class SfmcFeed extends \GFFeedAddOn {
 			$sfmc_data[ $sf_key ] = $value;
 		}
 
+		$utms = [
+			'utm_campaign',
+			'utm_content',
+			'utm_term',
+			'utm_source',
+			'utm_medium',
+		];
+
+		foreach ($utms as $utm) {
+			$value = "";
+			if ( ! empty($entry[ $utm ] ) ) {
+				$value = $entry[ $utm ];
+			}
+
+			$sfmc_data[ $utm ] = $value;
+		}
 
 		// $optins = [];
 		// $optin_mapping = $feed['meta']['optin_mapping'];
@@ -364,7 +380,8 @@ class SfmcFeed extends \GFFeedAddOn {
 
 		// $entry['sf_campaign_id'] = $sf_campaign_id;
 
-		$sf_campaign_id = $entry['sf_campaign_id'];
+		// $sf_campaign_id = $entry['sf_campaign_id'];
+		$sf_campaign_id = rgars($form, 'greenpeace-crm/sf_campaign_id');
 
 		$sfmc_data['campaign'] = $sf_campaign_id;
 
