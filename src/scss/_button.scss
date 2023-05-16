@@ -35,3 +35,51 @@
 	a.external-link:after {
 		display:none;
 	}
+
+/* GRAVITY FORM  CORRECTION POST UPDATE*/
+
+
+.gform_required_legend {
+display:none;
+}
+
+.champs-obligatoires-label {
+font-weight:300;
+}
+
+.form-disclaimer p {
+line-height:1.1em;
+color:grey;
+font-size: 0.8em;
+font-weight:300;
+}
+
+.gform_wrapper.gravity-theme #field_submit .gform-button--width-full, .gform_wrapper.gravity-theme .gform_footer .gform-button--width-full {
+border-radius:5px;
+border: none;
+background-color:#f36b35;
+color: white;
+margin: 0 0 1em 0;
+padding:0;
+}
+.gform_wrapper.gravity-theme #field_submit .gform-button--width-full, .gform_wrapper.gravity-theme .gform_footer .gform-button--width-full:hover {
+border-radius:5px;
+border: none;
+background-color:#e06331;
+color: white;
+margin: 0 0 1em 0;
+padding:0;
+}
+
+.gpfgf-submit-button {
+background: white;
+color: black;
+text-align: left;
+padding:0;
+}
+
+.gpfgf-submit-button:hover {
+background: white;
+color: black;
+text-align: left;
+} 
