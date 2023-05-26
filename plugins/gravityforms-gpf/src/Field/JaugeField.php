@@ -67,7 +67,7 @@ class JaugeField extends \GF_Field_Text {
 	if (input) {
 		input.addEventListener('keypress', function(e) {
 			e.preventDefault();
-			gpfCleanInput(e.charCode, e.target, 80, keepNumbers);
+			window.gpfCleanInput(e.charCode, e.target, 80, keepNumbers);
 			e.target.value = e.target.value.toUpperCase();
 		});
 	}
@@ -99,7 +99,7 @@ END;
 
 		$objectif = max( 1, intval($this->jauge_objectif) );
 
-		$percent = min( 100, floor( $number / $objectif * 100 ) );
+		$percent = min( 100, ceil( $number / $objectif * 100 ) );
 
 		// $data = [
 		// 	'count' => $count,
@@ -133,10 +133,14 @@ END;
 		</div>
 
 		<script>
-		jQuery(document).on('gform_post_render', function() {
-			const jauge = document.querySelector("#{$id} .progress-clip");
-			jauge.style.width = "{$percent}%";
-		});
+		if (typeof window.jQuery !== "undefined") {
+			jQuery(document).on('gform_post_render', function() {
+				const jauge = document.querySelector("#{$id} .progress-clip");
+				if (jauge) {
+					jauge.style.width = "{$percent}%";
+				}
+			});
+		}
 		</script>
 		JAUGE;
 

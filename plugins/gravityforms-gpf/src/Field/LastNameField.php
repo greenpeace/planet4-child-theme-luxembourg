@@ -60,7 +60,7 @@ class LastNameField extends \GF_Field_Text {
 	if (input) {
 		input.addEventListener('keypress', function(e) {
 			e.preventDefault();
-			gpfCleanInput(e.charCode, e.target, 80, keepNumbers);
+			window.gpfCleanInput(e.charCode, e.target, 80, keepNumbers);
 			e.target.value = e.target.value.toUpperCase();
 		});
 	}

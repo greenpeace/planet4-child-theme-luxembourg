@@ -268,6 +268,23 @@ class SfmcFeed extends \GFFeedAddOn {
 
 
 
+	public function scripts() {
+		if (is_admin()) {
+			return parent::scripts();
+		}
+
+		return [];
+	}
+
+	public function styles() {
+		if (is_admin()) {
+			return parent::styles();
+		}
+
+		return [];
+	}
+
+
 	public function process_feed( $feed, $entry, $form ) {
 
 		$plugin_settings = $this->get_plugin_settings();

@@ -27,6 +27,21 @@ class Apparence extends \GFAddOn {
     }
 
 
+	public function scripts() {
+		if (is_admin()) {
+			return parent::scripts();
+		}
+
+		return [];
+	}
+
+	public function styles() {
+		if (is_admin()) {
+			return parent::styles();
+		}
+
+		return [];
+	}
 
 	public function get_menu_icon() {
 		return 'dashicons-art';
@@ -38,6 +53,8 @@ class Apparence extends \GFAddOn {
 		parent::init();
 
 		add_filter( 'gform_get_form_filter', [ $this, 'render' ], 10, 2 );
+
+		add_filter( 'gform_get_form_confirmation_filter', [ $this, 'render' ], 10, 2 );
 
 		// add_filter( 'gform_form_tag', [ $this, 'render' ], 10, 2 );
 	}
@@ -84,33 +101,6 @@ class Apparence extends \GFAddOn {
 				]
 			],
 
-			[
-				'title' => 'Barre de progression',
-				'fields' => [
-
-					[
-						'type' => 'text',
-						'name' => 'progress_foreground',
-						'label' => 'Couleur de la barre (vert)',
-						'class' => 'large',
-					],
-
-					[
-						'type' => 'text',
-						'name' => 'progress_background',
-						'label' => 'Couleur de fond (blanc)',
-						'class' => 'large',
-					],
-
-
-					[
-						'type' => 'text',
-						'name' => 'progress_counter',
-						'label' => 'Couleur du chiffre (rouge)',
-						'class' => 'large',
-					],
-				],
-			],
 
 			[
 				'title' => 'CTA',
@@ -140,6 +130,50 @@ class Apparence extends \GFAddOn {
 						'type' => 'text',
 						'name' => 'cta_text_hover',
 						'label' => 'Couleur du texte en HOVER (vert)',
+						'class' => 'large',
+					],
+
+					[
+						'type' => 'select',
+						'name' => 'cta_picto',
+						'label' => 'Picto du bouton',
+						'choices' => [
+							[
+								'label' => 'Aucun',
+								'value' => '',
+							],
+							[
+								'label' => 'Crayon',
+								'value' => 'pen',
+							],
+						]
+					]
+				],
+			],
+
+			[
+				'title' => 'Barre de progression',
+				'fields' => [
+
+					[
+						'type' => 'text',
+						'name' => 'progress_foreground',
+						'label' => 'Couleur de la barre (vert)',
+						'class' => 'large',
+					],
+
+					[
+						'type' => 'text',
+						'name' => 'progress_background',
+						'label' => 'Couleur de fond (blanc)',
+						'class' => 'large',
+					],
+
+
+					[
+						'type' => 'text',
+						'name' => 'progress_counter',
+						'label' => 'Couleur du chiffre (rouge)',
 						'class' => 'large',
 					],
 				],
@@ -270,7 +304,7 @@ class Apparence extends \GFAddOn {
 
 
 
-		$properties = ['form_text','form_background','confirm_first_line','confirm_block1_background','confirm_block1_text','confirm_block1_first_line','input_label','input_placeholder','progress_foreground','progress_background','progress_counter','cta_background','cta_text','cta_background_hover','cta_text_hover','don_background','don_text','don_background_hover','don_text_hover','petition_background','petition_text','petition_background_hover','petition_text_hover'];
+		$properties = ['form_text', 'form_background', 'confirm_first_line','confirm_block1_background','confirm_block1_text','confirm_block1_first_line','input_label','input_placeholder','progress_foreground','progress_background','progress_counter','cta_background','cta_text','cta_background_hover','cta_text_hover','don_background','don_text','don_background_hover','don_text_hover','petition_background','petition_text','petition_background_hover','petition_text_hover'];
 
 		$root = [];
 		foreach ($properties as $prop) {

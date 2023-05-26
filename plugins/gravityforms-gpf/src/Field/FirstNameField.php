@@ -63,7 +63,7 @@ class FirstNameField extends \GF_Field_Text {
 	if (input) {
 		input.addEventListener('keypress', function(e) {
 			e.preventDefault();
-			gpfCleanInput(e.charCode, e.target, 40, keepNumbers);
+			window.gpfCleanInput(e.charCode, e.target, 40, keepNumbers);
 			var v = e.target.value
 				.toLowerCase()
 				.replace( /([ -])([^ -])/g, (match, p1, p2) => p1 + p2.toUpperCase() );

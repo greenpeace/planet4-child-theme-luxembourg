@@ -64,8 +64,8 @@ class CityField extends \GF_Field_Text {
 	if (input) {
 		input.addEventListener('keypress', function(e) {
 			e.preventDefault();
-			gpfCleanInput(e.charCode, e.target, 40, keepNumbers);
-			e.target.value = gpfRemoveAccents( e.target.value.toUpperCase() );
+			window.gpfCleanInput(e.charCode, e.target, 40, keepNumbers);
+			e.target.value = window.gpfRemoveAccents( e.target.value.toUpperCase() );
 		});
 	}
 })();

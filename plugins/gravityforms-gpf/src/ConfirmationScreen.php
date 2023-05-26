@@ -10,8 +10,8 @@ class ConfirmationScreen extends \GFAddOn {
     protected $_min_gravityforms_version = '2.5';
     protected $_slug = 'greenpeace-confirmation';
     protected $_full_path = __FILE__;
-    protected $_title = 'Ecran de confirmation';
-    protected $_short_title = 'Ecran de confirmation';
+    protected $_title = 'Confirmation GP';
+    protected $_short_title = 'Confirmation GP';
 
 
 	protected $_capabilities_form_settings = 'edit_posts';
@@ -33,6 +33,21 @@ class ConfirmationScreen extends \GFAddOn {
 	}
 
 
+	public function scripts() {
+		if (is_admin()) {
+			return parent::scripts();
+		}
+
+		return [];
+	}
+
+	public function styles() {
+		if (is_admin()) {
+			return parent::styles();
+		}
+
+		return [];
+	}
 
 	public function init() {
 		parent::init();
@@ -440,7 +455,7 @@ class ConfirmationScreen extends \GFAddOn {
 			$don_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['don_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$don_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['don_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$don_bouton = '<div><a href="'.esc_url( trim( $config['don_button_link'] ) ).'" class="gform_button button don-button">'.trim( $config['don_button_text'] ).'</a></div>';
+			$don_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['don_button_link'] ) ).'" class="gform_button button don-button">'.trim( $config['don_button_text'] ).'</a></div>';
 
 			$blocks[ $position ] = '<div class="confirmation-block-inner">'.$don_html . $don_bouton . '</div>';
 		}
@@ -455,7 +470,7 @@ class ConfirmationScreen extends \GFAddOn {
 			$petition_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['petition_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$petition_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['petition_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$petition_bouton = '<div><a href="'.esc_url( trim( $config['petition_button_link'] ) ).'" class="gform_button button petition-button">'.trim( $config['petition_button_text'] ).'</a></div>';
+			$petition_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['petition_button_link'] ) ).'" class="gform_button button petition-button">'.trim( $config['petition_button_text'] ).'</a></div>';
 
 
 			$blocks[ $position ] = '<div class="confirmation-block-inner">'.$petition_html . $petition_bouton.'</div>';
@@ -501,7 +516,15 @@ class ConfirmationScreen extends \GFAddOn {
 
 					$link = trim($config['share_'.$item.'_message'] ?? "");
 					$html =<<< END
-					<img src="{$item}" alt="{$item}"/>
+					<svg role="img" aria-labelledby="{$item}-title"
+					x="0px" y="0px"
+					width="24px" height="24px" viewBox="0 0 24 24"
+					enable-background="new 0 0 24 24"
+					xml:space="preserve"
+					>
+					<title id="{$item}-title">{$item}</title>
+					<use href="#{$item}-logo"/>
+					</svg>
 					END;
 
 					if ($link) {

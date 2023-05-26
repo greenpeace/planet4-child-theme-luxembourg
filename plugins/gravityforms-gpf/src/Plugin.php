@@ -27,9 +27,10 @@ class Plugin {
 		GFForms::include_feed_addon_framework();
 		GFForms::include_addon_framework();
 
+
+		GFAddOn::register( __NAMESPACE__ . '\\Crm' );
 		GFAddOn::register( __NAMESPACE__ . '\\Apparence' );
 		GFAddOn::register( __NAMESPACE__ . '\\ConfirmationScreen' );
-		GFAddOn::register( __NAMESPACE__ . '\\Crm' );
 		GFAddOn::register( __NAMESPACE__ . '\\Tracking' );
 		GFAddOn::register( __NAMESPACE__ . '\\CssJs' );
 
@@ -123,8 +124,24 @@ class Plugin {
 		}
 
 
+		$apparence = $form['greenpeace-design'];
+
+		$cta_picto = $apparence['cta_picto'] ?? "";
+		$picto = "";
+
+		if ( ! empty( $cta_picto ) ) {
+			$picto = '<span class="cta-picto">
+			<svg x="0px" y="0px" viewBox="0 0 24 32"
+			enable-background="new 0 0 24 32"
+			xml:space="preserve"
+			>
+			<use href="#picto-'.$cta_picto.'"/>
+			</svg>
+			</span>';
+		}
+
 		// dernière chose, on change le type Input en Button
-		$button = preg_replace("/<input (.*)value='([^']*)'(.*)>/", '<button $1 $3>$2</button>', $button);
+		$button = preg_replace("/<input (.*)value='([^']*)'(.*)>/", '<button $1 $3>'.$picto.' $2</button>', $button);
 
 		preg_match("/id='([^']+)'/", $button, $match);
 
@@ -153,9 +170,58 @@ class Plugin {
 
 		$str .= '</div>';
 
+		$str .= '<div style="display:none">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<defs>
+			<g id="picto-pen">
+				<path fill="currentColor" d="M22.176 7.547l-13.245-7.013-1.598 7.207 9.778 5.174zM22.936 27.8c-1.071-0.29-2.178 0.222-3.072 0.639-0.101 0.047-0.202 0.093-0.295 0.14-0.202 0.088-0.403 0.191-0.605 0.295-0.532 0.268-1.086 0.552-1.552 0.543-0.403-0.006-0.915-0.14-1.578-0.397-0.183-0.073-0.372-0.189-0.569-0.313-0.388-0.233-0.838-0.543-1.505-0.617-2.048-0.23-4.003 0.042-5.911 0.307-0.636 0.085-1.303 0.18-1.955 0.251-0.233 0.026-0.481 0.062-0.714 0.102-0.559 0.090-0.946 0.135-1.21 0.088-0.186-0.031-0.326-0.104-0.497-0.372-0.015-0.034-0.062-0.059-0.078-0.093 1.35-1.396 4.748-4.309 10.457-5.191 0 0-1.722-4.903 1.365-8.898l-4.222-2.222-0.962-0.512-2.757-1.458c-1.572 4.794-6.599 6.122-6.599 6.122 2.79 5.877 1.732 10.764 1.342 12.124-0.251 0.285-0.315 0.704-0.109 1.047 0.403 0.687 0.993 1.102 1.741 1.232 0.636 0.109 1.288 0 1.871-0.093l0.559-0.093c0.683-0.078 1.359-0.171 2.014-0.264 1.877-0.264 3.631-0.512 5.492-0.295 0.217 0.031 0.465 0.171 0.729 0.357 0.264 0.155 0.527 0.326 0.869 0.45 0.884 0.341 1.583 0.512 2.203 0.527 0.915 0.015 1.707-0.388 2.451-0.76l0.497-0.248c0.109-0.047 0.217-0.109 0.357-0.171 0.574-0.279 1.288-0.59 1.8-0.527l0.078 0.015c0.465 0.078 0.915-0.202 1.040-0.652 0.14-0.481-0.155-0.977-0.636-1.117zM2.185 28.191l4.841-9.145c-0.301-0.295-0.388-0.76-0.183-1.151 0.251-0.476 0.951-0.585 1.427-0.332 0.475 0.253 0.88 0.919 0.63 1.396-0.209 0.388-0.645 0.58-1.055 0.493l-4.636 8.747c-0.284-0.194-0.675-0.23-0.977-0.051-0.020 0-0.031 0.015-0.047 0.031z"/>
+			</g>
+
+			<g id="picto-quote">
+				<path fill="currentColor" d="M21.793 2.345c-3.31 1.241-6.207 3.172-8.69 5.793-1.931 2.207-2.897 4.23-2.897 6.069 0 0.829 0.138 1.655 0.414 2.483 0.552 0.828 1.241 1.655 1.931 2.345 0.828 0.69 1.517 1.519 2.069 2.345 0.414 0.964 0.552 1.931 0.552 2.897 0 2.069-0.828 4-2.207 5.517-1.241 1.379-3.172 2.207-5.103 2.207-2.069 0-4-0.828-5.241-2.481-1.517-1.519-2.345-3.726-2.345-6.070 0-4.321 1.701-8.735 5.103-13.241 3.862-4.69 9.103-8.276 14.897-10.207l1.517 2.345zM41.655 2.345c-3.172 1.241-6.207 3.172-8.552 5.793-2.023 2.299-3.034 4.321-3.034 6.069 0 0.829 0.139 1.655 0.552 2.483s1.103 1.655 1.93 2.345c0.829 0.69 1.519 1.519 2.069 2.345 0.276 0.964 0.552 1.931 0.415 2.897 0.138 2.069-0.69 4-2.069 5.379-1.379 1.517-3.174 2.343-5.103 2.343-2.069 0-4-0.964-5.241-2.481-1.655-1.517-2.483-3.724-2.345-6.069 0-4.321 1.701-8.735 5.103-13.241 3.862-4.69 8.966-8.276 14.759-10.207l1.517 2.345z"></path>
+
+			</g>
+		</defs>
+		</svg>
+		</div>';
 		return $str;
 	}
 
+
+	public function field_validation($result, $value, $form, $field) {
+
+		switch ($field->type) {
+			case 'email':
+				if ( ! preg_match('/^[a-z0-9]([a-z0-9_\.\+-]*[^_\.\+-]+)?@([a-z0-9-]+\.)+[a-z0-9]+$/', $value) ) {
+					$result = [
+						'is_valid' => false,
+						'message' => 'Votre adresse e-mail semble incorrecte.',
+					];
+				}
+				break;
+
+			case 'gp_last_name':
+				if ( strlen( trim($value) ) === 0) {
+					$result = [
+						'is_valid' => false,
+						'message' => 'Votre nom est obligatoire.'
+					];
+				}
+				break;
+
+			case 'gp_first_name':
+				if ( strlen( trim($value) ) === 0) {
+					$result = [
+						'is_valid' => false,
+						'message' => 'Votre prénom est obligatoire.'
+					];
+				}
+				break;
+
+		}
+
+		return $result;
+	}
 
 	public function pre_render($form, $ajax, $field_values) {
 // wp_mail('hugo.poncedeleon@greenpeace.org', 'form', print_r($form, true));
@@ -249,71 +315,10 @@ class Plugin {
 	}
 
 	public function form_javascript($form) {
+		// Ce script s'execute après l'affichage du form.
+		// On a donc accès aux éléments qu'on cible.
 		$script = <<<END
 (function() {
-// copied from remove-accents
-/*
-The MIT License (MIT)
-
-Copyright (c) 2015 Marin Atanasov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-*/
-var characterMap = {"À": "A","Á": "A","Â": "A","Ã": "A","Ä": "A","Å": "A","Ấ": "A","Ắ": "A","Ẳ": "A","Ẵ": "A","Ặ": "A","Æ": "AE","Ầ": "A","Ằ": "A","Ȃ": "A","Ç": "C","Ḉ": "C","È": "E","É": "E","Ê": "E","Ë": "E","Ế": "E","Ḗ": "E","Ề": "E","Ḕ": "E","Ḝ": "E","Ȇ": "E","Ì": "I","Í": "I","Î": "I","Ï": "I","Ḯ": "I","Ȋ": "I","Ð": "D","Ñ": "N","Ò": "O","Ó": "O","Ô": "O","Õ": "O","Ö": "O","Ø": "O","Ố": "O","Ṍ": "O","Ṓ": "O","Ȏ": "O","Ù": "U","Ú": "U","Û": "U","Ü": "U","Ý": "Y","à": "a","á": "a","â": "a","ã": "a","ä": "a","å": "a","ấ": "a","ắ": "a","ẳ": "a","ẵ": "a","ặ": "a","æ": "ae","ầ": "a","ằ": "a","ȃ": "a","ç": "c","ḉ": "c","è": "e","é": "e","ê": "e","ë": "e","ế": "e","ḗ": "e","ề": "e","ḕ": "e","ḝ": "e","ȇ": "e","ì": "i","í": "i","î": "i","ï": "i","ḯ": "i","ȋ": "i","ð": "d","ñ": "n","ò": "o","ó": "o","ô": "o","õ": "o","ö": "o","ø": "o","ố": "o","ṍ": "o","ṓ": "o","ȏ": "o","ù": "u","ú": "u","û": "u","ü": "u","ý": "y","ÿ": "y","Ā": "A","ā": "a","Ă": "A","ă": "a","Ą": "A","ą": "a","Ć": "C","ć": "c","Ĉ": "C","ĉ": "c","Ċ": "C","ċ": "c","Č": "C","č": "c","C̆": "C","c̆": "c","Ď": "D","ď": "d","Đ": "D","đ": "d","Ē": "E","ē": "e","Ĕ": "E","ĕ": "e","Ė": "E","ė": "e","Ę": "E","ę": "e","Ě": "E","ě": "e","Ĝ": "G","Ǵ": "G","ĝ": "g","ǵ": "g","Ğ": "G","ğ": "g","Ġ": "G","ġ": "g","Ģ": "G","ģ": "g","Ĥ": "H","ĥ": "h","Ħ": "H","ħ": "h","Ḫ": "H","ḫ": "h","Ĩ": "I","ĩ": "i","Ī": "I","ī": "i","Ĭ": "I","ĭ": "i","Į": "I","į": "i","İ": "I","ı": "i","Ĳ": "IJ","ĳ": "ij","Ĵ": "J","ĵ": "j","Ķ": "K","ķ": "k","Ḱ": "K","ḱ": "k","K̆": "K","k̆": "k","Ĺ": "L","ĺ": "l","Ļ": "L","ļ": "l","Ľ": "L","ľ": "l","Ŀ": "L","ŀ": "l","Ł": "l","ł": "l","Ḿ": "M","ḿ": "m","M̆": "M","m̆": "m","Ń": "N","ń": "n","Ņ": "N","ņ": "n","Ň": "N","ň": "n","ŉ": "n","N̆": "N","n̆": "n","Ō": "O","ō": "o","Ŏ": "O","ŏ": "o","Ő": "O","ő": "o","Œ": "OE","œ": "oe","P̆": "P","p̆": "p","Ŕ": "R","ŕ": "r","Ŗ": "R","ŗ": "r","Ř": "R","ř": "r","R̆": "R","r̆": "r","Ȓ": "R","ȓ": "r","Ś": "S","ś": "s","Ŝ": "S","ŝ": "s","Ş": "S","Ș": "S","ș": "s","ş": "s","Š": "S","š": "s","Ţ": "T","ţ": "t","ț": "t","Ț": "T","Ť": "T","ť": "t","Ŧ": "T","ŧ": "t","T̆": "T","t̆": "t","Ũ": "U","ũ": "u","Ū": "U","ū": "u","Ŭ": "U","ŭ": "u","Ů": "U","ů": "u","Ű": "U","ű": "u","Ų": "U","ų": "u","Ȗ": "U","ȗ": "u","V̆": "V","v̆": "v","Ŵ": "W","ŵ": "w","Ẃ": "W","ẃ": "w","X̆": "X","x̆": "x","Ŷ": "Y","ŷ": "y","Ÿ": "Y","Y̆": "Y","y̆": "y","Ź": "Z","ź": "z","Ż": "Z","ż": "z","Ž": "Z","ž": "z","ſ": "s","ƒ": "f","Ơ": "O","ơ": "o","Ư": "U","ư": "u","Ǎ": "A","ǎ": "a","Ǐ": "I","ǐ": "i","Ǒ": "O","ǒ": "o","Ǔ": "U","ǔ": "u","Ǖ": "U","ǖ": "u","Ǘ": "U","ǘ": "u","Ǚ": "U","ǚ": "u","Ǜ": "U","ǜ": "u","Ứ": "U","ứ": "u","Ṹ": "U","ṹ": "u","Ǻ": "A","ǻ": "a","Ǽ": "AE","ǽ": "ae","Ǿ": "O","ǿ": "o","Þ": "TH","þ": "th","Ṕ": "P","ṕ": "p","Ṥ": "S","ṥ": "s","X́": "X","x́": "x","Ѓ": "Г","ѓ": "г","Ќ": "К","ќ": "к","A̋": "A","a̋": "a","E̋": "E","e̋": "e","I̋": "I","i̋": "i","Ǹ": "N","ǹ": "n","Ồ": "O","ồ": "o","Ṑ": "O","ṑ": "o","Ừ": "U","ừ": "u","Ẁ": "W","ẁ": "w","Ỳ": "Y","ỳ": "y","Ȁ": "A","ȁ": "a","Ȅ": "E","ȅ": "e","Ȉ": "I","ȉ": "i","Ȍ": "O","ȍ": "o","Ȑ": "R","ȑ": "r","Ȕ": "U","ȕ": "u","B̌": "B","b̌": "b","Č̣": "C","č̣": "c","Ê̌": "E","ê̌": "e","F̌": "F","f̌": "f","Ǧ": "G","ǧ": "g","Ȟ": "H","ȟ": "h","J̌": "J","ǰ": "j","Ǩ": "K","ǩ": "k","M̌": "M","m̌": "m","P̌": "P","p̌": "p","Q̌": "Q","q̌": "q","Ř̩": "R","ř̩": "r","Ṧ": "S","ṧ": "s","V̌": "V","v̌": "v","W̌": "W","w̌": "w","X̌": "X","x̌": "x","Y̌": "Y","y̌": "y","A̧": "A","a̧": "a","B̧": "B","b̧": "b","Ḑ": "D","ḑ": "d","Ȩ": "E","ȩ": "e","Ɛ̧": "E","ɛ̧": "e","Ḩ": "H","ḩ": "h","I̧": "I","i̧": "i","Ɨ̧": "I","ɨ̧": "i","M̧": "M","m̧": "m","O̧": "O","o̧": "o","Q̧": "Q","q̧": "q","U̧": "U","u̧": "u","X̧": "X","x̧": "x","Z̧": "Z","z̧": "z"};
-
-var chars = Object.keys(characterMap).join('|');
-var allAccents = new RegExp(chars, 'g');
-
-window.gpfRemoveAccents = function(string) {
-	return string.replace(allAccents, function(match) {
-		return characterMap[match];
-	});
-}
-
-
-window.gpfCleanInput = function(charCode, target, maxLength, keepNumbers ) {
-	var cursorStart = target.selectionStart;
-	var cursorEnd = target.selectionEnd;
-
-	if (
-		charCode === 32
-		|| charCode === 39
-		|| charCode === 45
-		|| ( keepNumbers && ( charCode >= 48 && charCode <= 57 ) )
-		|| ( charCode >= 65 && charCode <= 90 )
-		|| ( charCode >= 97 && charCode <= 122 )
-		|| ( charCode >= 192 && charCode <= 214 )
-		|| ( charCode >= 216 && charCode <= 246 )
-		|| ( charCode >= 248 && charCode <= 255 )
-	) {
-		var value = target.value
-		var f1 = value.substring(0, cursorStart);
-		var f2 = value.substring(cursorStart, cursorEnd);
-		var f3 = value.substring(cursorEnd);
-		var v = f1 + String.fromCharCode( charCode ) + f3;
-		v = v.slice( 0, maxLength )
-			.trimStart()
-			.replace(/ {2,}/g, ' ');
-
-		target.value = v;
-		var c = Math.min( maxLength, cursorStart + 1 );
-
-		target.setSelectionRange( c, c );
-	}
-
-}
-
-
-
-
 
 var valid = document.querySelector('.gfield .spf-phone.valid-msg');
 var error = document.querySelector('.gfield .spf-phone.error-msg');
@@ -447,9 +452,35 @@ END;
 
 
 
+	public function field_settings_js() {
+		?>
+		<script type='text/javascript'>
 
-	public function jauge_settings( $position, $form_id ) {
+			fieldSettings.gp_jauge += ', .gp_jauge_start_setting, .gp_jauge_target_setting, .gp_jauge_min_setting, .gp_jauge_text_setting'
+
+
+			jQuery(document).bind('gform_load_field_settings', function(event, field, form){
+
+				if (field.type === 'gp_jauge') {
+					jQuery('#jauge_start').val( rgar(field, 'jauge_start') )
+					jQuery('#jauge_objectif').val( rgar(field, 'jauge_objectif') )
+					jQuery('#jauge_text').val( rgar(field, 'jauge_text') )
+					jQuery('#jauge_min').val( rgar(field, 'jauge_min') )
+				}
+			});
+
+		</script>
+		<?php
+	}
+
+
+	public function field_settings( $position, $form_id ) {
+
+		$form = GFAPI::get_form($form_id);
+
+
 		if ( $position == 25 ) {
+
 			?>
 
 			<li class="gp_jauge_start_setting field_setting">

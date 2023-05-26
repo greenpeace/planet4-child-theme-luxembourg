@@ -29,6 +29,22 @@ class EngagingNetworks extends \GFAddOn {
 
 
 
+	public function scripts() {
+		if (is_admin()) {
+			return parent::scripts();
+		}
+
+		return [];
+	}
+
+	public function styles() {
+		if (is_admin()) {
+			return parent::styles();
+		}
+
+		return [];
+	}
+
 
 	public function get_menu_icon() {
 		return 'dashicons-networking';

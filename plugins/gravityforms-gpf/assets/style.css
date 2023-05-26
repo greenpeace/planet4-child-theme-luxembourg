@@ -28,11 +28,11 @@
 	--petition-text-hover: #fff;
 }
 
-
-.gform_confirmation_wrapper,
-.gform_wrapper {
-	color: var(--form-text);
+.gpfgf_wrapper {
+color: var( --form-text );
+counter-reset: confirmation-blocks;
 }
+
 
 .gform_wrapper.gravity-theme .gform_fields {
 	grid-row-gap: 1em;
@@ -206,6 +206,8 @@ padding: 0;
 font-weight: bold;
 }
 
+
+.champs-obligatoires-label,
 .gform_wrapper.gravity-theme .form-disclaimer,
 .gform_wrapper.gravity-theme .form-disclaimer p {
 padding-top:.5em;
@@ -279,13 +281,18 @@ border-radius: 0;
 border: none;
 cursor: pointer;
 padding: .5rem 1rem;
-color: #fff;
 font-size: 1rem;
 font-weight: bold;
 margin-top: .75rem;
 text-transform: none;
+display: inline-flex;
+justify-content: center;
+align-items: center;
 }
 
+.submit-button-area {
+	position: relative;
+}
 
 .gform_wrapper.gravity-theme .field_description_above .gfield_validation_message.gfield_validation_message {
 	padding: 1rem !important;
@@ -344,7 +351,6 @@ h2.gform_submission_error {
 }
 
 .champs-obligatoires-label {
-font-size: .9em;
 flex-basis: 100%;
 padding-bottom: .5rem;
 }
@@ -353,6 +359,16 @@ padding-bottom: .5rem;
 	display: none;
 }
 
+
+.confirmation-block-button-wrapper {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.confirmation-first-block .confirmation-block-button-wrapper {
+	padding-left: 0;
+	padding-right: 0;
+}
 
 .gform_wrapper.gravity-theme .gfgpf-elements-gp_statebutton label {
 	display: block;
@@ -369,20 +385,22 @@ padding-bottom: .5rem;
 
 
 
-.gform_wrapper.gravity-theme .button.gform_previous_button {
-	background-color: var(--cta-background);
-	color: var(--cta-text);
-}
 
+
+.gform_wrapper.gravity-theme .button.gform_next_button,
+.gform_wrapper.gravity-theme .button.gform_previous_button,
 .gform_wrapper.gravity-theme .button[type="submit"] {
 background-color: var(--cta-background);
 color: var(--cta-text);
 }
 
-.gform_wrapper.gravity-theme .button.gform_next_button {
-background-color: var(--cta-background);
-color: var(--cta-text);
+.gform_wrapper.gravity-theme .button.gform_next_button:hover,
+.gform_wrapper.gravity-theme .button.gform_previous_button:hover,
+.gform_wrapper.gravity-theme .button[type="submit"]:hover {
+background-color: var(--cta-background-hover);
+color: var(--cta-text-hover);
 }
+
 
 .gform_footer a,
 .gform_confirmation_message a {
@@ -391,7 +409,9 @@ color: currentColor;
 
 
 
-.gform_wrapper.gravity-theme li {
+
+.wp-block-gpf-block-section .gform_wrapper.gravity-theme ul li,
+.gform_wrapper.gravity-theme ul li {
 	color: currentColor;
 	line-height: 1.375;
 }
@@ -447,14 +467,15 @@ color: currentColor;
 
 .gform_ajax_spinner {
 	position: absolute;
-	top: 3rem;
 	left: 50%;
-	transform: translateX(-50%);
-	width: 3rem;
-	background-color: white;
-border-radius: 999rem;
-box-shadow: 0 0 0 1rem white;
+	width: 6rem;
+	box-shadow: 0 0 0 999rem var(--loading-background, #ffffff80);
+	border-radius: 0;
+	background: var(--loading-background, #ffffff80);
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
+
 
 .gfield_html ul,
 .gform_confirmation_message ul {
@@ -462,12 +483,16 @@ box-shadow: 0 0 0 1rem white;
 	margin-left: 0;
 }
 
-.gfield_html li,
-.gform_confirmation_message li {
-	padding-left: 1em;
+
+.wp-block-gpf-block-section .gfield_html ul li,
+.wp-block-gpf-block-section .gform_confirmation_message ul li,
+.gfield_html ul li,
+.gform_confirmation_message ul li {
+	padding-left: 1em !important;
 	margin-left: 0;
 	list-style: none;
 	position: relative;
+	color: currentColor !important;
 }
 
 
@@ -490,6 +515,13 @@ box-shadow: 0 0 0 1rem white;
 	color: currentColor;
 }
 
+
+.gform_confirmation_message {
+
+
+}
+
+
 .gfield_html a,
 .gform_footer a,
 .gform_confirmation_message a {
@@ -509,7 +541,7 @@ box-shadow: 0 0 0 1rem white;
 }
 
 .confirmation-block {
-	margin-bottom: 1em;
+	margin-bottom: 1.6em;
 }
 
 .confirmation-block-inner {
@@ -542,18 +574,113 @@ color: var(--confirm-first-line);
 	color: var(--confirm-block1-text);
 }
 
+
+
+.confirmation-first-message::before {
+	content: counter(confirmation-blocks) ".";
+	padding-right: .25ch;
+	counter-increment: confirmation-blocks;
+	font-size: 1.2em;
+}
+
+
 .share-items {
 	display: flex;
+	justify-content: center;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 }
 
 .share-item {
-	max-width: 2em;
-	flex-grow: 1;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
-.share-item img {
+.share-item svg {
 	width: 100%;
 	height: auto;
 	display: block;
+	max-width: 2em;
+	transition: transform .2s;
+	transform-origin: center center;
 }
 
+.share-item svg:hover {
+	transform: scale(175%);
+}
+
+.share-item-link {
+	display: block;
+}
+
+
+
+.cta-picto {
+	display: inline-block;
+	height: 1em;
+	margin-right: 1ch;
+}
+
+.cta-picto svg {
+	height: 100%;
+}
+
+
+.sous-accroche {
+	padding: 1em 0;
+	font-weight: 600;
+}
+
+
+.picto-quote-left,
+.picto-quote-right {
+	display: inline-block;
+	font-size: .9em;
+	height: 1em;
+}
+
+.picto-quote-left svg,
+.picto-quote-right svg {
+height: 100%;
+}
+
+.picto-quote-left {
+	margin-right: 1ch;
+	transform: translateY(-75%);
+}
+
+.picto-quote-right {
+	transform: translateY(75%) rotate(180deg);
+	margin-left: 1ch;
+}
+
+
+
+/* .sous-accroche::before,
+.sous-accroche::after {
+	font-family: 'pictos' !important;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	display: inline-block;
+	content: "\e901";
+	line-height: 1;
+	font-size: .9em;
+
+}
+.sous-accroche::before {
+	margin-right: 1ch;
+	transform: translateY(-75%);
+}
+
+.sous-accroche::after {
+	transform: translateY(75%) rotate(180deg);
+	margin-left: 1ch;
+} */
