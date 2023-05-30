@@ -33,7 +33,7 @@ $plugin = new Greenpeacefrance\Gravityforms\Plugin();
 $hook = 'gform_loaded';
 if ( defined('THIS_IS_LUXEMBOURG') ) {
 	$hook = 'init';
-	define( 'GPFGF_DIR_URL', get_theme_file_uri('plugins/gravityforms-gfp/') );
+	define( 'GPFGF_DIR_URL', '/luxembourg/wp-content/themes/planet4-child-theme-luxembourg/plugins/gravityforms-gpf/' );
 }
 else {
 	define( 'GPFGF_DIR_URL', plugin_dir_url( __FILE__ ) );
