@@ -70,7 +70,10 @@ add_filter( 'gform_input_masks', [ $plugin, 'add_input_mask' ] );
 
 add_action( 'gform_enqueue_scripts', function($form, $is_ajax) {
 
-	wp_enqueue_style( 'gpfgf-default-styles', GPFGF_DIR_URL . 'assets/style.css' );
+	if ( ! defined('THIS_IS_LUXEMBOURG') ) {
+		wp_enqueue_style( 'gpfgf-default-styles', GPFGF_DIR_URL . 'assets/style.css' );
+	}
+
 	wp_enqueue_script( 'gpfgf-default-script', GPFGF_DIR_URL . 'assets/script.js', ['jquery'], null, true );
 
 
