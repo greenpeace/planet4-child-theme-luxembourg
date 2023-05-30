@@ -23,7 +23,7 @@ spl_autoload_register(function ($class_name) {
 
 mb_internal_encoding('UTF-8'); // IMPORTANT
 
-define( 'GPFGF_DIR_URL', plugin_dir_url( __FILE__ ) );
+
 
 $plugin = new Greenpeacefrance\Gravityforms\Plugin();
 
@@ -33,6 +33,10 @@ $plugin = new Greenpeacefrance\Gravityforms\Plugin();
 $hook = 'gform_loaded';
 if ( defined('THIS_IS_LUXEMBOURG') ) {
 	$hook = 'init';
+	define( 'GPFGF_DIR_URL', get_theme_file_uri('plugins/gravityforms-gfp/') );
+}
+else {
+	define( 'GPFGF_DIR_URL', plugin_dir_url( __FILE__ ) );
 }
 
 add_action( $hook, [$plugin, 'loaded'], 5 );
