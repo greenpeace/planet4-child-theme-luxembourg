@@ -8,6 +8,7 @@ class MentionsLegalesField extends \GF_Field_HTML {
 
 	public $label = '';
 
+	public $displayOnly = true;
 
 	public $content = '<p>
 	En cliquant sur &laquo;&nbsp;%s&nbsp;&raquo; bla bla

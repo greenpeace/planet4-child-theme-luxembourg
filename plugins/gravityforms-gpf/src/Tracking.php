@@ -10,8 +10,8 @@ class Tracking extends \GFAddOn {
     protected $_min_gravityforms_version = '2.5';
     protected $_slug = 'greenpeace-tracking';
     protected $_full_path = __FILE__;
-    protected $_title = 'Tracking';
-    protected $_short_title = 'Tracking';
+    protected $_title = 'Tracking Analytics';
+    protected $_short_title = 'Tracking Analytics';
 
 
 	protected $_capabilities_form_settings = 'edit_posts';
@@ -170,15 +170,24 @@ class Tracking extends \GFAddOn {
 			return $confirmation;
 		}
 
+		$event_id = $entry['id'] . '.' . $form['id'];
+
 		$event = [
 			'event' => 'conversion',
 			'eventCategory' => $config['event_category'] ?? "",
 			'eventAction' => $config['event_action'] ?? "",
 			'eventLabel' => $config['event_label'] ?? "",
+			'eventId' => $event_id,
 		];
 
 
-		return '<script>(function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push('.json_encode($event).')})()</script>' . $confirmation;
+		return '<script>(function(){
+			if ( ! ("gpfgftrk" in window.top) ) {
+				window.top.dataLayer=window.top.dataLayer||[]
+				window.top.dataLayer.push('.json_encode($event).')
+				window.top.gpfgftrk = 1
+			}
+		})()</script>' . $confirmation;
 
 	}
 

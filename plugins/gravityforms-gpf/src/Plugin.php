@@ -34,12 +34,20 @@ class Plugin {
 		GFAddOn::register( __NAMESPACE__ . '\\Tracking' );
 		GFAddOn::register( __NAMESPACE__ . '\\CssJs' );
 
+
+		if ( is_admin() ) {
+			GFAddOn::register( __NAMESPACE__ . '\\Folders' );
+		}
+
 		// mettre les Feeds après les Addons
 		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\SfmcFeed' );
 		// GFAddOn::register( __NAMESPACE__ . '\\EngagingNetworks' );
 		GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\Web2caseFeed' );
 		// GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\DoubleOptInFeed' );
 		// GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\TestFeed' );
+
+		// GFFeedAddOn::register( __NAMESPACE__ . '\\Feed\\FacebookFeed' );
+
 
 		GF_Fields::register( new Field\FirstNameField() );
 		GF_Fields::register( new Field\LastNameField() );
@@ -60,6 +68,10 @@ class Plugin {
 
 		if ( defined('THIS_IS_LUXEMBOURG') ) {
 			GFAddOn::init_addons();
+		}
+		else {
+			// Pas besoin d'activer ça pour le Luxembourg
+			GFAddOn::register( __NAMESPACE__ . '\\DataFromDb' );
 		}
 	}
 
@@ -192,7 +204,13 @@ class Plugin {
 
 		switch ($field->type) {
 			case 'email':
-				if ( ! preg_match('/^[a-z0-9]([a-z0-9_\.\+-]*[^_\.\+-]+)?@([a-z0-9-]+\.)+[a-z0-9]+$/', $value) ) {
+				if ( strlen($value) > 80) {
+					$result = [
+						'is_valid' => false,
+						'message' => 'Votre adresse e-mail est trop longue.',
+					];
+				}
+				else if ( ! preg_match('/^[a-z0-9]([a-z0-9_\.\+-]*[^_\.\+-]+)?@([a-z0-9-]+\.)+[a-z0-9]+$/', $value) ) {
 					$result = [
 						'is_valid' => false,
 						'message' => 'Votre adresse e-mail semble incorrecte.',
@@ -215,6 +233,24 @@ class Plugin {
 						'is_valid' => false,
 						'message' => 'Votre prénom est obligatoire.'
 					];
+				}
+				break;
+
+			case 'phone':
+				if ( ! empty($value) ) {
+					try {
+						$telephone = \Brick\PhoneNumber\PhoneNumber::parse($value, 'FR');
+						if ( ! $telephone->isValidNumber()) {
+							throw new \Exception('Téléphone invalide');
+						}
+					}
+					catch(\Exception $e) {
+						$result = [
+							'is_valid' => false,
+							'message' => 'Votre numéro de téléphone semble incorrect.'
+						];
+					}
+
 				}
 				break;
 
@@ -277,7 +313,7 @@ class Plugin {
 	}
 
 
-	public function field_content( $content, $field, $value, $entry_id, $form_id ) {
+	public function field_hotjar_masked( $content, $field, $value, $entry_id, $form_id ) {
 
 		switch ( $field->type ) {
 			case 'email':
@@ -292,14 +328,41 @@ class Plugin {
 			case 'password':
 			case 'website':
 				$content = preg_replace( '/<input /', '<input data-hj-masked ', $content);
+				break;
 
 			case 'textarea':
 				$content = preg_replace( '/<textarea /', '<textarea data-hj-masked ', $content);
+				break;
 		}
 
 		return $content;
 	}
 
+
+
+
+	public function field_maxlength( $content, $field, $value, $entry_id, $form_id ) {
+
+		switch ( $field->type ) {
+			case 'email':
+				$content = preg_replace( '/<input /', '<input maxlength="80" ', $content);
+				break;
+		}
+
+		return $content;
+	}
+
+
+
+
+	public function field_quiz_correct_answers($content, $field, $value, $entry_id, $form_id) {
+
+		if ( $field->type === 'quiz' && ! empty($field->gpfQuizAllChoicesCorrect) ) {
+			$content = preg_replace('/<input /', '<input data-all-correct ', $content);
+		}
+
+		return $content;
+	}
 
 	public function add_optgroup_to_select( $choice_markup, $choice, $field ) {
 		if ( $field->get_input_type() == 'select' ) {
@@ -516,6 +579,21 @@ END;
 
 			<?php
 		}
+
+/*
+		if ( $position === 1368) { //parmi l'Edit Choices, pour le field Quiz
+			?>
+			<li class="gp_quiz_all_correct field_setting" data-js="choices-ui-setting" data-type="option">
+				<input type="checkbox" id="gpf-quiz-all-choices-correct" onclick="var value = jQuery(this).is(':checked'); SetFieldProperty('gpfQuizAllChoicesCorrect', value);">
+				<label for="gpf-quiz-all-choices-correct" class="inline">
+					Toutes les réponses sont correctes.
+				</label>
+			</li>
+			<?php
+
+		}
+		*/
+
 	}
 
 

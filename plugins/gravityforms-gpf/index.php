@@ -12,14 +12,16 @@ https://wordpress.org/plugins/smart-phone-field-for-gravity-forms/
 
 */
 
+require __DIR__ . '/vendor/autoload.php';
 
+/*
 spl_autoload_register(function ($class_name) {
 	if (substr($class_name, 0, 30) === 'Greenpeacefrance\\Gravityforms\\') {
 		$class = str_replace('\\', '/', substr($class_name, 30) );
 		require __DIR__ . '/src/' . $class . '.php';
 	}
 });
-
+*/
 
 mb_internal_encoding('UTF-8'); // IMPORTANT
 
@@ -40,6 +42,8 @@ else {
 }
 
 add_action( $hook, [$plugin, 'loaded'], 5 );
+
+
 
 // modif form (exemple: changer la classe CSS)
 add_filter( 'gform_pre_render', [$plugin, 'pre_render'], 10, 3 );
@@ -70,9 +74,9 @@ add_filter( 'gform_input_masks', [ $plugin, 'add_input_mask' ] );
 
 add_action( 'gform_enqueue_scripts', function($form, $is_ajax) {
 
-	if ( ! defined('THIS_IS_LUXEMBOURG') ) {
+	// if ( ! defined('THIS_IS_LUXEMBOURG') ) {
 		wp_enqueue_style( 'gpfgf-default-styles', GPFGF_DIR_URL . 'assets/style.css' );
-	}
+	// }
 
 	wp_enqueue_script( 'gpfgf-default-script', GPFGF_DIR_URL . 'assets/script.js', ['jquery'], null, true );
 
@@ -82,7 +86,7 @@ add_action( 'gform_enqueue_scripts', function($form, $is_ajax) {
 	] );
 
 
-}, 10, 2 );
+}, 1, 2 );
 
 
 add_action('wp_footer', function() {
@@ -93,9 +97,8 @@ add_action('wp_footer', function() {
 
 
 	<g id="facebook-logo">
-	<path fill="#1877f2" d="M21.75,0H2.25C1.013,0,0,1.013,0,2.25v19.5C0,22.986,1.013,24,2.25,24h19.5c1.236,0,2.25-1.014,2.25-2.25V2.25
-	C24,1.013,22.986,0,21.75,0z"/>
-	<path fill="#FFFFFF" d="M12,25V13.5H9v-3h3V9c0-2.48,2.02-4.5,4.5-4.5h3v3h-3C15.675,7.5,15,8.175,15,9v1.5h4.5l-0.75,3H15V25H12z"/>
+	<path fill="#1877F2" d="M24,12.1c0-6.6-5.4-12-12-12S0,5.4,0,12.1c0,6,4.4,11,10.1,11.9v-8.4h-3v-3.5h3V9.4c0-3,1.8-4.7,4.5-4.7
+	C16,4.8,17.3,5,17.3,5v3h-1.5c-1.5,0-2,0.9-2,1.9v2.3h3.3l-0.5,3.5h-2.8v8.4C19.6,23,24,18.1,24,12.1L24,12.1z"/>
 	</g>
 
 
@@ -187,20 +190,45 @@ add_action( 'gform_field_standard_settings', function($position, $form_id) {
 
 
 // Les pictos pour les boutons GP
-// add_action( 'admin_head', function( ) {
-// 	echo '<link rel="stylesheet" type="text/css" href="'. GPFGF_DIR_URL .'assets/pictos.css" />';
-// });
+add_action( 'admin_head', function( ) {
+	echo '<link rel="stylesheet" type="text/css" href="'. GPFGF_DIR_URL .'assets/admin.css"/>
+<link rel="stylesheet" type="text/css" href="'. GPFGF_DIR_URL .'assets/pictos.css" />
+	';
+});
 
+
+/*
+// Utilisé pour la modification du Quiz, mais on désactive (ça marche pas)
+add_action( 'admin_footer', function( ) {
+	// On ne peut pas utiliser admin_enqueue_scripts parce que
+	// GF est configuré en mode No Conflict et donc
+	// ne charge pas les autres JS.
+	$screen = get_current_screen();
+
+	if ($screen->id === 'toplevel_page_gf_edit_forms') {
+		echo '<script type="text/javascript" src="'.GPFGF_DIR_URL . 'assets/admin.js" id="gpfgf-admin-js"></script>';
+	}
+
+});
+*/
 
 // modification des messages de validation de téléphone
 // suppression des "X caractères maximum"
-add_action( 'gform_register_init_scripts', [$plugin, 'form_javascript'] );
+add_action( 'gform_register_init_scripts', [$plugin, 'form_javascript'], 1 );
 
 add_filter( 'gform_field_validation', [ $plugin, 'field_validation' ], 10, 4 );
 add_filter( 'gform_field_css_class', [ $plugin, 'field_class' ], 10, 3 );
 
 // add_filter( 'gform_field_content', [ $plugin, 'field_content'], 10, 5 );
-add_filter( 'gform_field_content', [ $plugin, 'field_content'], 10, 5 );
+
+if ( ! is_admin() ) {
+	add_filter( 'gform_field_content', [ $plugin, 'field_hotjar_masked'], 10, 5 );
+	add_filter( 'gform_field_content', [ $plugin, 'field_maxlength'], 10, 5 );
+	// add_filter( 'gform_field_content', [ $plugin, 'field_quiz_correct_answers'], 10, 5 );
+
+}
+
+
 
 add_filter( 'gform_field_choice_markup_pre_render', [$plugin, 'add_optgroup_to_select'], 10, 3 );
 
@@ -307,3 +335,30 @@ function cleanCrmValue($value, $maxlength, $keep_numbers = true, $encoding = 'UT
 
 }
 
+
+
+
+// Log de debug
+add_filter( 'gform_currency_pre_save_entry', function($currency, $form) {
+
+	$form_id = $form['id'];
+
+	foreach ( $form['fields'] as $field ) {
+		$type = $field->type;
+		$display_only = $field->displayOnly;
+		$has_calculation = $field->has_calculation();
+		$name = $field->label;
+		$id = $field->id;
+
+		\GFCommon::log_debug( "Save du Field {$name}(#{$id} - {$type})"
+		. " pour Form " . $form_id . " :"
+		. " DisplayOnly: " . ($display_only ? 'true' : 'false')
+		. " | HasCalculation : " . ($has_calculation ? 'true' : 'false')
+		);
+	}
+
+
+
+
+	return $read_value_from_post;
+}, 10, 2 );

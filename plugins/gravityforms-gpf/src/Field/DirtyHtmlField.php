@@ -8,6 +8,7 @@ class DirtyHtmlField extends \GF_Field_HTML {
 
 	public $label = 'Dirty HTML';
 
+	public $displayOnly = true;
 
 
 	public function get_form_editor_field_title() {

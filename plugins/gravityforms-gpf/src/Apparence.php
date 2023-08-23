@@ -108,7 +108,7 @@ class Apparence extends \GFAddOn {
 					[
 						'type' => 'text',
 						'name' => 'cta_background',
-						'label' => 'Couleur du bouton (vert)',
+						'label' => 'Couleur du bouton (rouge)',
 						'class' => 'large',
 					],
 
@@ -129,7 +129,7 @@ class Apparence extends \GFAddOn {
 					[
 						'type' => 'text',
 						'name' => 'cta_text_hover',
-						'label' => 'Couleur du texte en HOVER (vert)',
+						'label' => 'Couleur du texte en HOVER (rouge)',
 						'class' => 'large',
 					],
 
@@ -260,6 +260,14 @@ class Apparence extends \GFAddOn {
 
 					[
 						'type' => 'text',
+						'name' => 'confirm_text',
+						'label' => 'Couleur de la suite du texte de chaque bloc (noir)',
+						'class' => 'large',
+					],
+
+
+					[
+						'type' => 'text',
 						'name' => 'confirm_block1_background',
 						'label' => 'Couleur de fond du bloc en exergue (blanc)',
 						'class' => 'large',
@@ -304,7 +312,7 @@ class Apparence extends \GFAddOn {
 
 
 
-		$properties = ['form_text', 'form_background', 'confirm_first_line','confirm_block1_background','confirm_block1_text','confirm_block1_first_line','input_label','input_placeholder','progress_foreground','progress_background','progress_counter','cta_background','cta_text','cta_background_hover','cta_text_hover','don_background','don_text','don_background_hover','don_text_hover','petition_background','petition_text','petition_background_hover','petition_text_hover'];
+		$properties = ['form_text', 'form_background', 'confirm_first_line','confirm_text','confirm_block1_background','confirm_block1_text','confirm_block1_first_line','input_label','input_placeholder','progress_foreground','progress_background','progress_counter','cta_background','cta_text','cta_background_hover','cta_text_hover','don_background','don_text','don_background_hover','don_text_hover','petition_background','petition_text','petition_background_hover','petition_text_hover'];
 
 		$root = [];
 		foreach ($properties as $prop) {

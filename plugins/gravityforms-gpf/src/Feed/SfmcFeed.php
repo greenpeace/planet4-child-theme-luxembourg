@@ -163,7 +163,7 @@ class SfmcFeed extends \GFFeedAddOn {
 
 
 	protected function is_valid_url($value) {
-		return boolval( preg_match("#^https?://[a-zA-Z0-9/_\.\?=-]+$#", $value) );
+		return boolval( preg_match("#^https?://[a-zA-Z0-9:/_\.\?=-]+$#", $value) );
 	}
 
 	protected function is_valid_token($value) {
@@ -408,7 +408,7 @@ class SfmcFeed extends \GFFeedAddOn {
 		global $wpdb;
 
 		$values = [
-			'created_at' => (new \DateTime())->format('Y-m-d H:i:s'),
+			'created_at' => (new \DateTime( 'now', new \DateTimeZone("UTC") ))->format('Y-m-d H:i:s'),
 			'api_reference' => $entry['entry_reference'],
 			'email' => $sfmc_data['email'] ?? "",
 			'json_data' => json_encode($sfmc_data),
@@ -462,16 +462,20 @@ class SfmcFeed extends \GFFeedAddOn {
 				if ( $this->is_valid_url($webhook_url) && $this->is_valid_token($auth_token) ) {
 
 					$args = [
-						'method' => 'POST',
-						'body' => json_encode($values),
+						'body' => json_encode( $values ),
 						'headers' => [
 							'Authorization' => 'Bearer ' . $auth_token,
 							'Content-Type' => 'application/json',
 						]
 					];
 
-					$response = wp_remote_request($webhook_url, $args);
+					$response = wp_remote_post($webhook_url, $args);
 
+
+					// wp_mail('hugo.poncedeleon@greenpeace.org', 'feed sfmc', print_r([
+					// 	'args' => $args,
+					// 	'url' => $webhook_url
+					// ], true) );
 
 					if ( is_wp_error( $response ) ){
 

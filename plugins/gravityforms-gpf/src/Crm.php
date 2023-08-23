@@ -95,7 +95,7 @@ class Crm extends \GFAddOn {
 
 	public function form_settings_fields($form) {
 
-		$nro = $this->get_plugin_setting( 'nro');
+		$nro = $this->get_plugin_setting( 'nro' );
 
 		$journeys = [
 			'fr' => [

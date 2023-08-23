@@ -39,11 +39,14 @@ class LastNameField extends \GF_Field_Text {
 
 	public function get_value_save_entry($value, $form, $input_name, $lead_id, $lead) {
 
+		// $this->log_debug( __METHOD__ . "(): '.$lead_id.' Avant save entry du nom : " .  $value );
+
 		$keep_numbers = false;
 
 		$value = cleanCrmValue( $value, $this->maxLength, $keep_numbers );
 		$value = mb_strtoupper( $value, 'UTF-8' );
 
+		// $this->log_debug( __METHOD__ . "(): '.$lead_id.' Après save entry du nom : " .  $value );
 
 		return $value;
 	}

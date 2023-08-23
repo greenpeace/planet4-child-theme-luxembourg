@@ -5,12 +5,13 @@
 
 	--form-text: #000;
 	--form-background: #FBD311;
-	--input-label: var(--form-text);
-	--input-placeholder: #888;
 	--confirm-first-line: var(--form-secondary-color, var(--form-text));
+	--confirm-text: #000;
 	--confirm-block1-background: #fff;
 	--confirm-block1-text: var(--form-text);
 	--confirm-block1-first-line: var(--form-secondary-color);
+	--input-label: var(--form-text);
+	--input-placeholder: #888;
 	--progress-foreground: var(--form-primary-color);
 	--progress-background: #fff;
 	--progress-counter: var(--form-secondary-color);
@@ -546,6 +547,8 @@ color: currentColor;
 
 .confirmation-block-inner {
 	text-align: center;
+	line-height: 1.35;
+	margin-bottom: 1em;
 }
 
 
@@ -555,6 +558,10 @@ padding: 1em;
 }
 
 
+.confirmation-first-block .confirmation-block-inner {
+margin-bottom: 0;
+}
+
 .confirmation-first-message {
 font-weight: bold;
 color: var(--confirm-first-line);
@@ -562,6 +569,8 @@ color: var(--confirm-first-line);
 
 .confirmation-second-message {
 	color: var(--form-text);
+	margin-bottom: 1em;
+	color: var(--confirm-text);
 }
 
 
@@ -583,6 +592,10 @@ color: var(--confirm-first-line);
 	font-size: 1.2em;
 }
 
+.confirmation-block-no-number .confirmation-first-message::before {
+	content: "";
+	display: none;
+}
 
 .share-items {
 	display: flex;
@@ -601,18 +614,20 @@ color: var(--confirm-first-line);
 	height: auto;
 	display: block;
 	max-width: 2em;
-	transition: transform .2s;
+	transform: scale(101%);
 	transform-origin: center center;
 }
 
-.share-item svg:hover {
-	transform: scale(175%);
-}
 
 .share-item-link {
 	display: block;
+	transform-origin: center center;
+	transition: transform .2s;
 }
 
+.share-item-link:hover {
+	transform: scale(175%);
+}
 
 
 .cta-picto {
@@ -629,13 +644,14 @@ color: var(--confirm-first-line);
 .sous-accroche {
 	padding: 1em 0;
 	font-weight: 600;
+	font-size: 1.2em;
 }
 
 
 .picto-quote-left,
 .picto-quote-right {
 	display: inline-block;
-	font-size: .9em;
+	font-size: .8em;
 	height: 1em;
 }
 
@@ -645,42 +661,23 @@ height: 100%;
 }
 
 .picto-quote-left {
-	margin-right: 1ch;
+	margin-right: .5ch;
 	transform: translateY(-75%);
 }
 
 .picto-quote-right {
 	transform: translateY(75%) rotate(180deg);
-	margin-left: 1ch;
+	margin-left: .5ch;
 }
 
 
 
-/* .sous-accroche::before,
-.sous-accroche::after {
-	font-family: 'pictos' !important;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
 
-
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	display: inline-block;
-	content: "\e901";
-	line-height: 1;
-	font-size: .9em;
-
-}
-.sous-accroche::before {
-	margin-right: 1ch;
-	transform: translateY(-75%);
+.picto-merci {
+	padding-right: .75ch;
+	color: var(--primary-color);
 }
 
-.sous-accroche::after {
-	transform: translateY(75%) rotate(180deg);
-	margin-left: 1ch;
-} */
+.nobr {
+	white-space: nowrap;
+}

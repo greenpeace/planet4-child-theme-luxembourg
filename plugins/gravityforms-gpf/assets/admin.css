@@ -1,3 +1,5 @@
+
+/*
 .gform-settings__wrapper .gform-form-toolbar,
 .gform-settings__wrapper .gform-settings-panel__title--header,
 .gform-settings__wrapper .gform-settings-label,
@@ -49,4 +51,64 @@
 .gform-settings__wrapper .gform-settings-panel__title--header {
 	font-size: 1.4rem;
 	font-weight: bold;
+}
+*/
+
+
+.gform-settings-panel__content .form-list-nav {
+margin-bottom: 1.5rem;
+}
+
+
+.gp-form-folders {
+	padding: 0;
+	border-radius: 3px;
+	margin-right: 1.5rem;
+	font-size: 1.2rem;
+	height: 1.5rem;
+	z-index: 1;
+}
+
+.gp-form-folders details {
+	background-color: #fff;
+	padding: .5em;
+	border-radius: 4px;
+	border: 1px solid #888;
+}
+
+.gp-form-folders summary {
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.gp-form-folders-selected {
+	padding: .15em .5em;
+	background-color: #ffee77;
+	border-radius: 4px;
+	color: #333;
+	font-size: .9em;
+}
+
+.gp-form-folder-list {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	max-height: 20rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-top: .7rem;
+}
+
+.btn-folder {
+/* width: 100%; */
+font-size: .9em;
+margin: .1rem 0;
+background-color: orange;
+color: #fff;
+padding: .5em .75em;
+font-weight: bold;
+border-color: darkorange;
+text-align: center;
+border-radius: 4px;
+text-decoration: none;
 }

@@ -8,6 +8,8 @@ class JaugeField extends \GF_Field_Text {
 
 	public $type = 'gp_jauge';
 
+	public $displayOnly = true;
+
 
 	public function get_form_editor_field_title() {
 		return esc_attr( 'Jauge' );

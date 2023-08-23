@@ -1,0 +1,10 @@
+{
+    "require": {
+        "brick/phonenumber": "0.4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Greenpeacefrance\\Gravityforms\\": "src/"
+        }
+    }
+}

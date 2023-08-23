@@ -1,4 +1,19 @@
+// (function() {
 
+// 	jQuery('.gquiz-instant-feedback input[data-all-correct]').on('click', function(e) {
+
+// 		const value = e.target.value
+// 		const chunks = e.target.name.split('_')
+// 		const id = chunks[1]
+
+// 		console.log(id, value)
+
+// 		window.gquizAnswers = window.gquizAnswers || {}
+// 		if (window.gquizAnswers[id]) {
+// 			window.gquizAnswers[id].correctValue = btoa(value)
+// 		}
+// 	})
+// })();
 (function() {
 
 	const gpSpinner = new Image();
@@ -40,7 +55,7 @@
 
 						switch (e.target.type) {
 							case 'email':
-								if ( ! value.match(/^[a-z0-9]([a-z0-9_\.\+-]*[^_\.\+-]+)?@([a-z0-9-]+\.)+[a-z0-9]+$/)) {
+								if ( ! value.match(/^[A-Za-z0-9]([A-Za-z0-9_\.\+-]*[^_\.\+-]+)?@([A-Za-z0-9-]+\.)+[A-Za-z0-9]+$/)) {
 									field.classList.add('field-invalid')
 								}
 							break;

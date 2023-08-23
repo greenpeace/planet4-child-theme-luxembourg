@@ -8,6 +8,7 @@ class SousAccrocheField extends \GF_Field_HTML {
 
 	public $label = 'Citation';
 
+	public $displayOnly = true;
 
 
 	public function get_form_editor_field_title() {
@@ -43,9 +44,30 @@ class SousAccrocheField extends \GF_Field_HTML {
 		}
 
 
-		$content = $this->content;
+		$content = trim( $this->content );
 
 		$content = \GFCommon::replace_variables_prepopulate( $content ); // merge tags
+
+
+		$chunks = explode(' ', $content);
+		$chunks = array_reverse($chunks);
+		$done = [];
+
+		foreach ($chunks as $word) {
+			$done[] = array_shift($chunks);
+
+			if ( preg_match("/[a-zA-Z0-9]/", $word) ) {
+				$debut = join(' ', array_reverse($chunks));
+				$fin = join(' ', array_reverse($done));
+				break;
+			}
+		}
+
+
+		// $last_space = strrpos($content, " ");
+		// $debut = substr( $content, 0, $last_space );
+		// $fin = substr( $content, $last_space + 1 );
+
 
 		return '<div class="sous-accroche">
 
@@ -57,7 +79,7 @@ class SousAccrocheField extends \GF_Field_HTML {
 			<use href="#picto-quote"/>
 			</svg>
 			</span>
-			'.$content.'
+			'.$debut.' <span class="nobr">'.$fin.'
 			<span class="picto-quote-right">
 			<svg x="0px" y="0px" viewBox="0 0 41 32"
 			enable-background="new 0 0 41 32"
@@ -65,6 +87,7 @@ class SousAccrocheField extends \GF_Field_HTML {
 			>
 			<use href="#picto-quote"/>
 			</svg>
+			</span>
 			</span>
 			</div>';
 	}

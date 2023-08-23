@@ -20,6 +20,22 @@ jQuery(document).ready(function($) {
 	// } );
 
 
+	gform.addFilter( 'gform_editor_field_settings', function( settings, field ) {
+		if (field.type === 'quiz') {
+			settings.push('.gp_quiz_all_correct')
+		}
 
+		return settings;
+	} );
 
 });
+
+
+jQuery( document ).on(
+	'gform_load_field_settings',
+	function ( event, field, form ) {
+
+		if ( field.type === 'quiz' ) {
+			jQuery( '#gpf-quiz-all-choices-correct' ).prop( 'checked', field.gpfQuizAllChoicesCorrect );
+		}
+})

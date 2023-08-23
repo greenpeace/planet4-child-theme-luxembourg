@@ -57,6 +57,25 @@ class ConfirmationScreen extends \GFAddOn {
 
 
 
+	public function is_valid_url($value) {
+
+		$regex = "https?\:\/\/";
+		$regex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?";
+		$regex .= "([a-z0-9-.]*)\.([a-z]{2,3})";
+		$regex .= "(\:[0-9]{2,5})?";
+		$regex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
+		$regex .= "(\?[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*)?";
+		$regex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?";
+
+		return (preg_match("/^$regex$/i", $value));
+	}
+
+	public function is_valid_mailto($value) {
+
+		$regex = "mailto\:";
+		$regex .= "[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*";
+		return (preg_match("/^$regex$/i", $value));
+	}
 
 	public function form_settings_fields( $form ) {
 
@@ -278,11 +297,20 @@ class ConfirmationScreen extends \GFAddOn {
 						'label' => 'Lien du bouton',
 						'class' => 'large',
 					],
+
+					[
+						'type' => 'toggle',
+						'name'  => 'show_icon_in_don_button',
+						'label' => "Afficher l'icône dans le bouton",
+						'default_value' => 1,
+					],
 				]
 			],
 
 			[
 				'title' => 'Bloc partage',
+				'description' => 'Les liens vers les réseaux sociaux sont à générer sur <a href="https://www.greenpeace.fr/gptest/gpf/" target="_blank">l\'outil GPF</a>',
+
 				'fields' => [
 					[
 						'type' => 'textarea',
@@ -309,6 +337,7 @@ class ConfirmationScreen extends \GFAddOn {
 						'type' => 'text',
 						'name' => 'share_facebook_message',
 						'label' => 'Lien de partage Facebook',
+						'validation_callback' => [$this, 'is_valid_url'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -329,7 +358,8 @@ class ConfirmationScreen extends \GFAddOn {
 					[
 						'type' => 'textarea',
 						'name' => 'share_twitter_message',
-						'label' => 'Message Twitter',
+						'label' => 'Message Twitter (lien de partage complet)',
+						'validation_callback' => [$this, 'is_valid_url'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -350,7 +380,8 @@ class ConfirmationScreen extends \GFAddOn {
 					[
 						'type' => 'textarea',
 						'name' => 'share_whatsapp_message',
-						'label' => 'Message Whatsapp',
+						'label' => 'Message Whatsapp (lien de partage complet)',
+						'validation_callback' => [$this, 'is_valid_url'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -370,7 +401,8 @@ class ConfirmationScreen extends \GFAddOn {
 					[
 						'type' => 'textarea',
 						'name' => 'share_mailto_message',
-						'label' => 'Message Mailto',
+						'label' => 'Message Mailto (lien mailto: complet)',
+						'validation_callback' => [$this, 'is_valid_mailto'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -412,6 +444,13 @@ class ConfirmationScreen extends \GFAddOn {
 						'name' => 'petition_button_link',
 						'label' => 'Lien du bouton',
 						'class' => 'large',
+					],
+
+					[
+						'type' => 'toggle',
+						'name'  => 'show_icon_in_petition_button',
+						'label' => "Afficher l'icône dans le bouton",
+						'default_value' => 1,
 					],
 				]
 			],
@@ -455,7 +494,13 @@ class ConfirmationScreen extends \GFAddOn {
 			$don_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['don_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$don_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['don_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$don_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['don_button_link'] ) ).'" class="gform_button button don-button">'.trim( $config['don_button_text'] ).'</a></div>';
+			$don_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['don_button_link'] ) ).'" class="gform_button button don-button"><span>';
+
+			if ( intval($config['show_icon_in_don_button'] ?? "1") ) {
+				$don_bouton .= '<i class="icon-heart"></i> ';
+			}
+
+			$don_bouton .= trim( $config['don_button_text'] ).'</span></a></div>';
 
 			$blocks[ $position ] = '<div class="confirmation-block-inner">'.$don_html . $don_bouton . '</div>';
 		}
@@ -470,7 +515,13 @@ class ConfirmationScreen extends \GFAddOn {
 			$petition_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['petition_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$petition_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['petition_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$petition_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['petition_button_link'] ) ).'" class="gform_button button petition-button">'.trim( $config['petition_button_text'] ).'</a></div>';
+			$petition_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['petition_button_link'] ) ).'" class="gform_button button petition-button"><span>';
+
+			if ( intval($config['show_icon_in_petition_button'] ?? "1") ) {
+				$petition_bouton .= '<svg role="img" aria-hidden="true" width="24" height="32" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><use href="#picto-pen"/></svg> ';
+			}
+
+			$petition_bouton .= trim( $config['petition_button_text'] ).'</span></a></div>';
 
 
 			$blocks[ $position ] = '<div class="confirmation-block-inner">'.$petition_html . $petition_bouton.'</div>';
@@ -557,11 +608,9 @@ class ConfirmationScreen extends \GFAddOn {
 
 
 
+		$show_numbers = ( count( $blocks ) > 1 );
 
-
-
-
-		$html = '<div class="confirmation-block"><div class="confirmation-block-inner">' . \GFCommon::replace_variables( trim( $config['thank_you_message'] ), $form, $entry, false, false, true ) . '</div></div>';
+		$html = '<div class="confirmation-block"><div class="confirmation-block-inner"><i class="icon-ok-circled picto-merci"></i>' . \GFCommon::replace_variables( trim( $config['thank_you_message'] ), $form, $entry, false, false, true ) . '</div></div>';
 
 		$i = true;
 		foreach ($blocks as $block) {
@@ -570,6 +619,11 @@ class ConfirmationScreen extends \GFAddOn {
 				$i = false;
 				$class .= ' confirmation-first-block';
 			}
+
+			if ( ! $show_numbers) {
+				$class .= ' confirmation-block-no-number';
+			}
+
 
 			$html .= '<div class="'.$class.'">'.$block.'</div>';
 
