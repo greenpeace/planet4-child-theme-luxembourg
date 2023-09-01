@@ -153,12 +153,15 @@ class Plugin {
 		}
 
 		// dernière chose, on change le type Input en Button
-		$button = preg_replace("/<input (.*)value='([^']*)'(.*)>/", '<button $1 $3>'.$picto.' $2</button>', $button);
+		$button = preg_replace("/<input (.*)value='([^']*)'(.*)>/", '<button $1 $3><span class="base-button-content">'.$picto.' <span>$2</span></span></button>', $button);
 
+		// on récupère l'ID pour le mettre un cran au dessus ...
 		preg_match("/id='([^']+)'/", $button, $match);
-
+		// ... qu'on enlève du bouton
 		$button = preg_replace("/id='([^']+)'/", "", $button);
 
+		// on rajouye la classe de base CSS
+		$button = preg_replace("/class='([^']+)'/", "class='base-button $1'", $button);
 
 
 
@@ -181,7 +184,7 @@ class Plugin {
 			}
 
 		$str .= '</div>';
-
+/*
 		$str .= '<div style="display:none">
 		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<defs>
@@ -196,6 +199,7 @@ class Plugin {
 		</defs>
 		</svg>
 		</div>';
+		*/
 		return $str;
 	}
 

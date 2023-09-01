@@ -494,13 +494,14 @@ class ConfirmationScreen extends \GFAddOn {
 			$don_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['don_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$don_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['don_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$don_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['don_button_link'] ) ).'" class="gform_button button don-button"><span>';
+			$don_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['don_button_link'] ) ).'" class="gform_button button base-button don-button"><span class="base-button-content">';
 
 			if ( intval($config['show_icon_in_don_button'] ?? "1") ) {
-				$don_bouton .= '<i class="icon-heart"></i> ';
+				// $don_bouton .= '<i class="icon-heart"></i> ';
+				$don_bouton .= '<svg class="picto-heart" role="img" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><use href="#picto-heart"/></svg> ';
 			}
 
-			$don_bouton .= trim( $config['don_button_text'] ).'</span></a></div>';
+			$don_bouton .= '<span>' . trim( $config['don_button_text'] ).'</span></span></a></div>';
 
 			$blocks[ $position ] = '<div class="confirmation-block-inner">'.$don_html . $don_bouton . '</div>';
 		}
@@ -515,13 +516,13 @@ class ConfirmationScreen extends \GFAddOn {
 			$petition_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['petition_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$petition_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['petition_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$petition_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['petition_button_link'] ) ).'" class="gform_button button petition-button"><span>';
+			$petition_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['petition_button_link'] ) ).'" class="gform_button button base-button petition-button"><span class="base-button-content">';
 
 			if ( intval($config['show_icon_in_petition_button'] ?? "1") ) {
-				$petition_bouton .= '<svg role="img" aria-hidden="true" width="24" height="32" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><use href="#picto-pen"/></svg> ';
+				$petition_bouton .= '<svg class="picto-pen" role="img" aria-hidden="true" width="24" height="32" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><use href="#picto-pen"/></svg> ';
 			}
 
-			$petition_bouton .= trim( $config['petition_button_text'] ).'</span></a></div>';
+			$petition_bouton .= '<span>'.trim( $config['petition_button_text'] ).'</span></span></a></div>';
 
 
 			$blocks[ $position ] = '<div class="confirmation-block-inner">'.$petition_html . $petition_bouton.'</div>';
@@ -610,7 +611,11 @@ class ConfirmationScreen extends \GFAddOn {
 
 		$show_numbers = ( count( $blocks ) > 1 );
 
-		$html = '<div class="confirmation-block"><div class="confirmation-block-inner"><i class="icon-ok-circled picto-merci"></i>' . \GFCommon::replace_variables( trim( $config['thank_you_message'] ), $form, $entry, false, false, true ) . '</div></div>';
+		// $html = '<div class="confirmation-block"><div class="confirmation-block-inner"><i class="icon-ok-circled picto-merci"></i>' . \GFCommon::replace_variables( trim( $config['thank_you_message'] ), $form, $entry, false, false, true ) . '</div></div>';
+
+		$html = '<div class="confirmation-block"><div class="confirmation-block-inner"><svg class="picto-merci" role="img" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><use href="#picto-merci"/></svg> ' . \GFCommon::replace_variables( trim( $config['thank_you_message'] ), $form, $entry, false, false, true ) . '</div></div>';
+
+
 
 		$i = true;
 		foreach ($blocks as $block) {

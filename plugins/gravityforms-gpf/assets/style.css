@@ -47,6 +47,74 @@ counter-reset: confirmation-blocks;
 
 
 
+.base-button,
+.button.base-button,
+.gform_wrapper.gravity-theme .base-button,
+.gform_wrapper.gravity-theme .button.base-button
+.gform_wrapper.gravity-theme .button.base-button[type="button"],
+.gform_wrapper.gravity-theme .button.base-button[type="submit"] {
+	width: 100%;
+	font-size: 1.4rem;
+	line-height: 1;
+	color: var(--cta-text);
+	background-color: var(--cta-background);
+	cursor: pointer;
+	transition: all .2s;
+	border: 3px solid var(--cta-background);
+	border-radius: 0;
+	padding: .5rem 1rem;
+	font-weight: normal;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: "Greenpeace Sans Bold", "GreenpeaceSans", "Helvetica Neue", Helvetica,Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.base-button:hover {
+	color: var(--cta-text-hover);
+	background-color: var(--cta-background-hover);
+	transition: all .2s;
+}
+
+
+.base-button svg {
+	margin-right: 1ch;
+	height: 1em;
+}
+
+
+
+.base-button.petition-button {
+	color: var(--petition-text);
+	background-color: var(--petition-background);
+	border: 3px solid var(--petition-text);
+}
+
+.base-button.petition-button:hover {
+	color: var(--petition-text-hover);
+	background-color: var(--petition-background-hover);
+}
+
+.base-button.don-button {
+	color: var(--don-text);
+	background-color: var(--don-background);
+	border: 3px solid var(--don-background);
+}
+
+.base-button.don-button:hover {
+	color: var(--don-text-hover);
+	background-color: var(--don-background-hover);
+}
+
+.base-button-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
 .gform_wrapper.gravity-theme .field_description_above .gfield_validation_message.gfield_validation_message {
 padding: 1rem !important;
 }
@@ -674,8 +742,11 @@ height: 100%;
 
 
 .picto-merci {
-	padding-right: .75ch;
+	/* padding-right: .75ch; */
 	color: var(--primary-color);
+	height: 1em;
+	width: 1.5em;
+	transform: translateY(10%);
 }
 
 .nobr {
