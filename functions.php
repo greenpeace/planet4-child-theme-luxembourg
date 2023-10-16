@@ -273,4 +273,6 @@ define('THIS_IS_LUXEMBOURG', 1);
 
 // APPELER LES ASSETS FR POUR RECUP ICONS define('GPFGF_DIR_URL', 'wp-content/themes/planet4-child-theme-luxembourg/plugins/gravityforms-gpf/'):
 
-require __DIR__ . "/plugins/gravityforms-gpf/index.php";
+if (defined('GF_PLUGIN_DIR_PATH')) {
+    require_once __DIR__ . "/plugins/gravityforms-gpf/index.php";
+};
