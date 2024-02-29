@@ -22,6 +22,10 @@ class StateButtonField extends \GF_Field_Checkbox {
 		parent::__construct($data);
 	}
 
+	// public function is_administrative() {
+	// 	return true;
+	// }
+
 
 
 

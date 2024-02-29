@@ -33,13 +33,20 @@ class DataFromDb extends \GFAddOn {
     }
 
 
+	public function init() {
+        parent::init();
+		add_filter( 'gform_form_post_get_meta', [$this, 'get_data_from_db'], 1, 1 );
+		add_filter( 'gform_replace_merge_tags', [$this, 'merge_tags'], 10, 7 );
+
+	}
 
 
 	public function init_frontend() {
         parent::init_frontend();
-		add_filter( 'gform_form_post_get_meta', [$this, 'get_data_from_db'], 1, 1 );
 
 		add_filter( 'gform_pre_render', [$this, 'pre_render'], 10, 3 );
+
+		// add_filter( 'gform_addon_pre_process_feeds', [$this, 'before_feeds'], 10, 3 );
 
 		// add_action( 'gform_after_submission', [$this, 'after_submission'], 10, 2 );
 
@@ -261,11 +268,16 @@ class DataFromDb extends \GFAddOn {
 	}
 
 
+	// public function before_feeds($feeds, $entry, $form) {
+	// 	$this->get_data_from_db($form);
+	// 	return $feeds;
+	// }
+
 	public function confirmation($confirmation, $form, $entry, $is_ajax) {
 
 		$settings = $this->get_form_settings($form);
 
-		$only_one_submit = $settings['only_one_submit'];
+		$only_one_submit = $settings['only_one_submit'] ?? false;
 
 		if ($only_one_submit) {
 			$model = ModelFromDb::getInstance();
@@ -296,6 +308,34 @@ class DataFromDb extends \GFAddOn {
 	}
 
 
+	public function merge_tags($text, $form, $entry, $url_encode, $esc_html, $nl2br, $format) {
+
+		if ( strpos( $text, '{bdd:' ) === false ) {
+			return $text;
+		}
+
+
+		$model = ModelFromDb::getInstance();
+		if ( ! $model->is_valid ) {
+			// pas de base de données configurée, on sort
+			return $text;
+		}
+
+
+		if ( count($model->data) ) {
+			$data = $model->data;
+
+			$text = preg_replace_callback('/{bdd:([^}]+)}/', function($matches) use ($data) {
+				return $data[ $matches[1] ] ?? "";
+			}, $text);
+		}
+
+		return $text;
+
+	}
+
+
+
 	public function pre_render($form, $is_ajax, $field_values) {
 
 		$model = ModelFromDb::getInstance();
@@ -304,23 +344,7 @@ class DataFromDb extends \GFAddOn {
 			return $form;
 		}
 
-		if ( count($model->data) ) {
-			$data = $model->data;
-
-			add_filter( 'gform_replace_merge_tags', function( $text, $form, $entry, $url_encode, $esc_html, $nl2br, $format ) use ( $data ) {
-
-				if ( strpos( $text, '{bdd:' ) === false ) {
-					return $text;
-				}
-
-				$text = preg_replace_callback('/{bdd:([^}]+)}/', function($matches) use ($data) {
-					return $data[ $matches[1] ] ?? "";
-				}, $text);
-
-				return $text;
-			}, 10, 7 );
-		}
-		else {
+		if ( ! count($model->data) ) {
 
 			$settings = $this->get_form_settings($form);
 

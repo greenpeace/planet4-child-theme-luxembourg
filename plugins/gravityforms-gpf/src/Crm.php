@@ -71,7 +71,7 @@ class Crm extends \GFAddOn {
 						'name' => 'nro',
 						'label' => 'NRO',
 						'default_value' => 'fr',
-						'description' => 'Utilisé pour, par exemple, Country Of Ownership. Peut être modifié au niveau d\'une pétition.',
+						//'description' => 'Utilisé pour, par exemple, Country Of Ownership. Peut être modifié au niveau d\'une pétition.',
 						'choices' => [
 							[
 								'label' => 'France',
@@ -152,29 +152,29 @@ class Crm extends \GFAddOn {
 			],
 
 			[
-				'title' => 'Localisation',
+				'title' => 'Langue',
 				'fields' => [
-					[
-						'type' => 'radio',
-						'name' => 'nro',
-						'label' => 'NRO',
-						'description' => 'Utilisé pour, par exemple, Country Of Ownership.',
-						'default_value' => $nro ?? 'fr',
-						'choices' => [
-							[
-								'label' => 'France',
-								'value' => 'fr',
-							],
-							[
-								'label' => 'Luxembourg',
-								'value' => 'lu',
-							]
-							],
-							// 'onChange' => 'nroChanged(this)'
-						],
+					// [
+					// 	'type' => 'radio',
+					// 	'name' => 'nro',
+					// 	'label' => 'NRO',
+					// 	'description' => 'Utilisé pour, par exemple, Country Of Ownership.',
+					// 	'default_value' => $nro ?? 'fr',
+					// 	'choices' => [
+					// 		[
+					// 			'label' => 'France',
+					// 			'value' => 'fr',
+					// 		],
+					// 		[
+					// 			'label' => 'Luxembourg',
+					// 			'value' => 'lu',
+					// 		]
+					// 	],
+					// 	// 'onChange' => 'nroChanged(this)'
+					// ],
 					[
 						'type' => 'select',
-						'label' => 'Langue',
+						// 'label' => 'Langue',
 						'name' => 'lang',
 						'default_value' => 'fr',
 						'choices' => [

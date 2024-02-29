@@ -316,10 +316,12 @@ class Apparence extends \GFAddOn {
 
 		$root = [];
 		foreach ($properties as $prop) {
-			$value = trim($config[$prop] ?: "");
+			if ( isset($config[$prop])) {
+				$value = trim($config[$prop] ?: "");
 
-			if ($value) {
-				$root[] = '--' . str_replace('_', '-', $prop) . ': ' . $value . ';';
+				if ($value) {
+					$root[] = '--' . str_replace('_', '-', $prop) . ': ' . $value . ';';
+				}
 			}
 		}
 

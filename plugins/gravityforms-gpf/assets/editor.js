@@ -8,7 +8,7 @@ tinymce.PluginManager.add( 'gpfgf', function( editor ) {
 
     function getTitle(id) {
 
-		$.post(gpfgf.getForm,
+		jQuery.post(gpfgf.getForm,
 			{
 				id: id
 			},
@@ -38,7 +38,7 @@ tinymce.PluginManager.add( 'gpfgf', function( editor ) {
 
     function updateShortcode(id, title) {
         for (var i in tinymce.editors) {
-			$(tinymce.editors[i].getBody()).find('[data-gf-rel="' + id + '"]').html(title);
+			jQuery(tinymce.editors[i].getBody()).find('[data-gf-rel="' + id + '"]').html(title);
         }
     }
 

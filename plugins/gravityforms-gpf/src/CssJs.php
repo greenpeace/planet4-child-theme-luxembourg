@@ -48,11 +48,73 @@ class CssJs extends \GFAddOn {
 	}
 
 
+	public function render($form_string, $form) {
+
+		if ( empty( $form['css-js']) ) {
+			return $form_string;
+		}
+
+		$css_string = "";
+
+		$inline_css = trim( $form['css-js']['inline_css'] ?? "" );
+
+		if ( $inline_css ) {
+			$css_string = <<< END
+			<style type="text/css">
+			$inline_css
+			</style>
+			END;
+		}
+
+		return $css_string . $form_string;
+	}
+
 
 	public function init() {
 		parent::init();
 
+
+		add_filter( 'gform_get_form_filter', [ $this, 'render' ], 9999, 2 );
+
+		add_filter( 'gform_get_form_confirmation_filter', [ $this, 'render' ], 9999, 2 );
+
+
 		add_action( 'gform_enqueue_scripts', [$this, 'enqueue_assets'], 10, 2 );
+
+		add_action( 'gform_footer_init_scripts_filter', function($form_string, $form) {
+
+			$return_script = '';
+
+			$inline_js = trim( $form['css-js']['inline_js'] ?? "" );
+
+			if ( $inline_js ) {
+				$return_script .= '<script>(function(formId) {'
+					. $inline_js
+					. '})('.$form['id'].')</script>';
+
+			}
+
+
+			$inline_js_confirm = trim( $form['css-js']['inline_js_confirm'] ?? "" );
+
+			if ( $inline_js_confirm ) {
+
+				$return_script .= '<script> jQuery(document).on("gform_confirmation_loaded", function(event, formId) {'
+					. $inline_js_confirm
+					. '})</script>';
+
+			}
+
+			return $form_string . $return_script;
+
+		}, 9999, 2);
+
+
+
+
+
+
+
 
 		add_action( 'gfiframe_head', function($form_id, $form) {
 
@@ -85,9 +147,7 @@ class CssJs extends \GFAddOn {
 		foreach ($css_files as $index => $css_file) {
 			$css_file = trim( $css_file );
 			if ($css_file) {
-				// on est dans <head> alors c'est plus simple de faire des print
-				echo '<link rel="stylesheet" type="text/css" href="'.$css_file.'"/>';
-				// wp_enqueue_style( 'gpfgf-css-' . $index, $css_file );
+				wp_enqueue_style( 'gpfgf-css-' . $index, $css_file );
 			}
 		}
 
@@ -101,50 +161,6 @@ class CssJs extends \GFAddOn {
 				wp_enqueue_script( 'gpfgf-js-' . $index, $js_file, ['gpfgf-default-script'], null, true );
 
 			}
-		}
-
-
-		$inline_css = trim( $form['css-js']['inline_css'] ?? "" );
-
-		if ( $inline_css ) {
-			add_action( 'wp_footer', function() use ( $inline_css ) {
-				echo '<style type="text/css">';
-				echo $inline_css;
-				echo '</style>';
-			}, 999);
-		}
-
-
-		$form_id = $form['id'];
-
-		$inline_js = trim( $form['css-js']['inline_js'] ?? "" );
-
-		if ( $inline_js ) {
-			add_action( 'wp_footer', function() use ( $inline_js, $form_id ) {
-				echo '<script>(function(formId) {';
-				echo $inline_js;
-				echo '})('.$form_id.')</script>';
-			}, 9999);
-		}
-
-
-
-
-
-		$inline_js_confirm = trim( $form['css-js']['inline_js_confirm'] ?? "" );
-
-		if ( $inline_js_confirm ) {
-
-			// if ($is_ajax) {
-				add_action( 'wp_footer', function() use ( $inline_js_confirm ) {
-					echo '<script> jQuery(document).on("gform_confirmation_loaded", function(event, formId) {' . PHP_EOL;
-					echo $inline_js_confirm;
-					echo PHP_EOL . '})</script>';
-				}, 9999);
-			// }
-			// else {
-
-			// }
 		}
 
 

@@ -86,6 +86,7 @@ class SfmcFeed extends \GFFeedAddOn {
 					],
 				],
 			],
+		/*
 			[
 				'title' => 'Type de sauvegarde des données du Feed SF/MC',
 				'fields' => [
@@ -106,7 +107,8 @@ class SfmcFeed extends \GFFeedAddOn {
 					]
 				],
 			],
-
+*/
+/*
 			[
 				'title' => 'Base de données',
 				'description' => 'Table existante où sauvegarder les données.',
@@ -129,7 +131,7 @@ class SfmcFeed extends \GFFeedAddOn {
 
 				]
 			],
-
+*/
 			[
 				'title' => 'Webhook',
 				'description' => 'Webhook recevant les pétitions.',
@@ -147,19 +149,32 @@ class SfmcFeed extends \GFFeedAddOn {
 
 				]
 			],
+
+			[
+				'title' => 'Alert Slack',
+				'description' => 'URL du webhook Slack d\'alerte',
+				'fields' => [
+					[
+						'type' => 'text',
+						'name' => 'alert_url',
+						'label' => 'URL du Webhook',
+					],
+
+				]
+			],
 		];
 	}
 
 
 
 
-	protected function is_valid_db_host($value) {
-		return boolval( preg_match("/^[a-zA-Z0-9\.]+$/", $value) );
-	}
+	// protected function is_valid_db_host($value) {
+	// 	return boolval( preg_match("/^[a-zA-Z0-9\.]+$/", $value) );
+	// }
 
-	protected function is_valid_db_field($value) {
-		return boolval( preg_match("/^[a-zA-Z_]+$/", $value) );
-	}
+	// protected function is_valid_db_field($value) {
+	// 	return boolval( preg_match("/^[a-zA-Z_]+$/", $value) );
+	// }
 
 
 	protected function is_valid_url($value) {
@@ -285,6 +300,48 @@ class SfmcFeed extends \GFFeedAddOn {
 	}
 
 
+
+	static public function alert($message, $url) {
+
+        $slack_message = [
+            'blocks' => [
+                [
+                    "type" => "section",
+                    "text" => [
+                        'type' => 'mrkdwn',
+                        'text' => "*$message*"
+                    ],
+                ],
+                [
+                    'type' => 'context',
+                    'elements' => [
+                        [
+                            'type' => 'mrkdwn',
+                            'text' =>  "Section : *webform_vers_pogo*",
+                        ]
+                    ]
+                ],
+                [
+                    'type' => 'divider',
+                ]
+            ],
+        ];
+
+
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, $url );
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER ,true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($slack_message) );
+        curl_exec($curl);
+        curl_close($curl);
+	}
+
+
+
+
 	public function process_feed( $feed, $entry, $form ) {
 
 		$plugin_settings = $this->get_plugin_settings();
@@ -324,7 +381,7 @@ class SfmcFeed extends \GFFeedAddOn {
 			$sf_key = trim( $map['custom_key'] ) ;
 
 			if ( $map['value'] === 'gf_custom' ) {
-				$value = trim( $map['custom_value'] );
+				$value = \GFCommon::replace_variables( trim( $map['custom_value'] ), $form, $entry, false, false, true );
 			}
 			else {
 				$value = trim( $entry[ $map['value'] ] );
@@ -350,29 +407,6 @@ class SfmcFeed extends \GFFeedAddOn {
 			$sfmc_data[ $utm ] = $value;
 		}
 
-		// $optins = [];
-		// $optin_mapping = $feed['meta']['optin_mapping'];
-
-		// foreach ($optin_mapping as $map) {
-		// 	$optin_key = trim( $map['custom_key'] ) ;
-
-		// 	if ( $map['value'] === 'gf_custom' ) {
-		// 		$value = trim( $map['custom_value'] );
-		// 	}
-		// 	else {
-		// 		$value = trim( $entry[ $map['value'] ] );
-		// 	}
-
-		// 	$value = strtoupper($value);
-
-		// 	if ($value === 'Y' || $value === 'N') {
-		// 		$optins[ $optin_key ] = $value;
-		// 	}
-		// }
-
-
-		// $sf_campaign_id = $query['sfdc'] ?: rgars( $form, 'greenpeace-crm/sf_campaign_id' );
-		// $sf_campaign_id = sanitize_text_field( $sf_campaign_id );
 
 		$lang = rgars( $form, 'greenpeace-crm/lang' );
 		$nro = rgars( $form, 'greenpeace-crm/nro' );
@@ -434,138 +468,57 @@ class SfmcFeed extends \GFFeedAddOn {
 		$petition_id = 0;
 
 
-		$save_type = $plugin_settings['save_type'];
+
+		$webhook_url = trim( $plugin_settings['webhook_url'] );
+		$auth_token = trim( $plugin_settings['auth_token'] );
 
 
 
-		// $data = [
-		// 	'sfmc_data' => $values,
-		// 	'feed' => $feed,
-		// 	'entry' => $entry,
-		// 	'form' => $form,
-		// ];
+		if ( $this->is_valid_url($webhook_url) && $this->is_valid_token($auth_token) ) {
 
-// error_log('DATA ' . json_encode($data));
-	//  wp_mail('hugo.poncedeleon@greenpeace.org', 'feed sfmc', print_r($data, true) );
+			$args = [
+				'body' => json_encode( $values ),
+				'headers' => [
+					'Authorization' => 'Bearer ' . $auth_token,
+					'Content-Type' => 'application/json',
+				]
+			];
 
-
-
-		switch ($save_type) {
-			case 'webhook':
+			$response = wp_remote_post($webhook_url, $args);
 
 
-				$webhook_url = trim( $plugin_settings['webhook_url'] );
-				$auth_token = trim( $plugin_settings['auth_token'] );
+			// wp_mail('hugo.poncedeleon@greenpeace.org', 'feed sfmc', print_r([
+			// 	'args' => $args,
+			// 	'url' => $webhook_url
+			// ], true) );
+
+			if ( is_wp_error( $response ) ){
+
+				$note_message = sprintf(
+					'GP Webhook error : %s (%d)',
+					$response->get_error_message(),
+					$response->get_error_code()
+				);
 
 
+				$this->add_note($entry_id, $note_message, 'error');
+				$this->add_feed_error(
+					$note_message,
+					$feed,
+					$entry,
+					$form
+				);
 
-				if ( $this->is_valid_url($webhook_url) && $this->is_valid_token($auth_token) ) {
-
-					$args = [
-						'body' => json_encode( $values ),
-						'headers' => [
-							'Authorization' => 'Bearer ' . $auth_token,
-							'Content-Type' => 'application/json',
-						]
-					];
-
-					$response = wp_remote_post($webhook_url, $args);
-
-
-					// wp_mail('hugo.poncedeleon@greenpeace.org', 'feed sfmc', print_r([
-					// 	'args' => $args,
-					// 	'url' => $webhook_url
-					// ], true) );
-
-					if ( is_wp_error( $response ) ){
-
-						$note_message = sprintf(
-							'GP Webhook error : %s (%d)',
-							$response->get_error_message(),
-							$response->get_error_code()
-						);
-
-
-						$this->add_note($entry_id, $note_message, 'error');
-						$this->add_feed_error(
-							$note_message,
-							$feed,
-							$entry,
-							$form
-						);
-					}
-					else {
-						$petition_id = intval( $response['body'] );
-						$this->add_note($entry_id, 'GP Webhook SUCCESS, ID : ' . $petition_id, 'success');
-					}
+				$alert_url = trim( $plugin_settings['alert_url'] );
+				if ( ! empty($alert_url) ) {
+					$this->alert($note_message, $alert_url);
 				}
-			break;
 
-			case 'database':
-				$hostname = trim( $plugin_settings['dbhost'] );
-				$dbname = trim( $plugin_settings['dbname'] );
-				$tablename = trim( $plugin_settings['dbtable'] );
-
-				if ( $this->is_valid_db_host($hostname)
-					&& $this->is_valid_db_field($dbname)
-					&& $this->is_valid_db_field($tablename)
-				) {
-
-					$types = [
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-						'%d',
-						'%s',
-						'%s',
-						'%s',
-						'%s',
-					];
-
-
-					try {
-
-						$db = new \wpdb(DB_USER, DB_PASSWORD, $dbname, $hostname);
-
-						$db->query(
-							$db->prepare(
-								'insert into '.$dbname.'.'.$tablename.'
-									('.implode(', ', array_keys($values)).')
-								values
-									('.implode(', ', $types).')',
-								array_values( $values )
-							)
-						);
-
-						$petition_id = $db->insert_id;
-
-						$this->add_note($entry_id, 'GP Database SFMC SUCCESS, ID : ' . $petition_id, 'success');
-					}
-					catch(\Exception $e) {
-						$note_message = 'GP Database SFMC error : ' . $e->getMessage();
-
-						$this->add_note($entry_id, $note_message, 'error');
-						$this->add_feed_error(
-							$note_message,
-							$feed,
-							$entry,
-							$form
-						);
-
-					}
-				}
-			break;
+			}
+			else {
+				$petition_id = intval( $response['body'] );
+				$this->add_note($entry_id, 'GP Webhook SUCCESS, ID : ' . $petition_id, 'success');
+			}
 		}
 
 		gform_update_meta( $entry_id, 'petition_id', $petition_id, $form_id );

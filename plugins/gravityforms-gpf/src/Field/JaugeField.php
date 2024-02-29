@@ -58,24 +58,24 @@ class JaugeField extends \GF_Field_Text {
 	}
 
 
-	public function get_form_inline_script_on_page_render( $form ) {
-		$id = "input_{$form['id']}_{$this->id}";
-		return ;
-		return <<<END
-(function() {
-	var input = document.getElementById("$id");
-	var keepNumbers = false;
+// 	public function get_form_inline_script_on_page_render( $form ) {
+// 		$id = "input_{$form['id']}_{$this->id}";
+// 		return ;
+// 		return <<<END
+// (function() {
+// 	var input = document.getElementById("$id");
+// 	var keepNumbers = false;
 
-	if (input) {
-		input.addEventListener('keypress', function(e) {
-			e.preventDefault();
-			window.gpfCleanInput(e.charCode, e.target, 80, keepNumbers);
-			e.target.value = e.target.value.toUpperCase();
-		});
-	}
-})();
-END;
-	}
+// 	if (input) {
+// 		input.addEventListener('keypress', function(e) {
+// 			e.preventDefault();
+// 			window.gpfCleanInput(e.charCode, e.target, 80, keepNumbers);
+// 			e.target.value = e.target.value.toUpperCase();
+// 		});
+// 	}
+// })();
+// END;
+// 	}
 
 
 	public function get_field_input($form, $value = '', $entry = null) {

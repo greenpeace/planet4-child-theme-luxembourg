@@ -136,7 +136,7 @@ class Plugin {
 		}
 
 
-		$apparence = $form['greenpeace-design'];
+		$apparence = $form['greenpeace-design'] ?? [];
 
 		$cta_picto = $apparence['cta_picto'] ?? "";
 		$picto = "";
@@ -214,7 +214,7 @@ class Plugin {
 						'message' => 'Votre adresse e-mail est trop longue.',
 					];
 				}
-				else if ( ! preg_match('/^[a-z0-9]([a-z0-9_\.\+-]*[^_\.\+-]+)?@([a-z0-9-]+\.)+[a-z0-9]+$/', $value) ) {
+				else if ( ! preg_match('/^[A-Za-z0-9]([A-Za-z0-9_\.\+-]*[^_\.\+-]+)?@([A-Za-z0-9-]+\.)+[A-Za-z0-9]+$/', $value) ) {
 					$result = [
 						'is_valid' => false,
 						'message' => 'Votre adresse e-mail semble incorrecte.',
@@ -282,6 +282,14 @@ class Plugin {
 
 
 	public function custom_merge_tags( $merge_tags, $form_id, $fields, $element_id ) {
+
+
+		$merge_tags[] = [
+			'label' => 'Codespec passé dans l\'URL',
+			'tag' => '{codespec}'
+		];
+
+
 		$merge_tags[] = [
 			'label' => 'Langue de la page Luxembourg',
 			'tag' => '{luxembourg_page_lang}'
@@ -301,6 +309,16 @@ class Plugin {
 				$text = str_replace( '{luxembourg_page_lang}', $lang, $text );
 			}
 		}
+
+		if ( strpos($text, '{codespec}') !== false ) {
+			$query = parse_url($entry['source_url'], PHP_URL_QUERY);
+
+			parse_str($query, $params);
+			$codespec = $params['codespec'] ?? "";
+
+			$text = str_replace( '{codespec}', $codespec, $text);
+		}
+
 
 		return $text;
 	}
@@ -490,7 +508,7 @@ END;
 		$fields['form_basics']['fields'][] = [
 			'name' => 'display_mentions_legales_position',
 			'type' => 'toggle',
-			'label' => 'Coché : mentions affichées sous le bouton Valider. Non coché : mentions affichées au dessus du bouton.',
+			'label' => 'Coché : mentions affichées au dessous du bouton Valider. Non coché : mentions affichées sous le bouton.',
 			'default_value' => "0",
 			"description" => "",
 		];
@@ -525,6 +543,7 @@ END;
 
 			fieldSettings.gp_jauge += ', .gp_jauge_start_setting, .gp_jauge_target_setting, .gp_jauge_min_setting, .gp_jauge_text_setting'
 
+			fieldSettings.remove_from_url += ', remove_from_url_setting'
 
 			jQuery(document).bind('gform_load_field_settings', function(event, field, form){
 
@@ -534,6 +553,8 @@ END;
 					jQuery('#jauge_text').val( rgar(field, 'jauge_text') )
 					jQuery('#jauge_min').val( rgar(field, 'jauge_min') )
 				}
+
+
 			});
 
 		</script>
@@ -541,9 +562,25 @@ END;
 	}
 
 
+
+	public function remove_param_from_url( $position, $form_id ) {
+		if ( $position === -1 ) { // -1 = le dernier
+			?>
+			<li class="remove_from_url_setting field_setting">
+				<input type="checkbox" id="field_remove_from_url" onclick="SetFieldProperty('removeFromUrl', this.checked);" />
+				<label for="field_remove_from_url" style="display:inline;">
+					Ne pas afficher le paramètre dans l'URL
+				</label>
+			</li>
+			<?php
+		}
+	}
+
+
+
 	public function field_settings( $position, $form_id ) {
 
-		$form = GFAPI::get_form($form_id);
+		// $form = GFAPI::get_form($form_id);
 
 
 		if ( $position == 25 ) {

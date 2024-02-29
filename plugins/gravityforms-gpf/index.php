@@ -87,6 +87,40 @@ add_action( 'gform_enqueue_scripts', function($form, $is_ajax) {
 }, 1, 2 );
 
 
+add_action( 'gform_get_form_filter', function($form_string, $form) {
+
+	$params = [];
+
+	foreach ($form['fields'] as $field ) {
+		if ( isset($field['removeFromUrl'])
+			&& $field['removeFromUrl'] === true
+			&&  ! empty($field['inputName'])
+			) {
+			$params[] = $field['inputName'];
+		}
+	}
+
+	if ( ! count($params)) {
+		return $form_string;
+	}
+
+	$p = json_encode($params);
+
+	$return_string = <<< END
+	<script>
+	const url = new URL(location.href);
+	{$p}.forEach( function(p) { url.searchParams.delete(p) } );
+	try {
+	window.history.replaceState({}, "", url.pathname + url.search + url.hash)
+	}
+	catch(e) {}
+	</script>
+	END;
+
+	return $return_string . $form_string;
+}, 999, 2);
+
+
 add_action('admin_init', function() {
 	wp_localize_script( 'jquery-core', 'gpfgf', [
 		'getForm' => admin_url('admin-ajax.php?action=gpfgfgetform'),
@@ -262,6 +296,20 @@ add_action( 'admin_footer', function( ) {
 });
 */
 
+
+add_action( 'admin_footer', function( ) {
+	// On ne peut pas utiliser admin_enqueue_scripts parce que
+	// GF est configuré en mode No Conflict et donc
+	// ne charge pas les autres JS.
+	$screen = get_current_screen();
+
+	if ($screen->id === 'toplevel_page_gf_edit_forms') {
+		echo '<script type="text/javascript" src="'.GPFGF_DIR_URL . 'assets/admin.js" id="gpfgf-admin-js"></script>';
+	}
+
+});
+
+
 // modification des messages de validation de téléphone
 // suppression des "X caractères maximum"
 add_action( 'gform_register_init_scripts', [$plugin, 'form_javascript'], 1 );
@@ -306,6 +354,9 @@ add_filter( 'gform_submit_button', [$plugin, 'submit_button'], 10, 2 );
 
 
 add_action( 'gform_field_standard_settings', [$plugin, 'field_settings'], 10, 2 );
+
+add_action( 'gform_field_advanced_settings', [$plugin, 'remove_param_from_url'], 10, 2 );
+
 add_action( 'gform_editor_js', [$plugin, 'field_settings_js']);
 
 
@@ -397,7 +448,7 @@ function cleanCrmValue($value, $maxlength, $keep_numbers = true, $encoding = 'UT
 
 
 // Log de debug
-add_filter( 'gform_currency_pre_save_entry', function($currency, $form) {
+add_filter( 'x-gform_currency_pre_save_entry', function($currency, $form) {
 
 	$form_id = $form['id'];
 
@@ -418,5 +469,5 @@ add_filter( 'gform_currency_pre_save_entry', function($currency, $form) {
 
 
 
-	return $read_value_from_post;
+	return $currency;
 }, 10, 2 );
