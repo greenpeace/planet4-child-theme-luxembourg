@@ -59,6 +59,11 @@ class ConfirmationScreen extends \GFAddOn {
 
 	public function is_valid_url($value) {
 
+		if ( ! is_string($value)) {
+			// quand on reçoit NULL
+			return true;
+		}
+
 		$regex = "https?\:\/\/";
 		$regex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?";
 		$regex .= "([a-z0-9-.]*)\.([a-z]{2,3})";
@@ -74,7 +79,13 @@ class ConfirmationScreen extends \GFAddOn {
 
 		$regex = "mailto\:";
 		$regex .= "[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*";
-		return (preg_match("/^$regex$/i", $value));
+
+		if ( ! empty( $value ) && is_string( $value ) ) {
+			return (preg_match("/^$regex$/i", $value));
+		}
+		else {
+			return true;
+		}
 	}
 
 	public function form_settings_fields( $form ) {
@@ -337,7 +348,7 @@ class ConfirmationScreen extends \GFAddOn {
 						'type' => 'text',
 						'name' => 'share_facebook_message',
 						'label' => 'Lien de partage Facebook',
-						'validation_callback' => [$this, 'is_valid_url'],
+						// 'validation_callback' => [$this, 'is_valid_url'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -359,7 +370,7 @@ class ConfirmationScreen extends \GFAddOn {
 						'type' => 'textarea',
 						'name' => 'share_twitter_message',
 						'label' => 'Message Twitter (lien de partage complet)',
-						'validation_callback' => [$this, 'is_valid_url'],
+						// 'validation_callback' => [$this, 'is_valid_url'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -381,7 +392,7 @@ class ConfirmationScreen extends \GFAddOn {
 						'type' => 'textarea',
 						'name' => 'share_whatsapp_message',
 						'label' => 'Message Whatsapp (lien de partage complet)',
-						'validation_callback' => [$this, 'is_valid_url'],
+						// 'validation_callback' => [$this, 'is_valid_url'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -402,7 +413,7 @@ class ConfirmationScreen extends \GFAddOn {
 						'type' => 'textarea',
 						'name' => 'share_mailto_message',
 						'label' => 'Message Mailto (lien mailto: complet)',
-						'validation_callback' => [$this, 'is_valid_mailto'],
+						// 'validation_callback' => [$this, 'is_valid_mailto'],
 						'dependency' => [
 							'live' => true,
 							'fields' => [
@@ -494,7 +505,11 @@ class ConfirmationScreen extends \GFAddOn {
 			$don_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['don_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$don_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['don_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$don_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['don_button_link'] ) ).'" class="gform_button button base-button don-button"><span class="base-button-content">';
+
+
+			$don_bouton_link = \GFCommon::replace_variables( trim( $config['don_button_link'] ), $form, $entry, false, false, true );
+
+			$don_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( $don_bouton_link ).'" class="gform_button button base-button don-button"><span class="base-button-content">';
 
 			if ( intval($config['show_icon_in_don_button'] ?? "1") ) {
 				// $don_bouton .= '<i class="icon-heart"></i> ';
@@ -516,7 +531,10 @@ class ConfirmationScreen extends \GFAddOn {
 			$petition_html = '<div class="confirmation-first-message">' . \GFCommon::replace_variables( trim( $config['petition_message_1'] ), $form, $entry, false, false, true ) . '</div>';
 			$petition_html .= '<div class="confirmation-second-message">' . \GFCommon::replace_variables( trim( $config['petition_message_2'] ), $form, $entry, false, false, true ) . '</div>';
 
-			$petition_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( trim( $config['petition_button_link'] ) ).'" class="gform_button button base-button petition-button"><span class="base-button-content">';
+
+			$petition_bouton_link = \GFCommon::replace_variables( trim( $config['petition_button_link'] ), $form, $entry, false, false, true );
+
+			$petition_bouton = '<div class="confirmation-block-button-wrapper"><a href="'.esc_url( $petition_bouton_link ).'" class="gform_button button base-button petition-button"><span class="base-button-content">';
 
 			if ( intval($config['show_icon_in_petition_button'] ?? "1") ) {
 				$petition_bouton .= '<svg class="picto-pen" role="img" aria-hidden="true" width="24" height="32" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><use href="#picto-pen"/></svg> ';

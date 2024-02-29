@@ -39,18 +39,29 @@ class FirstNameField extends \GF_Field_Text {
 	}
 
 
-	public function get_value_save_entry($value, $form, $input_name, $lead_id, $lead) {
-
-		// $this->log_debug( __METHOD__ . "(): '.$lead_id.' Avant save entry du prénom : " .  $value );
+	public function validate($value, $form) {
 
 		$keep_numbers = false;
 		$value = cleanCrmValue($value, $this->maxLength, $keep_numbers);
 
+		if (strlen($value) === 0) {
+			$this->failed_validation = true;
+			$this->validation_message = 'Votre prénom semble invalide.';
+		}
+
+	}
+
+
+
+
+	public function get_value_save_entry($value, $form, $input_name, $lead_id, $lead) {
+
+		$keep_numbers = false;
+		$value = cleanCrmValue($value, $this->maxLength, $keep_numbers);
 
 		$value = mb_strtolower($value, 'UTF-8' );
 		$value = mb_convert_case($value, MB_CASE_TITLE, 'UTF-8' );
 
-		// $this->log_debug( __METHOD__ . "(): '.$lead_id.' Après save entry du prénom : " .  $value );
 		return $value;
 	}
 
@@ -63,14 +74,33 @@ class FirstNameField extends \GF_Field_Text {
 	var keepNumbers = false;
 
 	if (input) {
+		input.addEventListener('paste', function(e) {
+			e.preventDefault()
+			let value = (e.clipboardData || window.clipboardData).getData("text");
+			// value = window.gpfRemoveAccents( value );
+
+			if (value.match(/[^ 'A-Za-zÀ-ÖØ-öø-ÿ-]/)) {
+				jQuery(e.target).parents('.gfield').addClass('field-invalid')
+			}
+			e.target.value = value
+		})
 		input.addEventListener('keypress', function(e) {
 			e.preventDefault();
 			window.gpfCleanInput(e.charCode, e.target, 40, keepNumbers);
+
+			// var v = window.gpfRemoveAccents(e.target.value)
 			var v = e.target.value
 				.toLowerCase()
 				.replace( /([ -])([^ -])/g, (match, p1, p2) => p1 + p2.toUpperCase() );
 
 			e.target.value = v.charAt(0).toUpperCase() + v.slice(1);
+
+			if (e.target.value.match(/[^ 'A-Za-zÀ-ÖØ-öø-ÿ-]/)) {
+				jQuery(e.target).parents('.gfield').addClass('field-invalid')
+			}
+			else {
+				jQuery(e.target).parents('.gfield').removeClass('field-invalid')
+			}
 		});
 	}
 })();

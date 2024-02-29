@@ -62,10 +62,25 @@ class CityField extends \GF_Field_Text {
 	var keepNumbers = false;
 
 	if (input) {
+		input.addEventListener('paste', function(e) {
+			e.preventDefault()
+			let value = (e.clipboardData || window.clipboardData).getData("text");
+			value = window.gpfRemoveAccents( value.toUpperCase() );
+			if (value.match(/[^ A-Za-z-]/)) {
+				jQuery(e.target).parents('.gfield').addClass('field-invalid')
+			}
+			e.target.value = value
+		})
 		input.addEventListener('keypress', function(e) {
 			e.preventDefault();
 			window.gpfCleanInput(e.charCode, e.target, 40, keepNumbers);
 			e.target.value = window.gpfRemoveAccents( e.target.value.toUpperCase() );
+			if (e.target.value.match(/[^ A-Za-z-]/)) {
+				jQuery(e.target).parents('.gfield').addClass('field-invalid')
+			}
+			else {
+				jQuery(e.target).parents('.gfield').removeClass('field-invalid')
+			}
 		});
 	}
 })();

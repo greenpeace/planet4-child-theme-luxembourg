@@ -246,7 +246,7 @@ class Web2caseFeed extends \GFFeedAddOn {
 			$this->add_note($entry_id, $note_message );
 
 
-			$this->log_debug( sprintf( '%s(): Web2case envoyé. code: %s; body: %s', __METHOD__, wp_remote_retrieve_response_code( $response ), wp_remote_retrieve_body( $response ) ) );
+			// $this->log_debug( sprintf( '%s(): Web2case envoyé. code: %s; body: %s', __METHOD__, wp_remote_retrieve_response_code( $response ), wp_remote_retrieve_body( $response ) ) );
 		}
 
 		return $entry;

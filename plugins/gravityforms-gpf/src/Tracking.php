@@ -121,11 +121,11 @@ class Tracking extends \GFAddOn {
 			'{utm_medium}',
 			'{utm_source}',
 		], [
-			$entry['utm_content'],
-			$entry['utm_campaign'],
-			$entry['utm_term'],
-			$entry['utm_medium'],
-			$entry['utm_source'],
+			$entry['utm_content'] ?? "",
+			$entry['utm_campaign'] ?? "",
+			$entry['utm_term'] ?? "",
+			$entry['utm_medium'] ?? "",
+			$entry['utm_source'] ?? "",
 		],
 		$text );
 
@@ -170,7 +170,8 @@ class Tracking extends \GFAddOn {
 			return $confirmation;
 		}
 
-		$event_id = $entry['id'] . '.' . $form['id'];
+		$event_id = $entry['id'] ?? 'r' . mt_rand(10000000, 99999999);
+		$event_id .= '.' . $form['id'];
 
 		$event = [
 			'event' => 'conversion',
