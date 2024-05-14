@@ -23,6 +23,9 @@ class Plugin {
 
 
 	public function loaded() {
+		if (!class_exists('GFForms')) {
+			return;
+		}
 
 		GFForms::include_feed_addon_framework();
 		GFForms::include_addon_framework();
