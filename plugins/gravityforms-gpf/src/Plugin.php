@@ -207,6 +207,7 @@ class Plugin {
 	}
 
 
+
 	public function field_validation($result, $value, $form, $field) {
 
 		switch ($field->type) {
