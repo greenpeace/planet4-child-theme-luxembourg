@@ -71,15 +71,15 @@ margin: 0 0 1em 0;
 padding:0;
 }
 
+} // Boutons de formulaire brochure (Gravity Forms) — toutes pages
 .gpfgf-submit-button {
-background: white;
-color: black;
-text-align: left;
-padding:0;
+  background-color: transparent !important;
+  padding: 0 !important;
 }
-
-.gpfgf-submit-button:hover {
-background: white;
-color: black;
-text-align: left;
-} 
+.gform_button {
+  background-color: #66cc00 !important;
+  color: #fff !important;
+  border: 0 !important;
+}
+.gform_button:after { display: none !important; }
+.form-disclaimer p { color: #54575f; }
